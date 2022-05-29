@@ -1,9 +1,13 @@
-package budget_app;
+package budget_app.data;
+
+// data package
+// inside the data package will be all classes & methods that interface with the database.
+// These methods will be called from methods within the services package
 
 import java.sql.*;
 import java.util.Scanner;
 
-class Repository {
+class Data {
     static String sqlStatement; // example sql statement:  "select * from mybudgetdb.users";
     static String tableName;
     static Statement statement;
