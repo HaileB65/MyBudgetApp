@@ -3,6 +3,8 @@ package budget_app.controllers;
 // controller package
 // inside the controllers package will be all classes that interface with the user and that print out menus etc.
 
+import budget_app.model.MonthlyBudget;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -20,23 +22,25 @@ public class Menu {
     // print out report
 
     public static void main(String[] args) {
+        MonthlyBudget budget = new MonthlyBudget();
+        budget.enterBudgetInfo();
 
-        //account balances menu
-        System.out.println("1) Select account");
-        System.out.println("2) return to main menu");
-
-        //Overview stats menu
-        System.out.println("1) Select a specific stat");
-        System.out.println("2) return to main menu");
-
-        //customize budget menu
-        System.out.println("1) add/update/delete income?");
-        System.out.println("2) add/update/delete expense?");
-        System.out.println("2) return to main menu");
-
-        //run custom report menu
-        System.out.println("1) Select a custom report");
-        System.out.println("2) return to main menu");
+//        //account balances menu
+//        System.out.println("1) Select account");
+//        System.out.println("2) return to main menu");
+//
+//        //Overview stats menu
+//        System.out.println("1) Select a specific stat");
+//        System.out.println("2) return to main menu");
+//
+//        //customize budget menu
+//        System.out.println("1) add/update/delete income?");
+//        System.out.println("2) add/update/delete expense?");
+//        System.out.println("2) return to main menu");
+//
+//        //run custom report menu
+//        System.out.println("1) Select a custom report");
+//        System.out.println("2) return to main menu");
 
     }
 
