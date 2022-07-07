@@ -1,4 +1,4 @@
-package budget_app.services;
+package budget_app;
 
 // services package
 // inside the services package will be the core logic of the application.

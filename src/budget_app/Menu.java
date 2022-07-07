@@ -1,9 +1,9 @@
-package budget_app.controllers;
+package budget_app;
 
 // controller package
 // inside the controllers package will be all classes that interface with the user and that print out menus etc.
 
-import budget_app.model.MonthlyBudget;
+import budget_app.models.MonthlyBudget;
 
 import java.util.Arrays;
 import java.util.List;

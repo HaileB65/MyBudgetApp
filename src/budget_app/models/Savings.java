@@ -1,4 +1,4 @@
-package budget_app.model;
+package budget_app.models;
 
 public class Savings {
     String name;

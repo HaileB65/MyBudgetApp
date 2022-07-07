@@ -1,7 +1,5 @@
 package budget_app;
 
-import budget_app.services.Repository;
-
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.List;
