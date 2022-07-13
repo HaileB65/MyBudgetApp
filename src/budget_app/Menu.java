@@ -22,8 +22,9 @@ public class Menu {
     // print out report
 
     public static void main(String[] args) {
-        MonthlyBudget budget = new MonthlyBudget();
-        budget.enterBudgetInfo();
+        mainMenu();
+//        MonthlyBudget budget = new MonthlyBudget();
+//        budget.enterBudgetInfo();
 
 //        //account balances menu
 //        System.out.println("1) Select account");
@@ -44,10 +45,9 @@ public class Menu {
 
     }
 
-    public Integer mainMenu(){
+    public static void mainMenu(){
         Integer menuSelection = 0;
         boolean wasAMenuNumberEntered = false;
-
         Integer[] numbers = {1,2,3,4,5};
         List<Integer> list = Arrays.asList(numbers);
 
@@ -62,73 +62,67 @@ public class Menu {
             System.out.println("5) Exit");
             menuSelection = userinput.nextInt();
 
+
             if (menuSelection == 1) {
-                System.out.println("head to account balances menu");
-                return 1;
+                userAccountMenu();
             }
             if (menuSelection == 2) {
-                System.out.println("head to View Overview stats menu");
-                return 2;
+                overviewStatsMenu();
             }
             if (menuSelection == 3) {
-                System.out.println("head to Customize Budget menu");
-                return 3;
+                customizeBudgetMenu();
             }
             if (menuSelection == 4) {
-                System.out.println("head to Run Custom Reports menu");
-                return 4;
+                customReportsMenu();
             }
             if (menuSelection == 5) {
-                System.out.println("exit code");
-                return 5;
+                exit();
             }
 
         }
-        return 0;
-
     }
 
-    public Integer accountBalancesMenu(){
+    public static Integer userAccountMenu(){
+        System.out.println("show user accounts table");
+        System.out.println("user , checking total , savings total, goal total");
+        System.out.println("Henry , 2300 , 10000, 1500");
+        System.out.println("Sam , 200 , 15000, 100");
+        return 1;
+    }
+
+    public static void overviewStatsMenu(){
+        System.out.println("head to View Overview stats menu");
+    }
+
+    public static void customizeBudgetMenu(){
         Integer menuSelection = 0;
         boolean wasAMenuNumberEntered = false;
-
         Integer[] numbers = {1,2,3,4,5};
         List<Integer> list = Arrays.asList(numbers);
 
-        while(!list.contains(menuSelection)) {
-            Scanner userinput = new Scanner(System.in);
-            System.out.println("Welcome the Budgeting App");
-            System.out.println("Please select your menu number below to proceed:");
-            System.out.println("1) Savings");
-            System.out.println("2) Goals");
-//            System.out.println("3) Customize Budget (add/update/delete income & expenses)");
-//            System.out.println("4) Run Custom Reports");
-//            System.out.println("5) Exit");
-            menuSelection = userinput.nextInt();
+        System.out.println("head to Customize Budget menu");
+        Scanner userinput1 = new Scanner(System.in);
+        System.out.println("Customize Budget menu");
+        System.out.println("1) update budget");
+        System.out.println("2) View Overview stats");
+        System.out.println("3) Customize Budget (add/update/delete income & expenses)");
+        System.out.println("4) Run Custom Reports");
+        System.out.println("5) Exit");
+        menuSelection = userinput1.nextInt();
 
-            if (menuSelection == 1) {
-                System.out.println("print out savings account info");
-                return 1;
-            }
-            if (menuSelection == 2) {
-                System.out.println("print out goals account info");
-                return 2;
-            }
-//            if (menuSelection == 3) {
-//                System.out.println("head to Customize Budget menu");
-//                return 3;
-//            }
-//            if (menuSelection == 4) {
-//                System.out.println("head to Run Custom Reports menu");
-//                return 4;
-//            }
-//            if (menuSelection == 5) {
-//                System.out.println("exit code");
-//                return 5;
-//            }
-
+        if (menuSelection == 1) {
+            MonthlyBudget budget = new MonthlyBudget();
+            budget.enterBudgetInfo();
         }
-        return 0;
-
     }
+
+    public static void customReportsMenu(){
+        System.out.println("head to Run Custom Reports menu");
+    }
+
+    public static void exit(){
+        System.out.println("exit code");
+    }
+
+
 }
