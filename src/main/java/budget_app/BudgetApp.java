@@ -61,7 +61,7 @@ public class BudgetApp {
 
 
                 if (menuSelection == 1) {
-                    userAccountsMenu();
+                    accountsMenu();
                 }
                 if (menuSelection == 2) {
                     overviewStatsMenu();
@@ -79,22 +79,20 @@ public class BudgetApp {
             }
         }
 
-        public static void userAccountsMenu(){
-            System.out.println("show user accounts table");
+        public static void accountsMenu(){
+            System.out.println("show user's accounts table");
             System.out.println("Henry");
-            System.out.println("Sam");
 
             //menu prompt select
             Scanner userInput1 = new Scanner(System.in);
-            System.out.println("1)select Henry's account");
-            System.out.println("2)select Sam's account");
+            System.out.println("1)select checking account");
+            System.out.println("2)select savings account");
+            System.out.println("2)select goal account");
             System.out.println("5)return to main menu");
             Integer menuSelection = userInput1.nextInt();
 
             if (menuSelection == 1) {
-                System.out.println("user , checking total , savings total, goal total");
-                System.out.println("Henry's account");
-                System.out.println("Henry , checking 2300 ,savings 10000, road trip goal 1500");
+                System.out.println("Henry checking 2300");
 
                 Scanner userInput2 = new Scanner(System.in);
                 System.out.println("1) enter '1' see amount possible to place into savings");
@@ -106,29 +104,44 @@ public class BudgetApp {
 
                 System.out.println("return to accounts menu? Enter 'y' or 'n'.");
                 if(yesOrNoPrompt()) {
-                    userAccountsMenu();
+                    accountsMenu();
                 }
                 System.out.println("user did not want to return to accounts menu. Returning to main menu.");
                 mainMenu();
 
-
-
             }if (menuSelection == 2) {
-                System.out.println("user , checking total , savings total, goal total");
-                System.out.println("Sam's account");
-                System.out.println("Sam , checking 1200 ,savings 15000, road trip goal 250");
+                System.out.println("Henry savings 15000");
 
                 Scanner userInput2 = new Scanner(System.in);
-                System.out.println("1) enter '1' see amount possible to place into savings");
+                System.out.println("1) enter '1' see amount possible to place into checking");
                 Integer menuSelection1 = userInput2.nextInt();
 
                 if (menuSelection1 == 1) {
-                    System.out.println(" display amount able to place into savings");
+                    System.out.println(" display amount able to place into checking");
                 }
 
                 System.out.println("return to accounts menu? Enter 'y' or 'n'.");
                 if(yesOrNoPrompt()) {
-                    userAccountsMenu();
+                    accountsMenu();
+                }
+                System.out.println("user did not want to return to accounts menu. Returning to main menu.");
+                mainMenu();
+
+            }
+            if (menuSelection == 3) {
+                System.out.println("Henry road trip goal 1500");
+
+                Scanner userInput2 = new Scanner(System.in);
+                System.out.println("1) enter '1' see amount possible to place into goal");
+                Integer menuSelection1 = userInput2.nextInt();
+
+                if (menuSelection1 == 1) {
+                    System.out.println(" display amount able to place into goal");
+                }
+
+                System.out.println("return to accounts menu? Enter 'y' or 'n'.");
+                if(yesOrNoPrompt()) {
+                    accountsMenu();
                 }
                 System.out.println("user did not want to return to accounts menu. Returning to main menu.");
                 mainMenu();
@@ -142,7 +155,49 @@ public class BudgetApp {
         public static void overviewStatsMenu(){
             System.out.println("head to View Overview stats menu");
 
-        }
+            Scanner userInput1 = new Scanner(System.in);
+            System.out.println("1)view account balances");
+            System.out.println("2)view amount that can be put into savings now");
+            System.out.println("3)view upcoming payment dates and amounts");
+            System.out.println("4) return to main menu");
+            Integer menuSelection = userInput1.nextInt();
+
+            if (menuSelection == 1) {
+                System.out.println("Henry , checking 2300 ,savings 10000, road trip goal 1500");
+
+                System.out.println("return to overviewStats menu? Enter 'y' or 'n'.");
+                if(yesOrNoPrompt()) {
+                    overviewStatsMenu();
+                }
+                System.out.println("user did not want to return to accounts menu. Returning to main menu.");
+                mainMenu();
+            }
+            if (menuSelection == 2) {
+                System.out.println(" display amount able to place into savings");
+
+                System.out.println("return to overviewStats menu? Enter 'y' or 'n'.");
+                if(yesOrNoPrompt()) {
+                    overviewStatsMenu();
+                }
+                System.out.println("user did not want to return to accounts menu. Returning to main menu.");
+                mainMenu();
+            }
+            if (menuSelection == 3) {
+                System.out.println("display upcoming payments and amounts");
+
+                System.out.println("return to overviewStats menu? Enter 'y' or 'n'.");
+                if(yesOrNoPrompt()) {
+                    overviewStatsMenu();
+                }
+                System.out.println("user did not want to return to accounts menu. Returning to main menu.");
+                mainMenu();
+            }
+            if (menuSelection == 4) {
+                mainMenu();
+            }
+
+            }
+
 
         public static void customizeBudgetMenu(){
             Integer menuSelection = 0;
