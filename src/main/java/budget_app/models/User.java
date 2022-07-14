@@ -6,9 +6,10 @@ public class User {
     String lastName;
     String email;
 
-    private static Checking checking = new Checking();
-    private static Goal goal = new Goal();
-    private static Savings savings = new Savings();
+    public Checking checking;
+    public Savings savings;
+    public Goal goal;
+
 
     public int getId() {
         return id;

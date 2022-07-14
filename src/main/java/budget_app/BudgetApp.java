@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class BudgetApp {
     private static User max = new User();
-
     private static BudgetCriticalInformationService budget = new BudgetCriticalInformationService();
 
         // menu
