@@ -1,13 +1,21 @@
 package budget_app;
 
+import budget_app.models.Checking;
+import budget_app.models.Goal;
+import budget_app.models.Savings;
+import budget_app.models.User;
 import budget_app.services.BudgetCriticalInformationService;
+import budget_app.services.MathLogic;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class BudgetApp {
+    private static User max = new User();
+
     private static BudgetCriticalInformationService budget = new BudgetCriticalInformationService();
+
         // menu
         // give user list of available accounts
         // ask user which account they want to enter or if they want to create a new account or
@@ -174,6 +182,7 @@ public class BudgetApp {
             }
             if (menuSelection == 2) {
                 System.out.println(" display amount able to place into savings");
+                MathLogic.printOutAmountAbleToPlaceIntoSavings();
 
                 System.out.println("return to overviewStats menu? Enter 'y' or 'n'.");
                 if(yesOrNoPrompt()) {
