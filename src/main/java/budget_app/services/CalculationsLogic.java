@@ -1,4 +1,4 @@
-package budget_app;
+package budget_app.services;
 
 public class CalculationsLogic {
 
