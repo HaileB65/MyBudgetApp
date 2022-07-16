@@ -6,6 +6,7 @@ public class User {
     String lastName;
     String email;
 
+    public Budget budget;
     public Checking checking;
     public Savings savings;
     public Goal goal;

@@ -1,10 +1,7 @@
 package budget_app;
 
-import budget_app.models.Checking;
-import budget_app.models.Goal;
-import budget_app.models.Savings;
 import budget_app.models.User;
-import budget_app.services.BudgetCriticalInformationService;
+import budget_app.services.BudgetService;
 import budget_app.services.MathLogic;
 
 import java.util.Arrays;
@@ -13,7 +10,7 @@ import java.util.Scanner;
 
 public class BudgetApp {
     private static User max = new User();
-    private static BudgetCriticalInformationService budget = new BudgetCriticalInformationService();
+    private static BudgetService budget = new BudgetService();
 
         // menu
         // give user list of available accounts
