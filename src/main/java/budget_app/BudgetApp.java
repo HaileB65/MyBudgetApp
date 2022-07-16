@@ -327,7 +327,7 @@ public class BudgetApp {
             Scanner userInput1 = new Scanner(System.in);
             System.out.println("1)Edit Goal");
             System.out.println("2)Create New goal");
-            System.out.println("6)return to main menu");
+            System.out.println("3)return to main menu");
             Integer menuSelection = userInput1.nextInt();
 
             if (menuSelection == 1) {
@@ -348,6 +348,9 @@ public class BudgetApp {
                     editGoalsMenu();
                 }
                 System.out.println("user did not want to return to Edit Goal menu. Returning to main menu.");
+                mainMenu();
+            }
+            if (menuSelection == 3) {
                 mainMenu();
             }
 
