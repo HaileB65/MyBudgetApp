@@ -6,10 +6,10 @@ public class User {
     String lastName;
     String email;
 
-    public Budget budget;
-    public Checking checking;
-    public Savings savings;
-    public Goal goal;
+    public Budget budget = new Budget();
+    public Checking checking= new Checking();
+    public Savings savings = new Savings();
+    public Goal goal = new Goal();
 
 
     public int getId() {

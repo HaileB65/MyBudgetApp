@@ -21,12 +21,13 @@ public class BudgetService {
 
         for (int element : Budget.expensesList) {
 
-            Scanner userInput3 = new Scanner(System.in);
-            System.out.println("Enter expense for " + cycleThroughBudgetInfoNames()
-                    + ": "); // user enters monthly income
-            element = userInput3.nextInt();
+//            Scanner userInput3 = new Scanner(System.in);
+//            System.out.println("Enter expense for " + cycleThroughBudgetInfoNames()
+//                    + ": "); // user enters monthly income
+//            element = userInput3.nextInt();
 
-            Budget.expenses += element;
+//            Budget.expenses += element;
+            Budget.expenses += 12;
 
             Budget.count++;
         }
@@ -47,7 +48,6 @@ public class BudgetService {
 
         Integer newExpenseValue = 0;
 
-        int homeInsurance = 250;
         Budget.budgetCriticalInformationNameList.add(newExpense);
         Budget.expensesList.add(newExpenseValue);
 
@@ -76,6 +76,8 @@ public class BudgetService {
         } else {
             System.out.println("Spent over budget = " + overUnderBudget);
         }
+
+        System.out.println();
     }
 
 

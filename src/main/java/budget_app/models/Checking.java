@@ -4,8 +4,8 @@ public class Checking {
     int id;
     String customer;
     String venderName;
-    int amount;
-    int dateOfTransaction;
+    int amount = 0;
+    int dateOfTransaction = 0;
 
     public int getId() {
         return id;

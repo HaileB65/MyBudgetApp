@@ -3,8 +3,9 @@ package budget_app.models;
 public class Goal {
     int id;
     String name;
-    int targetAmount;
-    int currentAmount;
+    int targetAmount = 0;
+    int currentAmount = 0;
+    int monthlyContribution = 0;
 
     public int getId() {
         return id;
@@ -36,6 +37,14 @@ public class Goal {
 
     public void setCurrentAmount(int currentAmount) {
         this.currentAmount = currentAmount;
+    }
+
+    public int getMonthlyContribution() {
+        return monthlyContribution;
+    }
+
+    public void setMonthlyContribution(int monthlyContribution) {
+        this.monthlyContribution = monthlyContribution;
     }
 
     @Override
