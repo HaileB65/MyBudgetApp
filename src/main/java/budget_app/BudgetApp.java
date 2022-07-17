@@ -1,5 +1,6 @@
 package budget_app;
 
+import budget_app.models.Goal;
 import budget_app.models.User;
 import budget_app.services.BudgetService;
 import budget_app.services.GoalService;
@@ -14,16 +15,6 @@ public class BudgetApp {
     public static User user = new User();
     public static BudgetService budgetService = new BudgetService();
     public static GoalService goalService = new GoalService();
-
-        // menu
-        // give user list of available accounts
-        // ask user which account they want to enter or if they want to create a new account or
-        // get a report
-        // enter account
-        // add/remove transaction from account
-        // ask for name of new account and create new account for user
-        // ask user which report they want
-        // print out report
 
         public static void main(String[] args) {
             mainMenu();
@@ -65,7 +56,7 @@ public class BudgetApp {
                     editGoalsMenu();
                 }
                 if (menuSelection == 6) {
-                    mainMenu();
+                    exit();
                 }
 
             }
@@ -150,6 +141,10 @@ public class BudgetApp {
             }
             if (menuSelection == 5) {
                 mainMenu();
+            }else{
+                System.out.println("please enter a menu option between 1 and 5");
+                System.out.println();
+                accountsMenu();
             }
         }
 
@@ -160,11 +155,13 @@ public class BudgetApp {
             System.out.println("1)view account balances");
             System.out.println("2)view amount that can be put into savings now");
             System.out.println("3)view upcoming payment dates and amounts");
-            System.out.println("4) return to main menu");
+            System.out.println("4)return to main menu");
             Integer menuSelection = userInput1.nextInt();
 
             if (menuSelection == 1) {
-                System.out.println("Henry , checking 2300 ,savings 10000, road trip goal 1500");
+                System.out.println("Henry checking ,savings , road trip goal account amounts:");
+                System.out.println(user.checking.getAmount() + ", " + user.savings.getCurrentAmount() + ", "
+                        + user.goal.getCurrentAmount());
 
                 System.out.println("return to overviewStats menu? Enter 'y' or 'n'.");
                 if(yesOrNoPrompt()) {
@@ -175,7 +172,7 @@ public class BudgetApp {
             }
             if (menuSelection == 2) {
                 System.out.println(" display amount able to place into savings");
-                MathLogic.printOutAmountAbleToPlaceIntoSavings();
+                System.out.println(user.checking.getAmount());
 
                 System.out.println("return to overviewStats menu? Enter 'y' or 'n'.");
                 if(yesOrNoPrompt()) {
@@ -196,10 +193,13 @@ public class BudgetApp {
             }
             if (menuSelection == 4) {
                 mainMenu();
+            }else{
+                System.out.println("please enter a menu option between 1 and 4");
+                System.out.println();
+                overviewStatsMenu();
             }
 
-            }
-
+        }
 
         public static void customizeBudgetMenu(){
             Integer menuSelection = 0;
@@ -211,7 +211,7 @@ public class BudgetApp {
             System.out.println("Customize Budget menu");
             System.out.println("1) update budget critical information");
             System.out.println("2) add an expense to budget list");
-            System.out.println("3) delete expenses");
+            System.out.println("3) delete expense from budget list");
             System.out.println("4) print out budget critical information list");
             System.out.println("5) Exit");
             menuSelection = userInput1.nextInt();
@@ -237,7 +237,7 @@ public class BudgetApp {
                 System.out.println();
             }
             if (menuSelection == 4) {
-                budgetService.budgetAndExpenseListCheck();
+                budgetService.printOutBudgetAndExpenseList();
                 System.out.println();
                 customizeBudgetMenu();
             }
@@ -319,6 +319,10 @@ public class BudgetApp {
             }
             if (menuSelection == 6) {
                 mainMenu();
+            } else{
+                System.out.println("please enter a menu option between 1 and 6");
+                System.out.println();
+                customReportsMenu();
             }
         }
 
@@ -327,6 +331,7 @@ public class BudgetApp {
             Scanner userInput1 = new Scanner(System.in);
             System.out.println("1)Edit Goal");
             System.out.println("2)Create New goal");
+            System.out.println("3)Print out existing goals");
             System.out.println("3)return to main menu");
             Integer menuSelection = userInput1.nextInt();
 
@@ -349,16 +354,23 @@ public class BudgetApp {
                 }
                 System.out.println("user did not want to return to Edit Goal menu. Returning to main menu.");
                 mainMenu();
+            }if (menuSelection == 3) {
+                goalService.printGoalNamesList();
             }
-            if (menuSelection == 3) {
+            if (menuSelection == 4) {
                 mainMenu();
+            }else{
+                System.out.println("please enter a menu option between 1 and 3");
+                System.out.println();
+                editGoalsMenu();
             }
 
         }
 
 
         public static void exit(){
-            System.out.println("exit code");
+            System.out.println("Exiting budget app");
+            System.exit(0);
         }
 
     public static boolean yesOrNoPrompt(){

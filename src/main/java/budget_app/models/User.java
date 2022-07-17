@@ -1,5 +1,9 @@
 package budget_app.models;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class User {
     int id;
     String firstName;
@@ -10,6 +14,10 @@ public class User {
     public Checking checking= new Checking();
     public Savings savings = new Savings();
     public Goal goal = new Goal();
+    public Goal goal2 = new Goal();
+
+    public static ArrayList<Goal> goalList = new ArrayList<>();
+    public static ArrayList<String> goalNamesList =  new ArrayList<>(Arrays. asList("goal", "goal2"));
 
 
     public int getId() {

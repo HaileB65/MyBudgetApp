@@ -91,7 +91,7 @@ public class BudgetService {
         enterBudgetInfo();
     }
 
-    public void budgetAndExpenseListCheck(){
+    public void printOutBudgetAndExpenseList(){
         System.out.println("printing out budgetCriticalInfo list");
         System.out.println(Budget.budgetCriticalInformationNameList);
 
