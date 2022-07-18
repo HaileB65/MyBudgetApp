@@ -276,14 +276,16 @@ public class Repository {
 
                 // get the id, name and units fields from the result set and assign them to local variables
                 int id = resultSet.getInt("goal_id");
-                String accountType = resultSet.getString("account_type");
+                String name = resultSet.getString("goal_name");
                 int targetAmount = resultSet.getInt("target_amount");
                 int currentAmount = resultSet.getInt("current_amount");
+                int monthlyContribution = resultSet.getInt("monthly_contribution");
 
 
 
                 // print out the result
-                System.out.println( accountType + " account target amount is " + targetAmount + " and current amount is  " + currentAmount);
+                System.out.println( name + " target amount is " + targetAmount
+                        + ", current amount is  " + currentAmount + ", monthly contribution is " + monthlyContribution );
             }
         } catch (SQLException exc) {
             System.out.println("Exception occurred");
@@ -303,6 +305,7 @@ public class Repository {
         }
 
     }
+
 
     public static void updateGoalsTable(){
         Connection connection = null;
@@ -360,7 +363,7 @@ public class Repository {
             // Statements allow us to issue SQL queries to the database
             statement = connection.createStatement();
             // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("insert into goals (account_type, target_amount, current_amount) values ('Road Trip', 500, 250);");
+            int updateCount = statement.executeUpdate("insert into goals (goal_name, target_amount, current_amount, monthly_contribution) values ('Road Trip', 500, 250, 50);");
 
             System.out.println("Updated test_value successfully : " + updateCount );
 
