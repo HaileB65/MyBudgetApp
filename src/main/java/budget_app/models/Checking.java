@@ -2,7 +2,7 @@ package budget_app.models;
 
 public class Checking {
     int id;
-    String customer;
+    String customerName;
     String venderName;
     int amount = 0;
     int dateOfTransaction = 0;
@@ -15,12 +15,12 @@ public class Checking {
         this.id = id;
     }
 
-    public String getCustomer() {
-        return customer;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getVenderName() {
@@ -51,7 +51,7 @@ public class Checking {
     public String toString() {
         return "Checking{" +
                 "id=" + id +
-                ", customer='" + customer + '\'' +
+                ", customer='" + customerName + '\'' +
                 ", venderName='" + venderName + '\'' +
                 ", amount=" + amount +
                 ", dateOfTransaction=" + dateOfTransaction +
