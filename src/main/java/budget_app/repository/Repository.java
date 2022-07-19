@@ -16,7 +16,7 @@ public class Repository {
     static ResultSet resultSet;
 
     public static void main(String[] args) {
-        returnUsersTable();
+        createBudget();
 //        createGoal();
 //        returnGoalsTable();
 
@@ -32,7 +32,7 @@ public class Repository {
 
     public static String askUserWhichTableToRetrieve() {
 
-        printOutDatabaseTables();  // print out available tables in db
+        printOutDataBaseTables();  // print out available tables in db
 
         Scanner scanner = new Scanner(System.in); // starts scanner
         System.out.print("Enter table to retrieve values: ");  // gives user a prompt
@@ -42,7 +42,7 @@ public class Repository {
 
     }
 
-    public static void printOutDatabaseTables() {
+    public static void printOutDataBaseTables() {
         Connection connection = null;
         statement = null;
         resultSet = null;
@@ -89,7 +89,7 @@ public class Repository {
         }
     }
 
-    public static void returnUsersTable() {
+    public static void printOutUsersTable() {
         Connection connection = null;
         statement = null;
         resultSet = null;
@@ -195,7 +195,7 @@ public class Repository {
 
     }
 
-    public static void returnSavingsTable(){
+    public static void printOutSavingsTable(){
         Connection connection = null;
         statement = null;
         resultSet = null;
@@ -249,7 +249,7 @@ public class Repository {
 
     }
 
-    public static void returnBudgetTable(){
+    public static void printOutBudget(){
         Connection connection = null;
         statement = null;
         resultSet = null;
@@ -266,23 +266,40 @@ public class Repository {
             // Statements allow us to issue SQL queries to the database
             statement = connection.createStatement();
             // Execute the query on the Statement, getting a ResultSet in return
-            resultSet = statement.executeQuery("select * from mybudgetdb.savings"); //"select * from mybudgetdb.users"
+            resultSet = statement.executeQuery("select * from mybudgetdb.budget"); //"select * from mybudgetdb.users"
 
 
             // loop through the result set while there are more records
             while (resultSet.next()) {
 
                 // get the id, name and units fields from the result set and assign them to local variables
-                int id = resultSet.getInt("savings_id");
-                String name = resultSet.getString("savings_name");
-                int targetAmount = resultSet.getInt("target_amount");
+                int id = resultSet.getInt("budget_id");
+                int monthlyBudget = resultSet.getInt("monthly_budget");
                 int currentAmount = resultSet.getInt("current_amount");
-
+                int expenses = resultSet.getInt("expenses");
+                int monthlyIncome = resultSet.getInt("monthly_income");
+                int oneTimePayment = resultSet.getInt("one_time_payment");
+                int costOfRent = resultSet.getInt("cost_of_rent");
+                int fixedDebtPayments = resultSet.getInt("fixed_debt_payments");
+                int weeklyCostOfGroceries = resultSet.getInt("weekly_cost_of_groceries");
+                int weeklyCostOfEatingOut = resultSet.getInt("weekly_cost_of_eating_out");
+                int weeklyCostOfBeerWine = resultSet.getInt("weekly_cost_of_beer_wine");
+                int healthcare = resultSet.getInt("healthcare");
+                int childcare = resultSet.getInt("childcare");
+                int carInsurance = resultSet.getInt("car_insurance");
+                int vehicle = resultSet.getInt("vehicle");
+                int gas = resultSet.getInt("gas");
+                int HVAC = resultSet.getInt("HVAC");
+                int phone = resultSet.getInt("phone");
+                int tv = resultSet.getInt("tv");
+                int travel = resultSet.getInt("travel");
+                int otherUtilities = resultSet.getInt("other_utilities");
 
 
                 // print out the result
-                System.out.println( name + " target amount is " + targetAmount
-                        + ", current amount is  " + currentAmount);
+                System.out.println("Budget critical info" + monthlyBudget +currentAmount + expenses + monthlyIncome + oneTimePayment
+                + costOfRent + fixedDebtPayments + weeklyCostOfGroceries + weeklyCostOfEatingOut + weeklyCostOfBeerWine
+                        + healthcare + childcare + carInsurance + vehicle + gas + HVAC + phone + tv + travel + otherUtilities);
             }
         } catch (SQLException exc) {
             System.out.println("Exception occurred");
@@ -360,6 +377,46 @@ public class Repository {
             statement = connection.createStatement();
             // Execute the query on the Statement, getting a ResultSet in return
             int updateCount = statement.executeUpdate("insert into goals (goal_name, target_amount, current_amount, monthly_contribution) values ('Road Trip', 500, 250, 50);");
+
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+//                resultSet.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void createBudget(){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate(
+                    "insert into budget (monthly_budget, current_amount, expenses, monthly_income, one_time_payment, cost_of_rent, fixed_debt_payments, weekly_cost_of_groceries, weekly_cost_of_eating_out ,weekly_cost_of_beer_wine, healthcare, childcare, car_insurance, vehicle, gas, HVAC, phone, tv, travel, other_utilities) values (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0);");
 
             System.out.println("Updated test_value successfully : " + updateCount );
 

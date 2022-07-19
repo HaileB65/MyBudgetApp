@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Budget {
+    public static String itemName = null;
+    public static Integer count = 0;
+
     public static Integer monthlyBudget = 0;
     public static Integer currentAmount = 0;
     public static Integer expenses = 0;
-    public static Integer count = 0;
-    public static String itemName = null;
-
     public static Integer monthlyIncome = 0;
     public static Integer oneTimePayment = 0;
     public static Integer costOfRent = 0;
@@ -18,7 +18,6 @@ public class Budget {
     public static Integer weeklyCostOfEatingOut = 0;
     public static Integer numberOfTimesYouEatOut = 0;
     public static Integer weeklyCostOfBeerWine = 0;
-
     //monthly cost of
     public static Integer healthcare = 0;
     public static Integer childcare = 0;
