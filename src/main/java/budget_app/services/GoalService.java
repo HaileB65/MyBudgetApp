@@ -56,10 +56,10 @@ public class GoalService {
                 break;
             }
 
-            System.out.println("return to Edit Goal menu? Enter 'y' or 'n'.");
-            if(BudgetApp.yesOrNoPrompt()) {
-                BudgetApp.editGoalsMenu();
-            }
+//            System.out.println("return to Edit Goal menu? Enter 'y' or 'n'.");
+//            if(BudgetApp.yesOrNoPrompt()) {
+//                BudgetApp.editGoalsMenu();
+//            }
         }
 
         Scanner userInput1 = new Scanner(System.in);
@@ -72,28 +72,28 @@ public class GoalService {
         System.out.println("Monthly contribution towards goal:");
         Integer updatedGoalMonthlyContribution = userInput1.nextInt();
 
-        if(goalToEdit == BudgetApp.user.goal.getName()) {
-            BudgetApp.user.goal.setName(updatedGoalName);
-            BudgetApp.user.goal.setCurrentAmount(updatedGoalCurrentAmount);
-            BudgetApp.user.goal.setTargetAmount(updatedGoalTargetAmount);
-            BudgetApp.user.goal.setMonthlyContribution(updatedGoalMonthlyContribution);
-        }
-        if(goalToEdit == BudgetApp.user.goal2.getName()) {
-            BudgetApp.user.goal2.setName(updatedGoalName);
-            BudgetApp.user.goal2.setCurrentAmount(updatedGoalCurrentAmount);
-            BudgetApp.user.goal2.setTargetAmount(updatedGoalTargetAmount);
-            BudgetApp.user.goal2.setMonthlyContribution(updatedGoalMonthlyContribution);
-        }
-        if(goalToEdit == BudgetApp.user.goal2.getName()) {
-            // how to set values to a goal that a user created?
-        }
+//        if(goalToEdit == BudgetApp.user.goal.getName()) {
+//            BudgetApp.user.goal.setName(updatedGoalName);
+//            BudgetApp.user.goal.setCurrentAmount(updatedGoalCurrentAmount);
+//            BudgetApp.user.goal.setTargetAmount(updatedGoalTargetAmount);
+//            BudgetApp.user.goal.setMonthlyContribution(updatedGoalMonthlyContribution);
+//        }
+//        if(goalToEdit == BudgetApp.user.goal2.getName()) {
+//            BudgetApp.user.goal2.setName(updatedGoalName);
+//            BudgetApp.user.goal2.setCurrentAmount(updatedGoalCurrentAmount);
+//            BudgetApp.user.goal2.setTargetAmount(updatedGoalTargetAmount);
+//            BudgetApp.user.goal2.setMonthlyContribution(updatedGoalMonthlyContribution);
+//        }
+//        if(goalToEdit == BudgetApp.user.goal2.getName()) {
+//            // how to set values to a goal that a user created?
+//        }
 
         System.out.println("goal edit complete");
     }
 
     public void printGoalNamesList(){
         System.out.println("printing out goal list");
-        System.out.println(BudgetApp.user.goalNamesList);
+//        System.out.println(BudgetApp.user.goalNamesList);
 
     }
 

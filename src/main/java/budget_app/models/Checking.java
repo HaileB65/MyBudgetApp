@@ -5,7 +5,7 @@ public class Checking {
     String customerName;
     String venderName;
     int amount = 0;
-    int dateOfTransaction = 0;
+//    int dateOfTransaction = 0;
 
     public int getId() {
         return id;
@@ -39,13 +39,13 @@ public class Checking {
         this.amount = amount;
     }
 
-    public int getDateOfTransaction() {
-        return dateOfTransaction;
-    }
-
-    public void setDateOfTransaction(int dateOfTransaction) {
-        this.dateOfTransaction = dateOfTransaction;
-    }
+//    public int getDateOfTransaction() {
+//        return dateOfTransaction;
+//    }
+//
+//    public void setDateOfTransaction(int dateOfTransaction) {
+//        this.dateOfTransaction = dateOfTransaction;
+//    }
 
     @Override
     public String toString() {
@@ -54,7 +54,7 @@ public class Checking {
                 ", customer='" + customerName + '\'' +
                 ", venderName='" + venderName + '\'' +
                 ", amount=" + amount +
-                ", dateOfTransaction=" + dateOfTransaction +
+                ", dateOfTransaction=" +
                 '}';
     }
 }

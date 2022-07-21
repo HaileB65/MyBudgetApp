@@ -6,7 +6,10 @@ package budget_app.repository;
 // These methods will be called by methods from within the controllers package, as well as
 // other method from within the services package.
 
+import budget_app.models.Checking;
+
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Repository {
@@ -294,7 +297,7 @@ public class Repository {
 
     }
 
-    public static void printOutCheckingTable(){
+    public static ArrayList<Checking> returnAllChecking(){
         Connection connection = null;
         statement = null;
         resultSet = null;
@@ -313,21 +316,23 @@ public class Repository {
             // Execute the query on the Statement, getting a ResultSet in return
             resultSet = statement.executeQuery("select * from mybudgetdb.checking"); //"select * from mybudgetdb.users"
 
+            ArrayList<Checking> checkingList = new ArrayList<>(); // created list of checking objects
 
             // loop through the result set while there are more records
             while (resultSet.next()) {
+                Checking checking1 = new Checking();
 
-                // get the id, name and units fields from the result set and assign them to local variables
-                int id = resultSet.getInt("checking_id");
-                String customerName = resultSet.getString("customer_name");
-                String venderName = resultSet.getString("vender_name");
-                int amount = resultSet.getInt("amount");
+                checking1.setId(resultSet.getInt("checking_id")); // set id from db to checking1 instance
+                checking1.setCustomerName(resultSet.getString("customer_name"));
+                checking1.setVenderName(resultSet.getString("vender_name"));
+                checking1.setAmount(resultSet.getInt("amount"));
 
-
-
-                // print out the result
-                System.out.println( customerName + " payed " + venderName + amount);
+                checkingList.add(checking1); // add checking1 to array list
             }
+
+            return checkingList; // return checkingList
+
+
         } catch (SQLException exc) {
             System.out.println("Exception occurred");
             exc.printStackTrace();
@@ -345,6 +350,7 @@ public class Repository {
             }
         }
 
+        return null;
     }
 
     public static void printOutBudget(){
