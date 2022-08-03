@@ -1,6 +1,5 @@
 package budget_app.services;
 
-import budget_app.BudgetApp;
 import budget_app.models.Checking;
 
 public class MathLogic {

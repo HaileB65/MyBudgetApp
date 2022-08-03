@@ -7,6 +7,7 @@ package budget_app.repository;
 // other method from within the services package.
 
 import budget_app.models.Checking;
+import budget_app.models.Savings;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -331,6 +332,62 @@ public class Repository {
             }
 
             return checkingList; // return checkingList
+
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                resultSet.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public static ArrayList<Savings> returnAllSavings(){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            resultSet = statement.executeQuery("select * from mybudgetdb.savings"); //"select * from mybudgetdb.users"
+
+            ArrayList<Savings> savingsList = new ArrayList<>(); // created list of checking objects
+
+            // loop through the result set while there are more records
+            while (resultSet.next()) {
+                Savings savings1 = new Savings();
+
+                savings1.setId(resultSet.getInt("savings_id")); // set id from db to checking1 instance
+                savings1.setName(resultSet.getString("savings_name"));
+                savings1.setTargetAmount(resultSet.getInt("target_amount"));
+                savings1.setCurrentAmount(resultSet.getInt("current_amount"));
+
+                savingsList.add(savings1); // add checking1 to array list
+            }
+
+            return savingsList; // return checkingList
 
 
         } catch (SQLException exc) {

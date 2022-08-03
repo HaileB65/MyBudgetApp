@@ -1,6 +1,5 @@
 package budget_app.models;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -12,7 +11,7 @@ public class User {
 
     public Budget budget = new Budget();
     public Checking checking= new Checking();
-    public Savings savings = new Savings();
+    public Checking savings = new Checking();
     public Goal goal = new Goal();
     public Goal goal2 = new Goal();
 

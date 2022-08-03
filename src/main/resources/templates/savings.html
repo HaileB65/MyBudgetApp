@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Checking Account</title>
+</head>
+<body>
+<div align="center">
+    <h1>Customer List</h1>
+    <br/><br/>
+    <a th:href="@{/new}">Add New Customer</a>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+          <!--
+          You are creating a table here, where the header will be the Customer
+          details and then the other rows will be filled by the data that
+          you send back in the Model object.
+          -->
+            <th>Account ID</th>
+            <th>Account Name</th>
+            <th>Target Amount</th>
+            <th>Current Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+      <!--
+       Now that your headers are defined, you can reference the key-value
+       pair "customerList" that you added to the model above.
+       Thymeleaf will loop over each customer and extract the attributes to match
+       your column names.
+      -->
+        <tbody>
+        <tr th:each="savings : ${savingsList}">
+            <td th:text="${savings.id}">Account ID</td>
+            <td th:text="${savings.name}">Account Name</td>
+            <td th:text="${savings.targetAmount}">Target Amount</td>
+            <td th:text="${savings.currentAmount}">Current Amount</td>
+            <td>
+<!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
+<!--                    <a th:href="@{'/delete/' + ${customer.id}}">Delete</a>-->
+                    </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

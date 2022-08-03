@@ -1,18 +1,16 @@
 package budget_app.controllers;
 
-import budget_app.models.Budget;
 import budget_app.models.Checking;
 import budget_app.services.CheckingService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
 @org.springframework.stereotype.Controller
-public class Controller {
+public class CheckingController {
 //    @Autowired
 //    SpringBudgetService springBudgetService;
 
@@ -28,7 +26,7 @@ public class Controller {
 //    }
 
     @GetMapping("/checking") // checking home endpoint
-    public String vewCheckingHomePage(Model model) {
+    public String vewCheckingAccountHomePage(Model model) {
         // Here you call the service to retrieve all the customers
         final List<Checking> checkingList = checkingService.getAllChecking();
         // Once the customers are retrieved, you can store them in model and return it to the view
