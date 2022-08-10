@@ -7,7 +7,9 @@ package budget_app.repository;
 // other method from within the services package.
 
 import budget_app.models.Checking;
+import budget_app.models.Goal;
 import budget_app.models.Savings;
+import budget_app.models.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -18,11 +20,6 @@ public class Repository {
     static String tableName;
     static Statement statement;
     static ResultSet resultSet;
-
-    public static void main(String[] args) {
-        returnCheckingAccountSum();
-
-    }
 
 //    public static void runAnySQLStatement(){
 //        Connection connection = null;
@@ -70,6 +67,95 @@ public class Repository {
 //            }
 //        }
 //    }
+
+
+    public void createNewGoal(){
+        Goal newGoal = new Goal();
+
+        Scanner userInput1 = new Scanner(System.in);
+        System.out.println("Enter new goal name:");
+        String newGoalName = userInput1.nextLine();
+
+        System.out.println("Enter goal current amount:");
+        Integer goalCurrentAmount = userInput1.nextInt();
+
+        System.out.println("Enter goal target amount:");
+        Integer goalTargetAmount = userInput1.nextInt();
+
+        System.out.println("Monthly contribution towards goal:");
+        Integer goalMonthlyContribution = userInput1.nextInt();
+
+        newGoal.setName(newGoalName);
+        newGoal.setCurrentAmount(goalCurrentAmount);
+        newGoal.setTargetAmount(goalTargetAmount);
+        newGoal.setMonthlyContribution(goalMonthlyContribution);
+        User.goalList.add(newGoal);
+        User.goalNamesList.add(newGoalName);
+
+        System.out.println(newGoalName + " goal created");
+    }
+
+    public void editGoal(){
+        System.out.println("Available goals to edit");
+        for (Goal goal : User.goalList) {
+            System.out.println(goal.getName());
+        }
+        System.out.println();
+
+        Scanner userInput2 = new Scanner(System.in);
+        System.out.println("Enter Goal name to edit");
+        String goalToEdit = userInput2.nextLine();
+        while(!User.goalNamesList.contains(goalToEdit)){
+            System.out.println("please enter a goal name that already exists");
+            System.out.println("List of existing goals:");
+            for (Goal goal : User.goalList) {
+                System.out.println(goal.getName());
+            }
+            goalToEdit = userInput2.nextLine();
+            if(User.goalNamesList.contains(goalToEdit)){
+                break;
+            }
+
+//            System.out.println("return to Edit Goal menu? Enter 'y' or 'n'.");
+//            if(BudgetApp.yesOrNoPrompt()) {
+//                BudgetApp.editGoalsMenu();
+//            }
+        }
+
+        Scanner userInput1 = new Scanner(System.in);
+        System.out.println("Enter updated goal name:");
+        String updatedGoalName = userInput1.nextLine();
+        System.out.println("Enter goal current amount:");
+        Integer updatedGoalCurrentAmount = userInput1.nextInt();
+        System.out.println("Enter goal target amount:");
+        Integer updatedGoalTargetAmount = userInput1.nextInt();
+        System.out.println("Monthly contribution towards goal:");
+        Integer updatedGoalMonthlyContribution = userInput1.nextInt();
+
+//        if(goalToEdit == BudgetApp.user.goal.getName()) {
+//            BudgetApp.user.goal.setName(updatedGoalName);
+//            BudgetApp.user.goal.setCurrentAmount(updatedGoalCurrentAmount);
+//            BudgetApp.user.goal.setTargetAmount(updatedGoalTargetAmount);
+//            BudgetApp.user.goal.setMonthlyContribution(updatedGoalMonthlyContribution);
+//        }
+//        if(goalToEdit == BudgetApp.user.goal2.getName()) {
+//            BudgetApp.user.goal2.setName(updatedGoalName);
+//            BudgetApp.user.goal2.setCurrentAmount(updatedGoalCurrentAmount);
+//            BudgetApp.user.goal2.setTargetAmount(updatedGoalTargetAmount);
+//            BudgetApp.user.goal2.setMonthlyContribution(updatedGoalMonthlyContribution);
+//        }
+//        if(goalToEdit == BudgetApp.user.goal2.getName()) {
+//            // how to set values to a goal that a user created?
+//        }
+
+        System.out.println("goal edit complete");
+    }
+
+    public void printGoalNamesList(){
+        System.out.println("printing out goal list");
+//        System.out.println(BudgetApp.user.goalNamesList);
+
+    }
 
     public static String askUserToEnterSQLStatement() {
         Scanner scanner = new Scanner(System.in); // starts scanner
@@ -388,6 +474,119 @@ public class Repository {
             }
 
             return savingsList; // return checkingList
+
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                resultSet.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public static ArrayList<Goal> returnAllGoals(){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            resultSet = statement.executeQuery("select * from mybudgetdb.goals"); //"select * from mybudgetdb.users"
+
+            ArrayList<Goal> goalsList = new ArrayList<>(); // created list of goal objects
+
+            // loop through the result set while there are more records
+            while (resultSet.next()) {
+                Goal goal1 = new Goal();
+
+                goal1.setId(resultSet.getInt("goal_id")); // set id from db to checking1 instance
+                goal1.setName(resultSet.getString("goal_name"));
+                goal1.setTargetAmount(resultSet.getInt("target_amount"));
+                goal1.setCurrentAmount(resultSet.getInt("current_amount"));
+                goal1.setMonthlyContribution(resultSet.getInt("monthly_contribution"));
+
+                goalsList.add(goal1); // add goal1 to array list
+            }
+
+            return goalsList; // return goalList
+
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                resultSet.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
+    public static ArrayList<User> returnAllUsers(){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            resultSet = statement.executeQuery("select * from mybudgetdb.users"); //"select * from mybudgetdb.users"
+
+            ArrayList<User> usersList = new ArrayList<>(); // created list of user objects
+
+            // loop through the result set while there are more records
+            while (resultSet.next()) {
+                User user1 = new User();
+
+                user1.setId(resultSet.getInt("user_id")); // set id from db to checking1 instance
+                user1.setFirstName(resultSet.getString("first_name"));
+                user1.setLastName(resultSet.getString("last_name"));
+                user1.setEmail(resultSet.getString("email"));
+
+                usersList.add(user1); // add user1 to array list
+            }
+
+            return usersList; // return userList
 
 
         } catch (SQLException exc) {

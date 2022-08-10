@@ -6,9 +6,9 @@
 </head>
 <body>
 <div align="center">
-    <h1>Customer List</h1>
+    <h1>Goal Accounts</h1>
     <br/><br/>
-    <a th:href="@{/new}">Add New Customer</a>
+    <a th:href="@{/new}">Add New Goal</a>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
@@ -17,10 +17,11 @@
           details and then the other rows will be filled by the data that
           you send back in the Model object.
           -->
-            <th>Transaction ID</th>
-            <th>Customer Name</th>
-            <th>Vender Name</th>
-            <th>Transaction Amount</th>
+            <th>Account ID</th>
+            <th>Account Name</th>
+            <th>Target Amount</th>
+            <th>Current Amount</th>
+            <th>Monthly Contribution</th>
             <th>Actions</th>
         </tr>
         </thead>
@@ -31,11 +32,12 @@
        your column names.
       -->
         <tbody>
-        <tr th:each="checking : ${checkingList}">
-            <td th:text="${checking.id}">Account ID</td>
-            <td th:text="${checking.customerName}">Customer Name</td>
-            <td th:text="${checking.venderName}">Vender Name</td>
-            <td th:text="${checking.amount}">Amount</td>
+        <tr th:each="goals : ${goalsList}">
+            <td th:text="${goals.id}">Goal ID</td>
+            <td th:text="${goals.name}">Goal Name</td>
+            <td th:text="${goals.targetAmount}">Target Amount</td>
+            <td th:text="${goals.currentAmount}">Current Amount</td>
+            <td th:text="${goals.currentAmount}">Monthly Contribution</td>
             <td>
 <!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
 <!--                    <a th:href="@{'/delete/' + ${customer.id}}">Delete</a>-->

@@ -1,17 +1,7 @@
 package budget_app;
 
-import budget_app.models.Goal;
-import budget_app.models.User;
-import budget_app.services.BudgetService;
-import budget_app.services.GoalService;
-import budget_app.services.MathLogic;
-import budget_app.services.ReportService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.Scanner;
 
 @SpringBootApplication
 public class BudgetApp {
