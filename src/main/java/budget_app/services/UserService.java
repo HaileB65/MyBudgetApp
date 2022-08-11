@@ -12,4 +12,8 @@ public class UserService {
     public ArrayList<User> getAllUsers(){
         return Repository.returnAllUsers();
     }
+
+    public void addUser(User user){
+        Repository.addUser(user);
+    }
 }

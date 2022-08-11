@@ -888,5 +888,43 @@ public class Repository {
         }
     }
 
+    public static void addUser(User user){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate("insert into users (first_name, last_name, email) values ('"+user.getFirstName()+"', '"+user.getLastName()+"', '"+user.getEmail()+"');");
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+//                resultSet.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
 }

@@ -5,7 +5,7 @@ import budget_app.services.GoalService;
 import budget_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -33,24 +33,26 @@ public class UserController {
         model.addAttribute("usersList", usersList);
         return "users";
     }
-//
-//    @GetMapping("/new")
-//    public String showNewCustomerPage(Model model) {
-//        // Here a new (empty) Customer is created and then sent to the view
+
+    @GetMapping("/new")
+    public String showNewCustomerPage(Model model) {
+        // Here a new (empty) Customer is created and then sent to the view
 //        Budget customer = new Budget();
-//        model.addAttribute("budget", customer);
-//        return "new-customer";
-//
-//    }
-//
-//    @PostMapping(value = "/save")
-//    // As the Model is received back from the view, @ModelAttribute
-//    // creates a Customer based on the object you collected from
-//    // the HTML page above
-//    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-//        springBudgetService.saveCustomer(customer);
-//        return "redirect:/";
-//    }
+        model.addAttribute("user", new User());
+        return "new-customer";
+
+    }
+
+    @PostMapping(value = "/save")
+    // As the Model is received back from the view, @ModelAttribute
+    // creates a Customer based on the object you collected from
+    // the HTML page above
+    public String saveCustomer(@ModelAttribute("user") User user) {
+        System.out.println(user);
+        userService.addUser(user);
+//        springBudgetService.saveCustomer(user);
+        return "redirect:/users";
+    }
 //
 //    @GetMapping("/edit/{id}")
 //    // The path variable "id" is used to pull a customer from the database
@@ -77,10 +79,12 @@ public class UserController {
 //        return "redirect:/";
 //    }
 //
-//    @RequestMapping("/delete/{id}")
-//    public String deleteCustomer(@PathVariable(name = "id") Long id) {
+    @RequestMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable(name = "id") Long id) {
+        System.out.println(id);
+//        userService.deleteUser(id);
 //        springBudgetService.deleteCustomer(id);
-//        return "redirect:/";
-//    }
+        return "redirect:/users";
+    }
 
 }
