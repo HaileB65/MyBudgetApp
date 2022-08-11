@@ -26,7 +26,7 @@ public class CheckingController {
 //    }
 
     @GetMapping("/checking") // checking home endpoint
-    public String vewCheckingAccountHomePage(Model model) {
+    public String vewCheckingAccountPage(Model model) {
         // Here you call the service to retrieve all the customers
         final List<Checking> checkingList = checkingService.getAllChecking();
         // Once the customers are retrieved, you can store them in model and return it to the view

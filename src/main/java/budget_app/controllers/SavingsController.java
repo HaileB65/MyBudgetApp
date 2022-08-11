@@ -26,7 +26,7 @@ public class SavingsController {
 //    }
 
     @GetMapping("/savings") // savings home endpoint
-    public String vewSavingsHomePage(Model model) {
+    public String vewSavingsPage(Model model) {
         // Here you call the service to retrieve all the savings accounts
         final List<Savings> savingsList = savingsService.getAllSavings();
         // Once the customers are retrieved, you can store them in model and return it to the view

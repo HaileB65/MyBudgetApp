@@ -26,7 +26,7 @@ public class UserController {
 //    }
 
     @GetMapping("/users") // savings home endpoint
-    public String vewUserHomePage(Model model) {
+    public String vewUserPage(Model model) {
         // Here you call the service to retrieve all the savings accounts
         final List<User> usersList = userService.getAllUsers();
         // Once the customers are retrieved, you can store them in model and return it to the view
@@ -51,6 +51,14 @@ public class UserController {
         System.out.println(user);
         userService.addUser(user);
 //        springBudgetService.saveCustomer(user);
+        return "redirect:/users";
+    }
+
+    @RequestMapping("/delete/{id}")
+    public String deleteCustomer(@PathVariable(name = "id") Long id) {
+        System.out.println(id);
+//        userService.deleteUser(id);
+//        springBudgetService.deleteCustomer(id);
         return "redirect:/users";
     }
 //
@@ -79,12 +87,6 @@ public class UserController {
 //        return "redirect:/";
 //    }
 //
-    @RequestMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable(name = "id") Long id) {
-        System.out.println(id);
-//        userService.deleteUser(id);
-//        springBudgetService.deleteCustomer(id);
-        return "redirect:/users";
-    }
+
 
 }

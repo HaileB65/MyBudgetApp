@@ -25,7 +25,7 @@ public class GoalController {
 //    }
 
     @GetMapping("/goals") // savings home endpoint
-    public String vewGoalHomePage(Model model) {
+    public String vewGoalPage(Model model) {
         // Here you call the service to retrieve all the savings accounts
         final List<Goal> goalsList = goalService.getAllGoals();
         // Once the customers are retrieved, you can store them in model and return it to the view
