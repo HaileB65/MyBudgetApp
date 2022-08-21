@@ -1,28 +1,20 @@
 package budget_app.controllers;
 
 import budget_app.models.Goal;
+import budget_app.models.User;
 import budget_app.services.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class GoalController {
-//    @Autowired
-//    SpringBudgetService springBudgetService;
-
     @Autowired
     GoalService goalService;
-
-//    @Autowired
-//    RentalCarService rentalCarService;
-
-//    public Controller(CustomerService customerService, RentalCarService rentalCarService) {
-//        this.customerService = customerService;
-//        this.rentalCarService = rentalCarService;
-//    }
 
     @GetMapping("/goals") // savings home endpoint
     public String vewGoalPage(Model model) {
@@ -32,24 +24,25 @@ public class GoalController {
         model.addAttribute("goalsList", goalsList);
         return "goals";
     }
-//
-//    @GetMapping("/new")
-//    public String showNewCustomerPage(Model model) {
-//        // Here a new (empty) Customer is created and then sent to the view
-//        Budget customer = new Budget();
-//        model.addAttribute("budget", customer);
-//        return "new-customer";
-//
-//    }
-//
-//    @PostMapping(value = "/save")
-//    // As the Model is received back from the view, @ModelAttribute
-//    // creates a Customer based on the object you collected from
-//    // the HTML page above
-//    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-//        springBudgetService.saveCustomer(customer);
-//        return "redirect:/";
-//    }
+
+    @GetMapping("/newGoal")
+    public String showNewGoalPage(Model model) {
+        // Here a new (empty) Customer is created and then sent to the view
+        Goal goal = new Goal();
+        model.addAttribute("goal", goal);
+        return "new-goal";
+
+    }
+
+    @PostMapping(value = "/saveGoal")
+    // As the Model is received back from the view, @ModelAttribute
+    // creates a Customer based on the object you collected from
+    // the HTML page above
+    public String saveGoal(@ModelAttribute("goal") Goal goal) {
+        System.out.println(goal);
+        goalService.addGoal(goal);
+        return "redirect:/goals";
+    }
 //
 //    @GetMapping("/edit/{id}")
 //    // The path variable "id" is used to pull a customer from the database

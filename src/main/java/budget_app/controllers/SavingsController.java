@@ -1,11 +1,14 @@
 package budget_app.controllers;
 
 import budget_app.models.Checking;
+import budget_app.models.Goal;
 import budget_app.models.Savings;
 import budget_app.services.SavingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -33,24 +36,25 @@ public class SavingsController {
         model.addAttribute("savingsList", savingsList);
         return "savings";
     }
-//
-//    @GetMapping("/new")
-//    public String showNewCustomerPage(Model model) {
-//        // Here a new (empty) Customer is created and then sent to the view
-//        Budget customer = new Budget();
-//        model.addAttribute("budget", customer);
-//        return "new-customer";
-//
-//    }
-//
-//    @PostMapping(value = "/save")
-//    // As the Model is received back from the view, @ModelAttribute
-//    // creates a Customer based on the object you collected from
-//    // the HTML page above
-//    public String saveCustomer(@ModelAttribute("customer") Customer customer) {
-//        springBudgetService.saveCustomer(customer);
-//        return "redirect:/";
-//    }
+
+    @GetMapping("/newSavings")
+    public String showNewSavingsPage(Model model) {
+        // Here a new (empty) Savings account is created and then sent to the view
+        Savings savings = new Savings();
+        model.addAttribute("savings", savings);
+        return "new-savings";
+
+    }
+
+    @PostMapping(value = "/saveSavings")
+    // As the Model is received back from the view, @ModelAttribute
+    // creates a Customer based on the object you collected from
+    // the HTML page above
+    public String saveSavings(@ModelAttribute("savings") Savings savings) {
+        System.out.println(savings);
+        savingsService.addSavings(savings);
+        return "redirect:/savings";
+    }
 //
 //    @GetMapping("/edit/{id}")
 //    // The path variable "id" is used to pull a customer from the database

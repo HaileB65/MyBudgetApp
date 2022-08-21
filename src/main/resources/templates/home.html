@@ -32,10 +32,35 @@
       -->
         <tbody>
         <tr th:each="user : ${usersList}">
+            <td th:text="${user.id}">
+            <tbody>
+            <tr th:each="user : ${usersList}">
             <td th:text="${user.id}">User ID</td>
             <td th:text="${user.firstName}">First Name</td>
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.email}">Eamil</td>
+            <td>
+                <!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
+                <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
+            </td>
+            </tr>
+            </tbody>
+            </td>
+
+
+            <td th:text="${user.firstName}"><tbody>
+            <tr th:each="user : ${usersList}">
+                <td th:text="${user.id}">User ID</td>
+                <td th:text="${user.firstName}">First Name</td>
+                <td th:text="${user.lastName}">Last Name</td>
+                <td th:text="${user.email}">Eamil</td>
+                <td>
+                    <!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
+                    <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
+                </td>
+            </tr>
+            </tbody></td>
+
             <td>
 <!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
                     <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
