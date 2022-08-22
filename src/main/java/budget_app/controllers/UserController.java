@@ -11,21 +11,10 @@ import java.util.List;
 
 @org.springframework.stereotype.Controller
 public class UserController {
-//    @Autowired
-//    SpringBudgetService springBudgetService;
-
     @Autowired
     UserService userService;
 
-//    @Autowired
-//    RentalCarService rentalCarService;
-
-//    public Controller(CustomerService customerService, RentalCarService rentalCarService) {
-//        this.customerService = customerService;
-//        this.rentalCarService = rentalCarService;
-//    }
-
-    @GetMapping("/users") // savings home endpoint
+    @GetMapping("/users") // users page endpoint
     public String vewUserPage(Model model) {
         // Here you call the service to retrieve all the savings accounts
         final List<User> usersList = userService.getAllUsers();
@@ -54,11 +43,10 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @RequestMapping("/delete/{id}")
-    public String deleteCustomer(@PathVariable(name = "id") Long id) {
+    @RequestMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable(name = "id") Long id) {
         System.out.println(id);
-//        userService.deleteUser(id);
-//        springBudgetService.deleteCustomer(id);
+        userService.deleteUser(id);
         return "redirect:/users";
     }
 //

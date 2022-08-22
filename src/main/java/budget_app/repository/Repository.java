@@ -21,54 +21,6 @@ public class Repository {
     static Statement statement;
     static ResultSet resultSet;
 
-//    public static void runAnySQLStatement(){
-//        Connection connection = null;
-//        statement = null;
-//        resultSet = null;
-//
-//
-//        try {
-//            // This will load the MySQL driver, each DB has its own driver
-//            Class.forName("com.mysql.cj.jdbc.Driver");
-//
-//            // Setup the connection with the DB
-//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-//
-//
-//            // Statements allow us to issue SQL queries to the database
-//            statement = connection.createStatement();
-//            // Execute the query on the Statement, getting a ResultSet in return
-//            resultSet = statement.executeQuery("" ); //"select * from mybudgetdb.users"
-//
-//
-//            // loop through the result set while there are more records
-//            while (resultSet.next()) {
-//
-//                while(resultSet.next()) {
-//                    System.out.print(resultSet.getString(1));
-//                    System.out.println();
-//                }
-//
-//            }
-//        } catch (SQLException exc) {
-//            System.out.println("Exception occurred");
-//            exc.printStackTrace();
-//        } catch (ClassNotFoundException e) {
-//            System.out.println("Exception occurred - driver not found on classpath");
-//            e.printStackTrace();
-//        } finally {
-//            try {
-//                // close all JDBC elements
-//                statement.close();
-//                resultSet.close();
-//                connection.close();
-//            } catch (SQLException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
-
     public void createNewGoal(){
         Goal newGoal = new Goal();
 
@@ -727,167 +679,10 @@ public class Repository {
                 e.printStackTrace();
             }
         }
-    } // having trouble returning the sum of checking account
-
-// update db tables
-    public static void updateGoalsTable(){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("UPDATE goals SET target_amount = 2600 WHERE account_type = 'Road Trip'");
-
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-//                resultSet.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
 
 
-// create row in table
-    public static void createGoal(){
-    Connection connection = null;
-    statement = null;
-    resultSet = null;
-
-
-    try {
-        // This will load the MySQL driver, each DB has its own driver
-        Class.forName("com.mysql.cj.jdbc.Driver");
-
-        // Setup the connection with the DB
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-        // Statements allow us to issue SQL queries to the database
-        statement = connection.createStatement();
-        // Execute the query on the Statement, getting a ResultSet in return
-        int updateCount = statement.executeUpdate("insert into goals (goal_name, target_amount, current_amount, monthly_contribution) values ('Road Trip', 500, 250, 50);");
-
-        System.out.println("Updated test_value successfully : " + updateCount );
-
-    } catch (SQLException exc) {
-        System.out.println("Exception occurred");
-        exc.printStackTrace();
-    } catch (ClassNotFoundException e) {
-        System.out.println("Exception occurred - driver not found on classpath");
-        e.printStackTrace();
-    } finally {
-        try {
-            // close all JDBC elements
-            statement.close();
-//                resultSet.close();
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-}
-
-    public static void createBudget(){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate(
-                    "insert into budget (monthly_budget, current_amount, expenses, monthly_income, one_time_payment, cost_of_rent, fixed_debt_payments, weekly_cost_of_groceries, weekly_cost_of_eating_out ,weekly_cost_of_beer_wine, healthcare, childcare, car_insurance, vehicle, gas, HVAC, phone, tv, travel, other_utilities) values (0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 , 0, 0, 0, 0);");
-
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-//                resultSet.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    public static void createChecking(){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("insert into checking (customer_name, vender_name, amount) values ('Miguel', 'AutoZone', 50);");
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-//                resultSet.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+// add row to table
     public static void addUser(User user){
         Connection connection = null;
         statement = null;
@@ -1002,5 +797,153 @@ public class Repository {
         }
     }
 
+    public static void addChecking(Checking checking){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate("insert into checking (customer_name, vender_name, amount) values ('"+checking.getCustomerName()+"', '"+checking.getVenderName()+"', '"+checking.getAmount()+"');");
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+// delete row in DB
+    public static void deleteUser(Long id){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate("DELETE FROM users where user_id='"+id+"';");
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void deleteChecking(Long id){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate("DELETE FROM checking where checking_id='"+id+"';");
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void deleteGoal(Long id){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate("DELETE FROM goals where goal_id='"+id+"';");
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 }

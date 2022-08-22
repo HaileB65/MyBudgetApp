@@ -37,9 +37,8 @@
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.email}">Eamil</td>
             <td>
-<!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
-                    <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
-                    </td>
+                <a th:href="@{'/deleteUser/' + ${user.id}}">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

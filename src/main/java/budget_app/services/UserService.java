@@ -16,4 +16,6 @@ public class UserService {
     public void addUser(User user){
         Repository.addUser(user);
     }
+
+    public void deleteUser(Long id){Repository.deleteUser(id);}
 }

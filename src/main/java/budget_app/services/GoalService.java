@@ -16,4 +16,6 @@ public class GoalService {
     public void addGoal(Goal goal){
         Repository.addGoal(goal);
     }
+
+    public void deleteGoal(Long id){Repository.deleteGoal(id);}
 }
