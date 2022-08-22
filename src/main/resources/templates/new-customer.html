@@ -8,21 +8,9 @@
 <div align="center">
   <h1>Create New User</h1>
   <br />
-  <!--
-  Here is the form that will be used to save the new customer.
-  The form is tied to the Customer object you added to the model,
-  and on submit it will hit the /save endpoint using the POST method.
-  -->
   <form action="#" th:action="@{/save}" th:object="${user}" method="post">
-    <!--
-    These input fields are used to collect the information
-    required to complete the referenced Customer object.
-    -->
+
     <table border="0" cellpadding="10">
-<!--      <tr>-->
-<!--        <td>User Name:</td>-->
-<!--        <td><input type="text" th:field="*{id}" required/></td>-->
-<!--      </tr>-->
       <tr>
         <td>First Name:</td>
         <td><input type="text" th:field="*{firstName}" required/></td>

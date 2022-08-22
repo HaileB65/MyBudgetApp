@@ -15,28 +15,28 @@ public class CheckingController {
     CheckingService checkingService;
 
     @GetMapping("/checking")
-    public String vewCheckingAccountPage(Model model) {
+    public String viewCheckingAccountPage(Model model) {
         final List<Checking> checkingList = checkingService.getAllChecking();
         model.addAttribute("checkingList", checkingList);
         return "checking";
     }
 
-    @GetMapping("/newTransaction")
-    public String showNewTransactionPage(Model model) {
+    @GetMapping("/newChecking")
+    public String viewNewCheckingPage(Model model) {
         Checking checking = new Checking();
         model.addAttribute("checking", checking);
         return "new-checking";
     }
 
-    @PostMapping(value = "/saveTransaction")
-    public String saveTransaction(@ModelAttribute("checking") Checking checking) {
+    @PostMapping(value = "/saveChecking")
+    public String saveChecking(@ModelAttribute("checking") Checking checking) {
         System.out.println(checking);
         checkingService.addChecking(checking);
         return "redirect:/checking";
     }
 
     @RequestMapping("/deleteChecking/{id}")
-    public String deleteTransaction(@PathVariable(name = "id") Long id) {
+    public String deleteChecking(@PathVariable(name = "id") Long id) {
         System.out.println(id);
         checkingService.deleteChecking(id);
         return "redirect:/checking";

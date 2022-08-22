@@ -1,10 +1,5 @@
 package budget_app.repository;
 
-// services package
-// inside the services package will be the core logic of the application.
-// In here you'll find all the methods that calculate all the budgets/savings/goals etc.
-// These methods will be called by methods from within the controllers package, as well as
-// other method from within the services package.
 
 import budget_app.models.Checking;
 import budget_app.models.Goal;
@@ -16,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Repository {
-    static String sqlStatement; // example sql statement:  "select * from mybudgetdb.users";
+    static String sqlStatement;
     static String tableName;
     static Statement statement;
     static ResultSet resultSet;
@@ -67,11 +62,6 @@ public class Repository {
             if(User.goalNamesList.contains(goalToEdit)){
                 break;
             }
-
-//            System.out.println("return to Edit Goal menu? Enter 'y' or 'n'.");
-//            if(BudgetApp.yesOrNoPrompt()) {
-//                BudgetApp.editGoalsMenu();
-//            }
         }
 
         Scanner userInput1 = new Scanner(System.in);
@@ -83,36 +73,17 @@ public class Repository {
         Integer updatedGoalTargetAmount = userInput1.nextInt();
         System.out.println("Monthly contribution towards goal:");
         Integer updatedGoalMonthlyContribution = userInput1.nextInt();
-
-//        if(goalToEdit == BudgetApp.user.goal.getName()) {
-//            BudgetApp.user.goal.setName(updatedGoalName);
-//            BudgetApp.user.goal.setCurrentAmount(updatedGoalCurrentAmount);
-//            BudgetApp.user.goal.setTargetAmount(updatedGoalTargetAmount);
-//            BudgetApp.user.goal.setMonthlyContribution(updatedGoalMonthlyContribution);
-//        }
-//        if(goalToEdit == BudgetApp.user.goal2.getName()) {
-//            BudgetApp.user.goal2.setName(updatedGoalName);
-//            BudgetApp.user.goal2.setCurrentAmount(updatedGoalCurrentAmount);
-//            BudgetApp.user.goal2.setTargetAmount(updatedGoalTargetAmount);
-//            BudgetApp.user.goal2.setMonthlyContribution(updatedGoalMonthlyContribution);
-//        }
-//        if(goalToEdit == BudgetApp.user.goal2.getName()) {
-//            // how to set values to a goal that a user created?
-//        }
-
         System.out.println("goal edit complete");
     }
 
     public void printGoalNamesList(){
         System.out.println("printing out goal list");
-//        System.out.println(BudgetApp.user.goalNamesList);
-
     }
 
     public static String askUserToEnterSQLStatement() {
-        Scanner scanner = new Scanner(System.in); // starts scanner
-        System.out.print("Enter sql statement: ");  // gives user a prompt
-        sqlStatement = scanner.nextLine(); // user input is set to equal sqlstatement
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter sql statement: ");
+        sqlStatement = scanner.nextLine();
         return sqlStatement;
     }
 
@@ -927,6 +898,43 @@ public class Repository {
             statement = connection.createStatement();
             // Execute the query on the Statement, getting a ResultSet in return
             int updateCount = statement.executeUpdate("DELETE FROM goals where goal_id='"+id+"';");
+            System.out.println("Updated test_value successfully : " + updateCount );
+
+        } catch (SQLException exc) {
+            System.out.println("Exception occurred");
+            exc.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            System.out.println("Exception occurred - driver not found on classpath");
+            e.printStackTrace();
+        } finally {
+            try {
+                // close all JDBC elements
+                statement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void deleteSaving(Long id){
+        Connection connection = null;
+        statement = null;
+        resultSet = null;
+
+
+        try {
+            // This will load the MySQL driver, each DB has its own driver
+            Class.forName("com.mysql.cj.jdbc.Driver");
+
+            // Setup the connection with the DB
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+
+
+            // Statements allow us to issue SQL queries to the database
+            statement = connection.createStatement();
+            // Execute the query on the Statement, getting a ResultSet in return
+            int updateCount = statement.executeUpdate("DELETE FROM savings where savings_id='"+id+"';");
             System.out.println("Updated test_value successfully : " + updateCount );
 
         } catch (SQLException exc) {

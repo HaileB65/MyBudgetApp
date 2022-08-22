@@ -4,9 +4,7 @@ import budget_app.models.Savings;
 import budget_app.services.SavingsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,6 +32,13 @@ public class SavingsController {
     public String saveSavings(@ModelAttribute("savings") Savings savings) {
         System.out.println(savings);
         savingsService.addSavings(savings);
+        return "redirect:/savings";
+    }
+
+    @RequestMapping("/deleteSaving/{id}")
+    public String deleteSaving(@PathVariable(name = "id") Long id) {
+        System.out.println(id);
+        savingsService.deleteSaving(id);
         return "redirect:/savings";
     }
 }

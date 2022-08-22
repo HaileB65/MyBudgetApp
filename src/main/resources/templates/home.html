@@ -8,7 +8,6 @@
 <div align="center">
     <h1>Home Page</h1>
     <br/><br/>
-    <a th:href="@{/new}">Add New User</a>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
@@ -19,7 +18,6 @@
             <th>Actions</th>
         </tr>
         </thead>
-
         <tbody>
         <tr th:each="user : ${usersList}">
             <td th:text="${user.id}">
@@ -30,31 +28,32 @@
             <td th:text="${user.lastName}">Last Name</td>
             <td th:text="${user.email}">Eamil</td>
             <td>
-                <!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
                 <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
             </td>
             </tr>
             </tbody>
             </td>
-
-
-            <td th:text="${user.firstName}"><tbody>
-            <tr th:each="user : ${usersList}">
-                <td th:text="${user.id}">User ID</td>
-                <td th:text="${user.firstName}">First Name</td>
-                <td th:text="${user.lastName}">Last Name</td>
-                <td th:text="${user.email}">Eamil</td>
-                <td>
-                    <!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
-                    <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
-                </td>
-            </tr>
-            </tbody></td>
-
+        </tbody>
+    </table>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Account ID</th>
+            <th>Account Name</th>
+            <th>Target Amount</th>
+            <th>Current Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="savings : ${savingsList}">
+            <td th:text="${savings.id}">Account ID</td>
+            <td th:text="${savings.name}">Account Name</td>
+            <td th:text="${savings.targetAmount}">Target Amount</td>
+            <td th:text="${savings.currentAmount}">Current Amount</td>
             <td>
-<!--            <a th:href="@{'/edit/' + ${budget.id}}">Edit</a>-->
-                    <a th:href="@{'/delete/' + ${user.id}}">Delete</a>
-                    </td>
+                <a th:href="@{'/deleteSaving/' + ${savings.id}}">Delete</a>
+            </td>
         </tr>
         </tbody>
     </table>

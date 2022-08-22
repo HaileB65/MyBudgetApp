@@ -39,14 +39,6 @@ public class Checking {
         this.amount = amount;
     }
 
-//    public int getDateOfTransaction() {
-//        return dateOfTransaction;
-//    }
-//
-//    public void setDateOfTransaction(int dateOfTransaction) {
-//        this.dateOfTransaction = dateOfTransaction;
-//    }
-
     @Override
     public String toString() {
         return "Checking{" +

@@ -1,7 +1,5 @@
 package budget_app.services;
 
-import budget_app.models.Checking;
-import budget_app.models.Goal;
 import budget_app.models.Savings;
 import budget_app.repository.Repository;
 import org.springframework.stereotype.Service;
@@ -14,4 +12,6 @@ public class SavingsService {
     public void addSavings(Savings savings){
         Repository.addSavings(savings);
     }
+
+    public void deleteSaving(Long id){Repository.deleteSaving(id);}
 }
