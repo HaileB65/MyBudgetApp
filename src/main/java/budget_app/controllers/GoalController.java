@@ -1,7 +1,6 @@
 package budget_app.controllers;
 
 import budget_app.models.Goal;
-import budget_app.models.User;
 import budget_app.services.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;

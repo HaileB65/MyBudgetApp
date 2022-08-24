@@ -1,10 +1,6 @@
 package budget_app.services;
 
 import budget_app.models.Budget;
-import org.w3c.dom.ls.LSOutput;
-
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class BudgetService {
