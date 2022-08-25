@@ -1,7 +1,4 @@
-package budget_app.Springtest;
-
-import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+package budget_app.springtest;
 
 //@SpringBootTest
 //public class Test1 {
