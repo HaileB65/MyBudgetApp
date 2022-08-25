@@ -29,7 +29,7 @@ public class HomeController {
     GoalService goalService;
 
     @GetMapping("/home")
-    public String vewHomePage(Model model) {
+    public String viewHomePage(Model model) {
         final List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
 
@@ -43,4 +43,15 @@ public class HomeController {
         model.addAttribute("goalsList", goalsList);
         return "home";
     }
+
+    @GetMapping("/login")
+    public String viewLoginPage(Model model) {
+        return "login";
+    }
+
+    @GetMapping("/welcome")
+    public String viewWelcome(Model model) {
+        return "welcome";
+    }
+
 }

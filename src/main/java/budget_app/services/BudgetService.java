@@ -1,9 +1,20 @@
 package budget_app.services;
 
 import budget_app.models.Budget;
+import budget_app.repository.Repository;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
+@Service
 public class BudgetService {
+
+    public ArrayList<Budget> getAllBudgets(){
+        return Repository.returnAllBudgets();
+    }
+
+//    public Long getBudget(Long id){ return Repository.getBudget();}
 
     public void enterBudgetInfo(){
         Scanner userInput1 = new Scanner(System.in);
@@ -35,7 +46,6 @@ public class BudgetService {
         runMonthlyBudgetReport();
 
     }
-
 
     public void addExpenseNameToBudgetList(){
         Scanner userInput1 = new Scanner(System.in);
@@ -76,12 +86,10 @@ public class BudgetService {
         System.out.println();
     }
 
-
     public String cycleThroughBudgetInfoNames(){
         Budget.itemName = Budget.budgetCriticalInformationNameList.get(Budget.count);
         return Budget.itemName;
     }
-
 
     public void updateBudgetInfo(){
         enterBudgetInfo();

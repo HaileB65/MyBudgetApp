@@ -1,64 +1,49 @@
 package budget_app.models;
 
-import java.util.ArrayList;
+import lombok.Data;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.userdetails.UserDetails;
+import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Collection;
 
-public class User {
-    int id;
+@Entity
+@Table(name="Users")
+@Data
+public class User implements UserDetails {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
+
     String firstName;
     String lastName;
     String email;
+    String username;
+    String password;
 
-    public Budget budget = new Budget();
-    public Checking checking= new Checking();
-    public Checking savings = new Checking();
-    public Goal goal = new Goal();
-    public Goal goal2 = new Goal();
-
-    public static ArrayList<Goal> goalList = new ArrayList<>();
-    public static ArrayList<String> goalNamesList =  new ArrayList<>(Arrays. asList("goal", "goal2"));
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return AuthorityUtils.NO_AUTHORITIES;
     }
 
     @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", email='" + email + '\'' +
-                '}';
+    public boolean isAccountNonExpired() {
+        return false;
     }
 
+    @Override
+    public boolean isAccountNonLocked() {
+        return false;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return false;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
 }

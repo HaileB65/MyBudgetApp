@@ -7,6 +7,7 @@ public class Budget {
     public static String itemName = null;
     public static Integer count = 0;
 
+    int id;
     public static Integer monthlyBudget = 0;
     public static Integer currentAmount = 0;
     public static Integer expenses = 0;
@@ -16,7 +17,6 @@ public class Budget {
     public static Integer fixedDebtPayments = 0;
     public static Integer weeklyCostOfGroceries = 0;
     public static Integer weeklyCostOfEatingOut = 0;
-    public static Integer numberOfTimesYouEatOut = 0;
     public static Integer weeklyCostOfBeerWine = 0;
     //monthly cost of
     public static Integer healthcare = 0;
@@ -29,6 +29,7 @@ public class Budget {
     public static Integer tv = 0;
     public static Integer travel = 0;
     public static Integer otherUtilities = 0;
+    public static Integer numberOfTimesYouEatOut = 0;
 
 
     public static ArrayList<Integer> expensesList = new ArrayList<>(Arrays. asList(oneTimePayment, costOfRent,
@@ -39,6 +40,14 @@ public class Budget {
             "fixedDebtPayments", "weeklyCostOfGroceries", "weeklyCostOfEatingOut",
             "weeklyCostOfBeerWine", "healthcare", "childcare", "carInsurance", "vehicle", "gas", "HVAC", "phone",
             "tv", "travel", "otherUtilities"));
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public static Integer getMonthlyBudget() {
         return monthlyBudget;

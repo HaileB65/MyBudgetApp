@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Checking Account</title>
+</head>
+<body>
+<div align="center">
+    <h1>Current Budget</h1>
+    <br/><br/>
+    <a th:href="@{'/editBudget/' + ${budget.id}}">Update Budget</a>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Monthly Budget</th>
+            <th>Monthly Income</th>
+            <th>Monthly expenses</th>
+            <th>Current Balance</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="budget : ${budgetList}">
+            <td th:text="${budget.monthlyBudget}">Monthly Budget</td>
+            <td th:text="${budget.monthlyIncome}">Monthly Income</td>
+            <td th:text="${budget.expenses}">Monthly Expenses</td>
+            <td th:text="${budget.currentAmount}">Current Balance</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+    <a th:href="@{/home}">Return To Home Page</a>
+
+</div>
+</body>
+</html>

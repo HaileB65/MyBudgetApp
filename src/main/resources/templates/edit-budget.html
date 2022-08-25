@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Edit Budget</title>
+</head>
+<body>
+<div align="center">
+  <h1>Edit Budget</h1>
+  <br />
+  <form action="#" th:action="@{'/update/' + ${budget.id}}" th:object="${budget}"
+        method="post">
+    <table border="0" cellpadding="10">
+      <tr>
+        <td>Budget ID:</td>
+        <td><input type="text" th:field="*{id}" readonly/></td>
+      </tr>
+      <tr>
+        <td>Customer Name:</td>
+        <td><input type="text" th:field="*{monthlyBudget}" required/></td>
+      </tr>
+      <tr>
+        <td>Email Address:</td>
+        <td><input type="email" th:field="*{currentAmount}" required/></td>
+      </tr>
+      <tr>
+        <td>Age:</td>
+        <td><input type="number" th:field="*{expenses}" required/></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><textarea type="text" th:field="*{monthlyIncome}" required></textarea></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><textarea type="text" th:field="*{oneTimePayment}" required></textarea></td>
+      </tr>
+      <tr>
+        <td>Address:</td>
+        <td><textarea type="text" th:field="*{costOfRent}" required></textarea></td>
+      </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button></td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
+</html>

@@ -1,10 +1,7 @@
 package budget_app.repository;
 
 
-import budget_app.models.Checking;
-import budget_app.models.Goal;
-import budget_app.models.Savings;
-import budget_app.models.User;
+import budget_app.models.*;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -36,44 +33,8 @@ public class Repository {
         newGoal.setCurrentAmount(goalCurrentAmount);
         newGoal.setTargetAmount(goalTargetAmount);
         newGoal.setMonthlyContribution(goalMonthlyContribution);
-        User.goalList.add(newGoal);
-        User.goalNamesList.add(newGoalName);
 
         System.out.println(newGoalName + " goal created");
-    }
-
-    public void editGoal(){
-        System.out.println("Available goals to edit");
-        for (Goal goal : User.goalList) {
-            System.out.println(goal.getName());
-        }
-        System.out.println();
-
-        Scanner userInput2 = new Scanner(System.in);
-        System.out.println("Enter Goal name to edit");
-        String goalToEdit = userInput2.nextLine();
-        while(!User.goalNamesList.contains(goalToEdit)){
-            System.out.println("please enter a goal name that already exists");
-            System.out.println("List of existing goals:");
-            for (Goal goal : User.goalList) {
-                System.out.println(goal.getName());
-            }
-            goalToEdit = userInput2.nextLine();
-            if(User.goalNamesList.contains(goalToEdit)){
-                break;
-            }
-        }
-
-        Scanner userInput1 = new Scanner(System.in);
-        System.out.println("Enter updated goal name:");
-        String updatedGoalName = userInput1.nextLine();
-        System.out.println("Enter goal current amount:");
-        Integer updatedGoalCurrentAmount = userInput1.nextInt();
-        System.out.println("Enter goal target amount:");
-        Integer updatedGoalTargetAmount = userInput1.nextInt();
-        System.out.println("Monthly contribution towards goal:");
-        Integer updatedGoalMonthlyContribution = userInput1.nextInt();
-        System.out.println("goal edit complete");
     }
 
     public void printGoalNamesList(){
@@ -363,61 +324,61 @@ public class Repository {
         return null;
     }
 
-    public static ArrayList<Savings> returnAllSavings(){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            resultSet = statement.executeQuery("select * from mybudgetdb.savings"); //"select * from mybudgetdb.users"
-
-            ArrayList<Savings> savingsList = new ArrayList<>(); // created list of checking objects
-
-            // loop through the result set while there are more records
-            while (resultSet.next()) {
-                Savings savings1 = new Savings();
-
-                savings1.setId(resultSet.getInt("savings_id")); // set id from db to checking1 instance
-                savings1.setName(resultSet.getString("savings_name"));
-                savings1.setTargetAmount(resultSet.getInt("target_amount"));
-                savings1.setCurrentAmount(resultSet.getInt("current_amount"));
-
-                savingsList.add(savings1); // add checking1 to array list
-            }
-
-            return savingsList; // return checkingList
-
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-                resultSet.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-
-        return null;
-    }
+//    public static ArrayList<Savings> returnAllSavings(){
+//        Connection connection = null;
+//        statement = null;
+//        resultSet = null;
+//
+//
+//        try {
+//            // This will load the MySQL driver, each DB has its own driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Setup the connection with the DB
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+//
+//
+//            // Statements allow us to issue SQL queries to the database
+//            statement = connection.createStatement();
+//            // Execute the query on the Statement, getting a ResultSet in return
+//            resultSet = statement.executeQuery("select * from mybudgetdb.savings"); //"select * from mybudgetdb.users"
+//
+//            ArrayList<Savings> savingsList = new ArrayList<>(); // created list of checking objects
+//
+//            // loop through the result set while there are more records
+//            while (resultSet.next()) {
+//                Savings savings1 = new Savings();
+//
+//                savings1.setId(resultSet.getInt("savings_id")); // set id from db to checking1 instance
+//                savings1.setName(resultSet.getString("savings_name"));
+//                savings1.setTargetAmount(resultSet.getInt("target_amount"));
+//                savings1.setCurrentAmount(resultSet.getInt("current_amount"));
+//
+//                savingsList.add(savings1); // add checking1 to array list
+//            }
+//
+//            return savingsList; // return checkingList
+//
+//
+//        } catch (SQLException exc) {
+//            System.out.println("Exception occurred");
+//            exc.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Exception occurred - driver not found on classpath");
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // close all JDBC elements
+//                statement.close();
+//                resultSet.close();
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        return null;
+//    }
 
     public static ArrayList<Goal> returnAllGoals(){
         Connection connection = null;
@@ -444,7 +405,7 @@ public class Repository {
             while (resultSet.next()) {
                 Goal goal1 = new Goal();
 
-                goal1.setId(resultSet.getInt("goal_id")); // set id from db to checking1 instance
+                goal1.setId(resultSet.getLong("goal_id")); // set id from db to checking1 instance
                 goal1.setName(resultSet.getString("goal_name"));
                 goal1.setTargetAmount(resultSet.getInt("target_amount"));
                 goal1.setCurrentAmount(resultSet.getInt("current_amount"));
@@ -476,11 +437,66 @@ public class Repository {
         return null;
     }
 
-    public static ArrayList<User> returnAllUsers(){
+//    public static ArrayList<User> returnAllUsers(){
+//        Connection connection = null;
+//        statement = null;
+//        resultSet = null;
+//
+//
+//        try {
+//            // This will load the MySQL driver, each DB has its own driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Setup the connection with the DB
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+//
+//
+//            // Statements allow us to issue SQL queries to the database
+//            statement = connection.createStatement();
+//            // Execute the query on the Statement, getting a ResultSet in return
+//            resultSet = statement.executeQuery("select * from mybudgetdb.users"); //"select * from mybudgetdb.users"
+//
+//            ArrayList<User> usersList = new ArrayList<>(); // created list of user objects
+//
+//            // loop through the result set while there are more records
+//            while (resultSet.next()) {
+//                User user1 = new User();
+//
+//                user1.setId(resultSet.getLong("user_id")); // set id from db to checking1 instance
+//                user1.setFirstName(resultSet.getString("first_name"));
+//                user1.setLastName(resultSet.getString("last_name"));
+//                user1.setEmail(resultSet.getString("email"));
+//
+//                usersList.add(user1); // add user1 to array list
+//            }
+//
+//            return usersList; // return userList
+//
+//
+//        } catch (SQLException exc) {
+//            System.out.println("Exception occurred");
+//            exc.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Exception occurred - driver not found on classpath");
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // close all JDBC elements
+//                statement.close();
+//                resultSet.close();
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//
+//        return null;
+//    }
+
+    public static ArrayList<Budget> returnAllBudgets(){
         Connection connection = null;
         statement = null;
         resultSet = null;
-
 
         try {
             // This will load the MySQL driver, each DB has its own driver
@@ -493,23 +509,43 @@ public class Repository {
             // Statements allow us to issue SQL queries to the database
             statement = connection.createStatement();
             // Execute the query on the Statement, getting a ResultSet in return
-            resultSet = statement.executeQuery("select * from mybudgetdb.users"); //"select * from mybudgetdb.users"
+            resultSet = statement.executeQuery("select * from mybudgetdb.budget"); //
 
-            ArrayList<User> usersList = new ArrayList<>(); // created list of user objects
+            ArrayList<Budget> budgetList = new ArrayList<>(); // created list of budget objects
 
             // loop through the result set while there are more records
             while (resultSet.next()) {
-                User user1 = new User();
+                Budget budget1 = new Budget();
 
-                user1.setId(resultSet.getInt("user_id")); // set id from db to checking1 instance
-                user1.setFirstName(resultSet.getString("first_name"));
-                user1.setLastName(resultSet.getString("last_name"));
-                user1.setEmail(resultSet.getString("email"));
+                budget1.setId(resultSet.getInt("budget_id")); // set id from db to budget1 instance
+                budget1.setMonthlyBudget(resultSet.getInt("monthly_budget"));
+                budget1.setCurrentAmount(resultSet.getInt("current_amount"));
+                budget1.setExpenses(resultSet.getInt("expenses"));
+                budget1.setMonthlyIncome(resultSet.getInt("monthly_income"));
+                budget1.setOneTimePayment(resultSet.getInt("one_time_payment"));
+                budget1.setCostOfRent(resultSet.getInt("cost_of_rent"));
+                budget1.setFixedDebtPayments(resultSet.getInt("fixed_debt_payments"));
+                budget1.setWeeklyCostOfGroceries(resultSet.getInt("weekly_cost_of_groceries"));
+                budget1.setWeeklyCostOfEatingOut(resultSet.getInt("weekly_cost_of_eating_out"));
+                budget1.setNumberOfTimesYouEatOut(resultSet.getInt("weekly_cost_of_beer_wine"));
+                budget1.setWeeklyCostOfBeerWine(resultSet.getInt("healthcare"));
 
-                usersList.add(user1); // add user1 to array list
+                budget1.setHealthcare(resultSet.getInt("childcare"));
+                budget1.setChildcare(resultSet.getInt("car_insurance"));
+                budget1.setCarInsurance(resultSet.getInt("vehicle"));
+                budget1.setVehicle(resultSet.getInt("gas"));
+                budget1.setHVAC(resultSet.getInt("HVAC"));
+                budget1.setPhone(resultSet.getInt("phone"));
+                budget1.setTv(resultSet.getInt("tv"));
+                budget1.setTravel(resultSet.getInt("travel"));
+                budget1.setOtherUtilities(resultSet.getInt("other_utilities"));
+                budget1.setNumberOfTimesYouEatOut(resultSet.getInt("number_of_times_you_eat_out"));
+
+
+                budgetList.add(budget1);
             }
 
-            return usersList; // return userList
+            return budgetList;
 
 
         } catch (SQLException exc) {
@@ -654,43 +690,43 @@ public class Repository {
 
 
 // add row to table
-    public static void addUser(User user){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("insert into users (first_name, last_name, email) values ('"+user.getFirstName()+"', '"+user.getLastName()+"', '"+user.getEmail()+"');");
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-//                resultSet.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public static void addUser(User user){
+//        Connection connection = null;
+//        statement = null;
+//        resultSet = null;
+//
+//
+//        try {
+//            // This will load the MySQL driver, each DB has its own driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Setup the connection with the DB
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+//
+//
+//            // Statements allow us to issue SQL queries to the database
+//            statement = connection.createStatement();
+//            // Execute the query on the Statement, getting a ResultSet in return
+//            int updateCount = statement.executeUpdate("insert into users (first_name, last_name, email) values ('"+user.getFirstName()+"', '"+user.getLastName()+"', '"+user.getEmail()+"');");
+//            System.out.println("Updated test_value successfully : " + updateCount );
+//
+//        } catch (SQLException exc) {
+//            System.out.println("Exception occurred");
+//            exc.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Exception occurred - driver not found on classpath");
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // close all JDBC elements
+//                statement.close();
+////                resultSet.close();
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public static void addGoal(Goal goal){
         Connection connection = null;
@@ -730,43 +766,43 @@ public class Repository {
         }
     }
 
-    public static void addSavings(Savings savings){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("insert into savings (savings_name, target_amount, current_amount) values ('"+savings.getName()+"', '"+savings.getTargetAmount()+"', '"+savings.getCurrentAmount()+"');");
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-//                resultSet.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public static void addSavings(Savings savings){
+//        Connection connection = null;
+//        statement = null;
+//        resultSet = null;
+//
+//
+//        try {
+//            // This will load the MySQL driver, each DB has its own driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Setup the connection with the DB
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+//
+//
+//            // Statements allow us to issue SQL queries to the database
+//            statement = connection.createStatement();
+//            // Execute the query on the Statement, getting a ResultSet in return
+//            int updateCount = statement.executeUpdate("insert into savings (savings_name, target_amount, current_amount) values ('"+savings.getName()+"', '"+savings.getTargetAmount()+"', '"+savings.getCurrentAmount()+"');");
+//            System.out.println("Updated test_value successfully : " + updateCount );
+//
+//        } catch (SQLException exc) {
+//            System.out.println("Exception occurred");
+//            exc.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Exception occurred - driver not found on classpath");
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // close all JDBC elements
+//                statement.close();
+////                resultSet.close();
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public static void addChecking(Checking checking){
         Connection connection = null;
@@ -806,42 +842,42 @@ public class Repository {
     }
 
 // delete row in DB
-    public static void deleteUser(Long id){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
-
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("DELETE FROM users where user_id='"+id+"';");
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
+//    public static void deleteUser(Long id){
+//        Connection connection = null;
+//        statement = null;
+//        resultSet = null;
+//
+//
+//        try {
+//            // This will load the MySQL driver, each DB has its own driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Setup the connection with the DB
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+//
+//
+//            // Statements allow us to issue SQL queries to the database
+//            statement = connection.createStatement();
+//            // Execute the query on the Statement, getting a ResultSet in return
+//            int updateCount = statement.executeUpdate("DELETE FROM users where user_id='"+id+"';");
+//            System.out.println("Updated test_value successfully : " + updateCount );
+//
+//        } catch (SQLException exc) {
+//            System.out.println("Exception occurred");
+//            exc.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Exception occurred - driver not found on classpath");
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // close all JDBC elements
+//                statement.close();
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
     public static void deleteChecking(Long id){
         Connection connection = null;
@@ -916,42 +952,45 @@ public class Repository {
             }
         }
     }
+//
+//    public static void deleteSaving(Long id){
+//        Connection connection = null;
+//        statement = null;
+//        resultSet = null;
+//
+//
+//        try {
+//            // This will load the MySQL driver, each DB has its own driver
+//            Class.forName("com.mysql.cj.jdbc.Driver");
+//
+//            // Setup the connection with the DB
+//            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
+//
+//
+//            // Statements allow us to issue SQL queries to the database
+//            statement = connection.createStatement();
+//            // Execute the query on the Statement, getting a ResultSet in return
+//            int updateCount = statement.executeUpdate("DELETE FROM savings where savings_id='"+id+"';");
+//            System.out.println("Updated test_value successfully : " + updateCount );
+//
+//        } catch (SQLException exc) {
+//            System.out.println("Exception occurred");
+//            exc.printStackTrace();
+//        } catch (ClassNotFoundException e) {
+//            System.out.println("Exception occurred - driver not found on classpath");
+//            e.printStackTrace();
+//        } finally {
+//            try {
+//                // close all JDBC elements
+//                statement.close();
+//                connection.close();
+//            } catch (SQLException e) {
+//                e.printStackTrace();
+//            }
+//        }
+//    }
 
-    public static void deleteSaving(Long id){
-        Connection connection = null;
-        statement = null;
-        resultSet = null;
 
-
-        try {
-            // This will load the MySQL driver, each DB has its own driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Setup the connection with the DB
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/mybudgetdb", "root", "fdal87439KJIOD@#$^"); // working connection string
-
-
-            // Statements allow us to issue SQL queries to the database
-            statement = connection.createStatement();
-            // Execute the query on the Statement, getting a ResultSet in return
-            int updateCount = statement.executeUpdate("DELETE FROM savings where savings_id='"+id+"';");
-            System.out.println("Updated test_value successfully : " + updateCount );
-
-        } catch (SQLException exc) {
-            System.out.println("Exception occurred");
-            exc.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            System.out.println("Exception occurred - driver not found on classpath");
-            e.printStackTrace();
-        } finally {
-            try {
-                // close all JDBC elements
-                statement.close();
-                connection.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
+// edit row in DB
+//    public static Long getBudget(){ return 5;};
 }

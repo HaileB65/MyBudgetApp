@@ -14,7 +14,7 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/users") // users page endpoint
-    public String vewUserPage(Model model) {
+    public String viewUserPage(Model model) {
         // Here you call the service to retrieve all the savings accounts
         final List<User> usersList = userService.getAllUsers();
         // Once the customers are retrieved, you can store them in model and return it to the view
