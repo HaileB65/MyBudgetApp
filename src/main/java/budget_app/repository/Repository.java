@@ -2,7 +2,6 @@ package budget_app.repository;
 
 
 import budget_app.models.*;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -293,7 +292,7 @@ public class Repository {
             while (resultSet.next()) {
                 Checking checking1 = new Checking();
 
-                checking1.setId(resultSet.getInt("checking_id")); // set id from db to checking1 instance
+                checking1.setId(resultSet.getLong("checking_id")); // set id from db to checking1 instance
                 checking1.setCustomerName(resultSet.getString("customer_name"));
                 checking1.setVenderName(resultSet.getString("vender_name"));
                 checking1.setAmount(resultSet.getInt("amount"));

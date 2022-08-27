@@ -1,7 +1,6 @@
 package budget_app.models;
 
 import lombok.Data;
-
 import javax.persistence.*;
 
 @Entity

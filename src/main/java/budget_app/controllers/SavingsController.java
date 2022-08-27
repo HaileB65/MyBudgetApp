@@ -14,7 +14,7 @@ public class SavingsController {
     SavingsService savingsService;
 
     @GetMapping("/savings")
-    public String vewSavingsPage(Model model) {
+    public String viewSavingsPage(Model model) {
         final List<Savings> savingsList = savingsService.getAllSavings();
         model.addAttribute("savingsList", savingsList);
         return "savings";

@@ -1,9 +1,7 @@
 package budget_app.controllers;
 
 import budget_app.models.Budget;
-import budget_app.models.User;
 import budget_app.services.BudgetService;
-import budget_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;

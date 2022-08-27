@@ -3,16 +3,17 @@ package budget_app.services;
 import budget_app.models.User;
 import budget_app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.data.domain.Example;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UserDetailsService;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
+//import org.springframework.security.core.userdetails.UserDetails;
+//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 
 @Service
-public class UserService implements UserDetailsService {
+public class UserService { //implements UserDetailsService
     @Autowired
     UserRepository userRepository;
 
@@ -28,10 +29,10 @@ public class UserService implements UserDetailsService {
 
     public void deleteUser(Long id){userRepository.deleteById(id);}
 
-    @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Example<User> userExample = Example.of(new User());
-//        userExample.getProbe().setUsername(username);
-        return userRepository.findUserByUsername(username);
-    }
+//    @Override
+//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+////        Example<User> userExample = Example.of(new User());
+////        userExample.getProbe().setUsername(username);
+//        return userRepository.findUserByUsername(username);
+//    }
 }
