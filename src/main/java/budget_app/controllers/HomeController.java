@@ -36,8 +36,14 @@ public class HomeController {
         final List<Checking> checkingList = checkingService.getAllChecking();
         model.addAttribute("checkingList", checkingList);
 
+        final Float checkingBalance  = checkingService.getCheckingBalance();
+        model.addAttribute("checkingBalance", checkingBalance);
+
         final List<Savings> savingsList = savingsService.getAllSavings();
         model.addAttribute("savingsList", savingsList);
+
+//        final Float savingBalance  = savingsService.getSavingBalance();
+//        model.addAttribute("savingBalance", savingBalance);
 
         final List<Goal> goalsList = goalService.getAllGoals();
         model.addAttribute("goalsList", goalsList);

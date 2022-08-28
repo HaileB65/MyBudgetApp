@@ -33,43 +33,87 @@
     <br/><br/>
     <h2>Transaction Table</h2>
     <a th:href="@{/checking}">Edit Transaction table</a>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>Transaction ID</th>
-            <th>Customer Name</th>
-            <th>Vender Name</th>
-            <th>Transaction Amount</th>
-        </tr>
-        </thead>
+    <table border="0" cellpadding="10">
         <tbody>
-        <tr th:each="checking : ${checkingList}">
-            <td th:text="${checking.id}">Account ID</td>
-            <td th:text="${checking.customerName}">Customer Name</td>
-            <td th:text="${checking.venderName}">Vender Name</td>
-            <td th:text="${checking.amount}">Amount</td>
+        <tr>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Customer Name</th>
+                        <th>Vender Name</th>
+                        <th>Transaction Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="checking : ${checkingList}">
+                        <td th:text="${checking.id}">Account ID</td>
+                        <td th:text="${checking.customerName}">Customer Name</td>
+                        <td th:text="${checking.venderName}">Vender Name</td>
+                        <td th:text="${checking.amount}">Amount</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text=${checkingBalance}>Balance</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
         </tr>
         </tbody>
     </table>
 
     <br/><br/>
-    <h2>Savings Accounts</h2>
+    <h2>Saving Account</h2>
     <a th:href="@{/savings}">Edit Savings table</a>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>Account ID</th>
-            <th>Account Name</th>
-            <th>Target Amount</th>
-            <th>Current Amount</th>
-        </tr>
-        </thead>
+    <table border="0" cellpadding="10">
         <tbody>
-        <tr th:each="savings : ${savingsList}">
-            <td th:text="${savings.id}">Account ID</td>
-            <td th:text="${savings.name}">Account Name</td>
-            <td th:text="${savings.targetAmount}">Target Amount</td>
-            <td th:text="${savings.currentAmount}">Current Amount</td>
+        <tr>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Account Name</th>
+                        <th>Target Amount</th>
+                        <th>Current Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="savings : ${savingsList}">
+                        <td th:text="${savings.id}">Account ID</td>
+                        <td th:text="${savings.name}">Account Name</td>
+                        <td th:text="${savings.targetAmount}">Target Amount</td>
+                        <td th:text="${savings.currentAmount}">Current Amount</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text=${savingBalance}>Balance</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
         </tr>
         </tbody>
     </table>

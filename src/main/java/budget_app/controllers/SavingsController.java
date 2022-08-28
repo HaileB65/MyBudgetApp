@@ -27,7 +27,7 @@ public class SavingsController {
         return "new-savings";
 
     }
-
+    
     @PostMapping(value = "/saveSavings")
     public String saveSavings(@ModelAttribute("savings") Savings savings) {
         System.out.println(savings);

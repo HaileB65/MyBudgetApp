@@ -182,8 +182,8 @@ public class Repository {
             while (resultSet.next()) {
 
                 // get the id, name and units fields from the result set and assign them to local variables
-                int id = resultSet.getInt("goal_id");
-                String name = resultSet.getString("goal_name");
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
                 int targetAmount = resultSet.getInt("target_amount");
                 int currentAmount = resultSet.getInt("current_amount");
                 int monthlyContribution = resultSet.getInt("monthly_contribution");
@@ -237,8 +237,8 @@ public class Repository {
             while (resultSet.next()) {
 
                 // get the id, name and units fields from the result set and assign them to local variables
-                int id = resultSet.getInt("savings_id");
-                String name = resultSet.getString("savings_name");
+                int id = resultSet.getInt("id");
+                String name = resultSet.getString("name");
                 int targetAmount = resultSet.getInt("target_amount");
                 int currentAmount = resultSet.getInt("current_amount");
 
@@ -292,7 +292,7 @@ public class Repository {
             while (resultSet.next()) {
                 Checking checking1 = new Checking();
 
-                checking1.setId(resultSet.getLong("checking_id")); // set id from db to checking1 instance
+                checking1.setId(resultSet.getLong("id")); // set id from db to checking1 instance
                 checking1.setCustomerName(resultSet.getString("customer_name"));
                 checking1.setVenderName(resultSet.getString("vender_name"));
                 checking1.setAmount(resultSet.getInt("amount"));
@@ -404,8 +404,8 @@ public class Repository {
             while (resultSet.next()) {
                 Goal goal1 = new Goal();
 
-                goal1.setId(resultSet.getLong("goal_id")); // set id from db to checking1 instance
-                goal1.setName(resultSet.getString("goal_name"));
+                goal1.setId(resultSet.getLong("id")); // set id from db to checking1 instance
+                goal1.setName(resultSet.getString("name"));
                 goal1.setTargetAmount(resultSet.getInt("target_amount"));
                 goal1.setCurrentAmount(resultSet.getInt("current_amount"));
                 goal1.setMonthlyContribution(resultSet.getInt("monthly_contribution"));
