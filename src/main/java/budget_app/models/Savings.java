@@ -14,5 +14,6 @@ public class Savings {
     String name;
     int targetAmount = 0;
     int currentAmount = 0;
+    String datetime = "";
 
 }

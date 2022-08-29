@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SavingsRepository extends JpaRepository<Savings, Long> {
 
-//    @Query("SELECT SUM(current_amount) FROM Savings")
-//    Float getSavingBalance();
+    @Query(value="SELECT SUM(current_amount) FROM Savings", nativeQuery = true)
+    Float getSavingBalance();
+
 }

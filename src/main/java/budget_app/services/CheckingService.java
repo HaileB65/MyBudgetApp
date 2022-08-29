@@ -14,6 +14,9 @@ public class CheckingService {
     @Autowired
     CheckingRepository checkingRepository;
 
+    @Autowired
+    SavingsService savingsService;
+
     public ArrayList<Checking> getAllChecking(){
         return Repository.returnAllChecking();
     }
@@ -24,10 +27,11 @@ public class CheckingService {
     }
 
     public void subtractNewTransactionFromSavings(Checking checking) {
-//        int subtractingNewTransactionFromSavings = savings.currentAmount - checking.getAmount();
-//        update savings.currentAmount;
+        Savings saving = savingsService.getSavingAccountOne();
+        int currentBalance = saving.getCurrentAmount();
+        saving.setCurrentAmount(currentBalance-checking.getAmount());
+        savingsService.updateSavingAccountOne(saving);
     }
-
 
     public void deleteChecking(Long id){Repository.deleteChecking(id);}
 

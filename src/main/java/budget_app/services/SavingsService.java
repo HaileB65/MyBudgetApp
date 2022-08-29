@@ -14,17 +14,29 @@ public class SavingsService {
     @Autowired
     SavingsRepository savingsRepository;
 
-    public List<Savings> getAllSavings(){
+    public List<Savings> getAllSavings() {
         return savingsRepository.findAll();
     }
 
-    public void addSavings(Savings savings){
+    public void addSavings(Savings savings) {
         savingsRepository.save(savings);
     }
 
-    public void deleteSavings(Long id){savingsRepository.deleteById(id);}
-//    public Float getSavingBalance() {
-//        return savingsRepository.getSavingBalance();
-//    }
+    public void deleteSavings(Long id) {
+        savingsRepository.deleteById(id);
+    }
 
+    public Savings getSavingAccountOne() {
+        return savingsRepository.getById(1L);
+    }
+
+    public void updateSavingAccountOne(Savings saving) {
+        savingsRepository.save(saving);
+    }
+
+
+    public Float getSavingBalance() {
+        return savingsRepository.getSavingBalance();
+    }
 }
+

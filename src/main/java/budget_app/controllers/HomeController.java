@@ -42,12 +42,19 @@ public class HomeController {
         final List<Savings> savingsList = savingsService.getAllSavings();
         model.addAttribute("savingsList", savingsList);
 
-//        final Float savingBalance  = savingsService.getSavingBalance();
-//        model.addAttribute("savingBalance", savingBalance);
+        final Float savingBalance  = savingsService.getSavingBalance();
+        model.addAttribute("savingBalance", savingBalance);
 
         final List<Goal> goalsList = goalService.getAllGoals();
         model.addAttribute("goalsList", goalsList);
         return "home";
+    }
+
+    @GetMapping("/reports")
+    public String viewReportPage(Model model) {
+        final List<Goal> goalsList = goalService.getAllGoals();
+        model.addAttribute("goalsList", goalsList);
+        return "reports";
     }
 
 //    @GetMapping("/login")
