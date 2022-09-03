@@ -57,13 +57,13 @@ public class HomeController {
         return "reports";
     }
 
-//    @GetMapping("/login")
-//    public String viewLoginPage(Model model) {
-//        return "login";
-//    }
-//
-//    @GetMapping("/welcome")
-//    public String viewWelcome(Model model) {
-//        return "welcome";
-//    }
+    @GetMapping("/login")
+    public String viewLoginPage(Model model) {
+        return "login";
+    }
+
+    @GetMapping("/welcome")
+    public String viewWelcome(Model model) {
+        return "welcome";
+    }
 }
