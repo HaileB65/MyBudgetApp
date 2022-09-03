@@ -5,6 +5,8 @@ import budget_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -35,31 +37,28 @@ public class UserController {
     // creates a Customer based on the object you collected from
     // the HTML page above
     public String saveCustomer(@ModelAttribute("user") User user) {
-        System.out.println(user);
         userService.addUser(user);
-//        springBudgetService.saveCustomer(user);
         return "redirect:/users";
     }
 
     @RequestMapping("/deleteUser/{id}")
     public String deleteUser(@PathVariable(name = "id") Long id) {
-        System.out.println(id);
         userService.deleteUser(id);
         return "redirect:/users";
     }
-//
-//    @GetMapping("/edit/{id}")
-//    // The path variable "id" is used to pull a customer from the database
-//    public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
-//        // Since the previous methods use Model, this one uses ModelAndView
-//        // to get some experience using both. Model is more common these days,
-//        // but ModelAndView accomplishes the same thing and can be useful in
-//        // certain circumstances. The view name is passed to the constructor.
-//        ModelAndView mav = new ModelAndView("edit-customer");
-//        Customer customer = springBudgetService.getCustomer(id);
-//        mav.addObject("customer", customer);
-//        return mav;
-//    }
+
+    @GetMapping("/editUser/{id}")
+    // The path variable "id" is used to pull a customer from the database
+    public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
+        // Since the previous methods use Model, this one uses ModelAndView
+        // to get some experience using both. Model is more common these days,
+        // but ModelAndView accomplishes the same thing and can be useful in
+        // certain circumstances. The view name is passed to the constructor.
+        ModelAndView mav = new ModelAndView("edit-customer");
+        User user = userService.findUserById(id);
+        mav.addObject("edit-user", user);
+        return mav;
+    }
 //
 //    @PostMapping("/update/{id}")
 //    public String updateCustomer(@PathVariable(name = "id") Long id, @ModelAttribute("customer") Customer customer, Model model) {

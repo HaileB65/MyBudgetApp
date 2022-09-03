@@ -12,11 +12,6 @@
     <table border="1" cellpadding="10">
         <thead>
         <tr>
-          <!--
-          You are creating a table here, where the header will be the Customer
-          details and then the other rows will be filled by the data that
-          you send back in the Model object.
-          -->
             <th>User ID</th>
             <th>First Name</th>
             <th>Last Name</th>
@@ -24,12 +19,6 @@
             <th>Actions</th>
         </tr>
         </thead>
-      <!--
-       Now that your headers are defined, you can reference the key-value
-       pair "customerList" that you added to the model above.
-       Thymeleaf will loop over each customer and extract the attributes to match
-       your column names.
-      -->
         <tbody>
         <tr th:each="user : ${usersList}">
             <td th:text="${user.id}">User ID</td>

@@ -29,14 +29,12 @@ public class CheckingController {
 
     @PostMapping(value = "/saveChecking")
     public String saveChecking(@ModelAttribute("checking") Checking checking) {
-        System.out.println(checking);
         checkingService.addChecking(checking);
         return "redirect:/checking";
     }
 
     @RequestMapping("/deleteChecking/{id}")
     public String deleteChecking(@PathVariable(name = "id") Long id) {
-        System.out.println(id);
         checkingService.deleteChecking(id);
         return "redirect:/checking";
     }

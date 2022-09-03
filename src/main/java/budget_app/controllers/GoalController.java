@@ -29,14 +29,12 @@ public class GoalController {
 
     @PostMapping(value = "/saveGoal")
     public String saveGoal(@ModelAttribute("goal") Goal goal) {
-        System.out.println(goal);
         goalService.addGoal(goal);
         return "redirect:/goals";
     }
 
     @RequestMapping("/deleteGoal/{id}")
     public String deleteGoal(@PathVariable(name = "id") Long id) {
-        System.out.println(id);
         goalService.deleteGoal(id);
         return "redirect:/goals";
     }

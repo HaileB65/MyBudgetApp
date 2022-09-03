@@ -6,6 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface BudgetRepository extends JpaRepository<Budget, Long> {
-    Budget findUserById(Long id);
-
+    Budget findBudgetById(Long id);
 }

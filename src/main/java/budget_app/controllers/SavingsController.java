@@ -30,14 +30,12 @@ public class SavingsController {
     
     @PostMapping(value = "/saveSavings")
     public String saveSavings(@ModelAttribute("savings") Savings savings) {
-        System.out.println(savings);
         savingsService.addSavings(savings);
         return "redirect:/savings";
     }
 
     @RequestMapping("/deleteSaving/{id}")
     public String deleteSaving(@PathVariable(name = "id") Long id) {
-        System.out.println(id);
         savingsService.deleteSavings(id);
         return "redirect:/savings";
     }

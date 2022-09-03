@@ -1,6 +1,7 @@
 package budget_app.controllers;
 
 import budget_app.models.Budget;
+import budget_app.models.Goal;
 import budget_app.services.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -21,25 +22,24 @@ public class BudgetController {
         return "budget";
     }
 
-    @GetMapping("/edit/{id}")
+    @GetMapping("/editBudget/{id}")
     // The path variable "id" is used to pull a customer from the database
-    public ModelAndView showEditCustomerPage(@PathVariable(name = "id") Long id) {
+    public ModelAndView showEditBudgetPage(@PathVariable(name = "id") Long id) {
         // Since the previous methods use Model, this one uses ModelAndView
         // to get some experience using both. Model is more common these days,
         // but ModelAndView accomplishes the same thing and can be useful in
         // certain circumstances. The view name is passed to the constructor.
         ModelAndView mav = new ModelAndView("edit-budget");
-//        Budget budget = budgetService.getBudget(id);
-//        mav.addObject("budget", budget);
+        Budget budget = budgetService.findBudgetByID(id);
+        mav.addObject("budget", budget);
         return mav;
     }
-//
-//    @PostMapping(value = "/save")
-//    public String saveCustomer(@ModelAttribute("user") User user) {
-//        System.out.println(user);
-//        userService.addUser(user);
-//        return "redirect:/users";
-//    }
+
+    @PostMapping(value = "/saveBudget")
+    public String saveBudget(@ModelAttribute("budget") Budget budget) {
+        budgetService.saveBudget(budget);
+        return "redirect:/budget";
+    }
 //
 //    @RequestMapping("/deleteUser/{id}")
 //    public String deleteUser(@PathVariable(name = "id") Long id) {

@@ -50,13 +50,6 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/reports")
-    public String viewReportPage(Model model) {
-        final List<Goal> goalsList = goalService.getAllGoals();
-        model.addAttribute("goalsList", goalsList);
-        return "reports";
-    }
-
     @GetMapping("/login")
     public String viewLoginPage(Model model) {
         return "login";
@@ -65,5 +58,12 @@ public class HomeController {
     @GetMapping("/welcome")
     public String viewWelcome(Model model) {
         return "welcome";
+    }
+
+    @GetMapping("/reports")
+    public String viewReportPage(Model model) {
+        final List<Goal> goalsList = goalService.getAllGoals();
+        model.addAttribute("goalsList", goalsList);
+        return "reports";
     }
 }

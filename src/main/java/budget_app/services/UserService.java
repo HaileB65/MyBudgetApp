@@ -24,6 +24,8 @@ public class UserService implements UserDetailsService { //implements UserDetail
         return userRepository.findAll();
     }
 
+    public User findUserById(Long id){ return userRepository.getReferenceById(id);}
+
     public void addUser(User user){
         user.setUsername("hi");
         user.setPassword("hello");

@@ -1,6 +1,7 @@
 package budget_app.services;
 
 import budget_app.models.Budget;
+import budget_app.models.Savings;
 import budget_app.repository.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,11 @@ public class BudgetService {
         return budgetRepository.findAll();
     }
 
-//    public Long getBudget(Long id){ return Repository.getBudget();}
+    public Budget findBudgetByID(Long id){return budgetRepository.findBudgetById(id);}
+
+    public void saveBudget(Budget budget) {
+        budgetRepository.save(budget);
+    }
 
     public void enterBudgetInfo(){
         Scanner userInput1 = new Scanner(System.in);
