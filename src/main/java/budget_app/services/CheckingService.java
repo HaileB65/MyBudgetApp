@@ -3,11 +3,9 @@ package budget_app.services;
 import budget_app.models.Checking;
 import budget_app.models.Savings;
 import budget_app.repository.CheckingRepository;
-import budget_app.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CheckingService {
@@ -17,12 +15,12 @@ public class CheckingService {
     @Autowired
     SavingsService savingsService;
 
-    public ArrayList<Checking> getAllChecking(){
-        return Repository.returnAllChecking();
+    public List<Checking> getAllChecking(){
+        return checkingRepository.findAll();
     }
 
     public void addChecking(Checking checking){
-        Repository.addChecking(checking);
+        checkingRepository.save(checking);
         subtractNewTransactionFromSavings(checking);
     }
 
@@ -33,7 +31,9 @@ public class CheckingService {
         savingsService.updateSavingAccountOne(saving);
     }
 
-    public void deleteChecking(Long id){Repository.deleteChecking(id);}
+    public void deleteChecking(Long id){
+        checkingRepository.deleteById(id);
+    }
 
     public Float getCheckingBalance() {
         return checkingRepository.getBalance();

@@ -11,4 +11,6 @@ public interface SavingsRepository extends JpaRepository<Savings, Long> {
     @Query(value="SELECT SUM(current_amount) FROM Savings", nativeQuery = true)
     Float getSavingBalance();
 
+    Float findByTargetAmountGreaterThan(int amount);
+
 }

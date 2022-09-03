@@ -34,7 +34,6 @@ public class SavingsService {
         savingsRepository.save(saving);
     }
 
-
     public Float getSavingBalance() {
         return savingsRepository.getSavingBalance();
     }

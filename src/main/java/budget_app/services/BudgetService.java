@@ -1,16 +1,19 @@
 package budget_app.services;
 
 import budget_app.models.Budget;
-import budget_app.repository.Repository;
+import budget_app.repository.BudgetRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 @Service
 public class BudgetService {
+    @Autowired
+    BudgetRepository budgetRepository;
 
-    public ArrayList<Budget> getAllBudgets(){
-        return Repository.returnAllBudgets();
+    public List<Budget> getAllBudgets(){
+        return budgetRepository.findAll();
     }
 
 //    public Long getBudget(Long id){ return Repository.getBudget();}

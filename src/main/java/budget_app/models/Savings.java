@@ -1,7 +1,9 @@
 package budget_app.models;
 
 import lombok.Data;
+import org.hibernate.annotations.CreationTimestamp;
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name="savings")
@@ -14,6 +16,9 @@ public class Savings {
     String name;
     int targetAmount = 0;
     int currentAmount = 0;
-    String datetime = "";
+
+    @Column(name = "timestamp")
+    @CreationTimestamp //this adds the default timestamp on save
+    private Timestamp timestamp;
 
 }

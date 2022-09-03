@@ -14,7 +14,7 @@ public class BudgetController {
     @Autowired
     BudgetService budgetService;
 
-    @GetMapping("/budget") //
+    @GetMapping("/budget")
     public String viewBudget(Model model) {
         final List<Budget> budgetList = budgetService.getAllBudgets();
         model.addAttribute("budgetList", budgetList);

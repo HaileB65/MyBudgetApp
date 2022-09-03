@@ -1,13 +1,19 @@
 package budget_app.models;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+@Entity
+@Table(name="budget")
+@Data
 public class Budget {
-    public static String itemName = null;
-    public static Integer count = 0;
 
-    int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    Long id;
     public static Integer monthlyBudget = 0;
     public static Integer currentAmount = 0;
     public static Integer expenses = 0;
@@ -31,6 +37,9 @@ public class Budget {
     public static Integer otherUtilities = 0;
     public static Integer numberOfTimesYouEatOut = 0;
 
+    public static String itemName = null;
+    public static Integer count = 0;
+
 
     public static ArrayList<Integer> expensesList = new ArrayList<>(Arrays. asList(oneTimePayment, costOfRent,
             fixedDebtPayments, weeklyCostOfGroceries, weeklyCostOfEatingOut, weeklyCostOfBeerWine,
@@ -41,11 +50,11 @@ public class Budget {
             "weeklyCostOfBeerWine", "healthcare", "childcare", "carInsurance", "vehicle", "gas", "HVAC", "phone",
             "tv", "travel", "otherUtilities"));
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Checking Account</title>
+    <title>Current Budget</title>
 </head>
 <body>
 <div align="center">
     <h1>Current Budget</h1>
     <br/><br/>
-    <a th:href="@{'/editBudget/' + ${budget.id}}">Update Budget</a>
+    <a th:href="@{/newBudget}">Update Budget</a>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
