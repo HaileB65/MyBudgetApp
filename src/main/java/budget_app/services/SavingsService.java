@@ -3,10 +3,9 @@ package budget_app.services;
 import budget_app.models.Savings;
 import budget_app.repository.SavingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -37,5 +36,10 @@ public class SavingsService {
     public Float getSavingBalance() {
         return savingsRepository.getSavingBalance();
     }
+
+//    public List<Savings> findByNameBetween(String name, Timestamp timestamp1, Timestamp timestamp2) {
+//        return savingsRepository.findByNameBetween(name, timestamp1, timestamp2);
+//    }
+
 }
 
