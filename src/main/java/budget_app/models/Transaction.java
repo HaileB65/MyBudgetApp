@@ -4,9 +4,9 @@ import lombok.Data;
 import javax.persistence.*;
 
 @Entity
-@Table(name="checking")
+@Table(name="transactions")
 @Data
-public class Checking {
+public class Transaction {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;

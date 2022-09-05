@@ -35,7 +35,7 @@
 
     <br/><br/>
     <h2>Transaction Table</h2>
-    <a th:href="@{/checking}">Edit Transaction table</a>
+    <a th:href="@{/transaction}">Edit Transaction table</a>
     <table border="0" cellpadding="10">
         <tbody>
         <tr>
@@ -50,11 +50,11 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="checking : ${checkingList}">
-                        <td th:text="${checking.id}">Account ID</td>
-                        <td th:text="${checking.customerName}">Customer Name</td>
-                        <td th:text="${checking.venderName}">Vender Name</td>
-                        <td th:text="${checking.amount}">Amount</td>
+                    <tr th:each="transaction : ${transactionList}">
+                        <td th:text="${transaction.id}">Transaction ID</td>
+                        <td th:text="${transaction.customerName}">Customer Name</td>
+                        <td th:text="${transaction.venderName}">Vender Name</td>
+                        <td th:text="${transaction.amount}">Amount</td>
                     </tr>
                     </tbody>
                 </table>
@@ -68,7 +68,7 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td th:text=${checkingBalance}>Balance</td>
+                        <td th:text=${transactionBalance}>Balance</td>
                     </tr>
                     </tbody>
                 </table>

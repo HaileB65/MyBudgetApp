@@ -1,10 +1,10 @@
 package budget_app.controllers;
 
-import budget_app.models.Checking;
+import budget_app.models.Transaction;
 import budget_app.models.Goal;
 import budget_app.models.Savings;
 import budget_app.models.User;
-import budget_app.services.CheckingService;
+import budget_app.services.TransactionService;
 import budget_app.services.GoalService;
 import budget_app.services.SavingsService;
 import budget_app.services.UserService;
@@ -20,7 +20,7 @@ public class HomeController {
     UserService userService;
 
     @Autowired
-    CheckingService checkingService;
+    TransactionService transactionService;
 
     @Autowired
     SavingsService savingsService;
@@ -33,11 +33,11 @@ public class HomeController {
         final List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
 
-        final List<Checking> checkingList = checkingService.getAllChecking();
-        model.addAttribute("checkingList", checkingList);
+        final List<Transaction> transactionList = transactionService.getAllTransactions();
+        model.addAttribute("transactionList", transactionList);
 
-        final Float checkingBalance  = checkingService.getCheckingBalance();
-        model.addAttribute("checkingBalance", checkingBalance);
+        final Float transactionBalance  = transactionService.getTransactionBalance();
+        model.addAttribute("transactionBalance", transactionBalance);
 
         final List<Savings> savingsList = savingsService.getAllSavings();
         model.addAttribute("savingsList", savingsList);
