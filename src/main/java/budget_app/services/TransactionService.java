@@ -5,6 +5,8 @@ import budget_app.models.Savings;
 import budget_app.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -25,10 +27,10 @@ public class TransactionService {
     }
 
     public void subtractNewTransactionFromSavings(Transaction transaction) {
-        Savings saving = savingsService.getSavingAccountOne();
+        Savings saving = savingsService.getSavingAccountThree();
         int currentBalance = saving.getCurrentAmount();
         saving.setCurrentAmount(currentBalance-transaction.getAmount());
-        savingsService.updateSavingAccountOne(saving);
+        savingsService.updateSavingAccountThree(saving);
     }
 
     public void deleteTransaction(Long id){
@@ -37,5 +39,9 @@ public class TransactionService {
 
     public Float getTransactionBalance() {
         return transactionRepository.getBalance();
+    }
+
+    public List<Transaction> findCustomerNameWhereTimestampIsLessThan(String customerName, Timestamp timestamp1){
+        return transactionRepository.findByCustomerNameIsAndTimestampLessThan(customerName,timestamp1);
     }
 }

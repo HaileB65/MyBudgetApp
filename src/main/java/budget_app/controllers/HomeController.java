@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 
 @org.springframework.stereotype.Controller
@@ -60,10 +62,4 @@ public class HomeController {
         return "welcome";
     }
 
-    @GetMapping("/reports")
-    public String viewReportPage(Model model) {
-        final List<Goal> goalsList = goalService.getAllGoals();
-        model.addAttribute("goalsList", goalsList);
-        return "reports";
-    }
 }

@@ -4,8 +4,6 @@ import budget_app.models.Savings;
 import budget_app.repository.SavingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -25,21 +23,17 @@ public class SavingsService {
         savingsRepository.deleteById(id);
     }
 
-    public Savings getSavingAccountOne() {
-        return savingsRepository.getById(1L);
+    public Savings getSavingAccountThree() {
+        return savingsRepository.getById(3L);
     }
 
-    public void updateSavingAccountOne(Savings saving) {
+    public void updateSavingAccountThree(Savings saving) {
         savingsRepository.save(saving);
     }
 
     public Float getSavingBalance() {
         return savingsRepository.getSavingBalance();
     }
-
-//    public List<Savings> findByNameBetween(String name, Timestamp timestamp1, Timestamp timestamp2) {
-//        return savingsRepository.findByNameBetween(name, timestamp1, timestamp2);
-//    }
 
 }
 
