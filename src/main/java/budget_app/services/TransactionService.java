@@ -41,7 +41,7 @@ public class TransactionService {
         return transactionRepository.getBalance();
     }
 
-    public List<Transaction> findCustomerNameWhereTimestampIsLessThan(String customerName, Timestamp timestamp1){
-        return transactionRepository.findByCustomerNameIsAndTimestampLessThan(customerName,timestamp1);
+    public List<Transaction> findCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1){
+        return transactionRepository.findByCustomerNameIsAndTimestampGreaterThan(customerName,timestamp1);
     }
 }

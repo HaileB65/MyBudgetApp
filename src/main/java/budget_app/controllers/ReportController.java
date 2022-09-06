@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -26,11 +27,13 @@ public class ReportController {
 
     @GetMapping("/futureBalanceReport")
     public String viewFutureBalanceReportPage(Model model) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
 
-        Date date = new Date();
-        Timestamp ts=new Timestamp(date.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsLessThan("Haile",ts);
-        model.addAttribute("transactionsBetweenList", transactionsBetweenList); // display table of last months transactions
+        Timestamp ts = new Timestamp(result.getTime());
+        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",ts);
+        model.addAttribute("transactionsBetweenList", transactionsBetweenList); // display table of last month's transactions
 
         final Float futureBalanceSum  = reportService.getFutureBalanceSum();
         model.addAttribute("futureBalanceSum", futureBalanceSum);

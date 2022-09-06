@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -17,9 +18,12 @@ public class ReportService {
     SavingsService savingsService;
 
     public float getFutureBalanceSum(){
-        Date date = new Date();
-        Timestamp ts=new Timestamp(date.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsLessThan("Haile",ts); // get transactions from last month
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+
+        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
+        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
 
         Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
@@ -32,7 +36,7 @@ public class ReportService {
 
     public void runDebtPaymentCalendarReport(){
         System.out.println("DebtPaymentCalendarReport");
-        //print out a $100 bill the 10th and 25th of each month for credit card bill
+        //print out a $100 charge the 10th and 25th of each month for credit card bill
 
     }
 

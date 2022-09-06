@@ -14,5 +14,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     @Query("SELECT SUM(amount) FROM Transaction")
     Float getBalance();
 
-    List<Transaction> findByCustomerNameIsAndTimestampLessThan(String customerName, Timestamp timestamp1);
+    List<Transaction> findByCustomerNameIsAndTimestampGreaterThan(String customerName, Timestamp timestamp1);
 }
