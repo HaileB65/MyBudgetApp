@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Debt Payment Report</title>
+</head>
+<body>
+<div align="center">
+  <form>
+  <h1>Debt Payment Report</h1>
+  <br/><br/>
+    <table border="0" cellpadding="10">
+      <tbody>
+      <tr>
+        <td>
+          <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+              <th>Savings Balance</th>
+              <th>Reoccurring Charge</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td th:text=${savingBalance}>Balance</td>
+              <td >$25 due to Visa every month on the 10th</td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <br/><br/>
+    <a th:href="@{/home}">Return To Home Page</a>
+  </form>
+</div>
+</body>

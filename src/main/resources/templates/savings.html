@@ -9,25 +9,43 @@
     <h1>Savings Accounts</h1>
     <br/><br/>
     <a th:href="@{/newSavings}">Add New Savings</a>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>Account ID</th>
-            <th>Account Name</th>
-            <th>Target Amount</th>
-            <th>Current Amount</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
+    <table border="0" cellpadding="10">
         <tbody>
-        <tr th:each="savings : ${savingsList}">
-            <td th:text="${savings.id}">Account ID</td>
-            <td th:text="${savings.name}">Account Name</td>
-            <td th:text="${savings.targetAmount}">Target Amount</td>
-            <td th:text="${savings.currentAmount}">Current Amount</td>
+        <tr>
             <td>
-                    <a th:href="@{'/deleteSaving/' + ${savings.id}}">Delete</a>
-                    </td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Account ID</th>
+                        <th>Account Name</th>
+                        <th>Target Amount</th>
+                        <th>Current Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="savings : ${savingsList}">
+                        <td th:text="${savings.id}">Account ID</td>
+                        <td th:text="${savings.name}">Account Name</td>
+                        <td th:text="${savings.targetAmount}">Target Amount</td>
+                        <td th:text="${savings.currentAmount}">Current Amount</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text=${savingBalance}>Balance</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
         </tr>
         </tbody>
     </table>

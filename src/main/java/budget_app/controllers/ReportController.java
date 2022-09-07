@@ -2,6 +2,7 @@ package budget_app.controllers;
 
 import budget_app.models.Transaction;
 import budget_app.services.ReportService;
+import budget_app.services.SavingsService;
 import budget_app.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -19,6 +20,9 @@ public class ReportController {
 
     @Autowired
     ReportService reportService;
+
+    @Autowired
+    SavingsService savingsService;
 
     @GetMapping("/reports")
     public String viewGoalPage(Model model) {
@@ -38,6 +42,24 @@ public class ReportController {
         final Float futureBalanceSum  = reportService.getFutureBalanceSum();
         model.addAttribute("futureBalanceSum", futureBalanceSum);
         return "future-balance-report";
+    }
+
+    @GetMapping("/debtPaymentReport")
+    public String viewDebtPaymentReportPage(Model model) {
+        final Float savingBalance  = savingsService.getSavingBalance();
+        model.addAttribute("savingBalance", savingBalance);
+        return "debt-payment-report";
+    }
+
+    @GetMapping("/spendingVsSavingReport")
+    public String viewSpendingVsSavingReportPage(Model model) {
+        final Float savingBalance  = savingsService.getSavingBalance();
+        model.addAttribute("savingBalance", savingBalance);
+
+        final Float transactionTotalFromLastMonth  = reportService.getTransactionTotalFromLastMonth();
+        model.addAttribute("transactionTotalFromLastMonth", transactionTotalFromLastMonth);
+
+        return "spending-vs-saving-report";
     }
 
 //    @GetMapping("/newTransaction")

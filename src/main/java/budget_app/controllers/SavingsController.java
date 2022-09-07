@@ -17,6 +17,9 @@ public class SavingsController {
     public String viewSavingsPage(Model model) {
         final List<Savings> savingsList = savingsService.getAllSavings();
         model.addAttribute("savingsList", savingsList);
+
+        final Float savingBalance  = savingsService.getSavingBalance();
+        model.addAttribute("savingBalance", savingBalance);
         return "savings";
     }
 

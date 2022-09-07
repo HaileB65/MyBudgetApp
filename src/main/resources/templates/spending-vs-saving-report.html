@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Spending Vs Saving Report</title>
+</head>
+<body>
+<div align="center">
+    <form>
+        <h1>Spending Vs Saving Report</h1>
+        <br/><br/>
+        <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+                <th>Saving Balance</th>
+                <th>Spending Total From Last month</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td th:text=${savingBalance}>Saving Balance</td>
+                <td th:text=${transactionTotalFromLastMonth}> Spending Total From Last month</td>
+            </tr>
+            </tbody>
+        </table>
+        <br/><br/>
+        <a th:href="@{/home}">Return To Home Page</a>
+    </form>
+</div>
+</body>

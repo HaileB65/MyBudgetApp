@@ -17,6 +17,22 @@ public class ReportService {
     @Autowired
     SavingsService savingsService;
 
+    public float getTransactionTotalFromLastMonth(){
+        Calendar cal = Calendar.getInstance(); // get date from one month ago
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+
+        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
+        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
+
+        Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
+                .map(Transaction::getAmount)
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        return sumOfLastMonthsTransactions;
+    }
+
     public float getFutureBalanceSum(){
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, -1);
@@ -27,18 +43,19 @@ public class ReportService {
 
         Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
-                .mapToInt(Integer::intValue).sum();
+                .mapToInt(Integer::intValue)
+                .sum();
 
         float futureBalance = savingsService.getSavingBalance() - sumOfLastMonthsTransactions; // current savings minus sum of transactions from last month
 
         return futureBalance;
     }
 
-    public void runDebtPaymentCalendarReport(){
-        System.out.println("DebtPaymentCalendarReport");
-        //print out a $100 charge the 10th and 25th of each month for credit card bill
-
-    }
+//    public void runDebtPaymentCalendarReport(){
+//        System.out.println("DebtPaymentCalendarReport");
+//        //print out a $100 charge the 10th and 25th of each month for credit card bill
+//
+//    }
 
     public void RunSpendingVsSavingOverTimeReport(){
         System.out.println("SpendingVsSavingOverTimeReport");
