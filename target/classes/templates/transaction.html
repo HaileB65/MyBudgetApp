@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Transactions</title>
+</head>
+<body>
+<div align="center">
+    <h1>Transactions</h1>
+    <br/><br/>
+    <a th:href="@{/newTransaction}">Add New Transaction</a>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Transaction ID</th>
+            <th>Customer Name</th>
+            <th>Vender Name</th>
+            <th>Transaction Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="transaction : ${transactionList}">
+            <td th:text="${transaction.id}">Account ID</td>
+            <td th:text="${transaction.customerName}">Customer Name</td>
+            <td th:text="${transaction.venderName}">Vender Name</td>
+            <td th:text="${transaction.amount}">Amount</td>
+            <td>
+                <a th:href="@{'/deleteTransaction/' + ${transaction.id}}">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+    <a th:href="@{/home}">Return To Home Page</a>
+</div>
+</body>
+</html>
