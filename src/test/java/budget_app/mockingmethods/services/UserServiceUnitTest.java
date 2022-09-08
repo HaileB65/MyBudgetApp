@@ -1,6 +1,7 @@
-package budget_app.mockingmethods;
+package budget_app.mockingmethods.services;
 
 import budget_app.BudgetApp;
+import budget_app.exceptions.NoSuchUserException;
 import budget_app.models.User;
 import budget_app.repository.UserRepository;
 import budget_app.services.UserService;
@@ -18,21 +19,13 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = BudgetApp.class) //webEnvironment = RANDOM_PORT
-@ActiveProfiles("test")
+@SpringBootTest(classes = UserService.class)
 public class UserServiceUnitTest {
     @MockBean
     UserRepository userRepository;
 
     @Autowired
     UserService userService;
-
-    @LocalServerPort
-    private int port;
-
-    public UserServiceUnitTest(int port) {
-        this.port = port;
-    }
 
     @Test
     public void testFindUserByIdSuccessBehavior() throws Exception {
@@ -48,15 +41,14 @@ public class UserServiceUnitTest {
         when(userRepository.findById(anyLong())).thenReturn(Optional.of(user1));
 
         assertThat(userService.findUserById(1L)).isEqualTo(user1);
-
     }
 
-//    @Test
-//    public void testGetRecipeByIdFailureBehavior() {
-//        when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
-//
-//        assertThrows(NoSuchUserException.class, () -> {
-//            userService.findUserById(1L);
-//        });
-//    }
+    @Test
+    public void testGetRecipeByIdFailureBehavior() {
+        when(userRepository.findById(anyLong())).thenReturn(Optional.empty());
+
+        assertThrows(NoSuchUserException.class, () -> {
+            userService.findUserById(1L);
+        });
+    }
 }

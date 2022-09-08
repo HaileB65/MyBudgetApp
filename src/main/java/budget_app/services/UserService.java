@@ -1,8 +1,10 @@
 package budget_app.services;
 
+import budget_app.exceptions.NoSuchUserException;
 import budget_app.models.User;
 import budget_app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.data.domain.Example;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +18,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserService implements UserDetailsService { //implements UserDetailsService
+public class UserService implements UserDetailsService {
     @Autowired
     UserRepository userRepository;
 
@@ -24,7 +26,9 @@ public class UserService implements UserDetailsService { //implements UserDetail
         return userRepository.findAll();
     }
 
-    public User findUserById(Long id){ return userRepository.getReferenceById(id);}
+    public User findUserById(Long id){
+        return userRepository.findById(id).orElseThrow(() -> new NoSuchUserException());
+    }
 
     public void addUser(User user){
         user.setUsername("hi");
