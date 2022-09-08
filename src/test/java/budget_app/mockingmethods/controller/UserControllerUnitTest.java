@@ -29,13 +29,14 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 //@ContextConfiguration(classes = BudgetApp.class)
 
 //@SpringBootTest(classes = UserController.class) //, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
-//@AutoConfigureMockMvc
 
-@WebMvcTest(UserController.class)
+@SpringBootTest(classes = BudgetApp.class)
+//@WebMvcTest(UserController.class)
+@AutoConfigureMockMvc
 //@ContextConfiguration(classes = BudgetApp.class)
 public class UserControllerUnitTest {
 
-    @MockBean
+    @Autowired
     UserService userService;
 
     @Autowired
@@ -45,7 +46,6 @@ public class UserControllerUnitTest {
     public void testFindUserByIdNormalBehavior() throws Exception {
         //create user
         User user1 = User.builder()
-                .id(1L)
                 .firstName("Luna")
                 .lastName("Gonzales")
                 .email("teiwo@gmail.com")
@@ -54,7 +54,7 @@ public class UserControllerUnitTest {
                 .build();
 
         //when RecipeService's getRecipeById() method is called with any Long passed in
-        when(userService.findUserById(anyLong()))
+        when(userService.findUserById(1L))
                 //return the above defined user
                 .thenReturn(user1);
 

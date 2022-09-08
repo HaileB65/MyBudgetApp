@@ -53,31 +53,12 @@ public class ReportController {
 
     @GetMapping("/spendingVsSavingReport")
     public String viewSpendingVsSavingReportPage(Model model) {
-        final Float savingBalance  = savingsService.getSavingBalance();
-        model.addAttribute("savingBalance", savingBalance);
+        final Float savingsTotalFromLastMonth  = reportService.getSavingsTotalFromLastMonth();
+        model.addAttribute("savingsTotalFromLastMonth", savingsTotalFromLastMonth);
 
         final Float transactionTotalFromLastMonth  = reportService.getTransactionTotalFromLastMonth();
         model.addAttribute("transactionTotalFromLastMonth", transactionTotalFromLastMonth);
 
         return "spending-vs-saving-report";
     }
-
-//    @GetMapping("/newTransaction")
-//    public String viewNewTransactionPage(Model model) {
-//        Transaction transaction = new Transaction();
-//        model.addAttribute("transaction", transaction);
-//        return "new-transaction";
-//    }
-//
-//    @PostMapping(value = "/runFutureBalanceReport")
-//    public String runFutureBalanceReport() {
-//        runFutureBalanceReport();
-//        return "redirect:/futureBalanceReport";
-//    }
-//
-//    @RequestMapping("/deleteTransaction/{id}")
-//    public String deleteTransaction(@PathVariable(name = "id") Long id) {
-//        transactionService.deleteTransaction(id);
-//        return "redirect:/transaction";
-//    }
 }

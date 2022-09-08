@@ -27,7 +27,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserById(Long id){
-        return userRepository.findById(id).orElseThrow(() -> new NoSuchUserException());
+        return userRepository.findById(id).orElseThrow(NoSuchUserException::new);
     }
 
     public void addUser(User user){

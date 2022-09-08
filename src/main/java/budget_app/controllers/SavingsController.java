@@ -37,8 +37,8 @@ public class SavingsController {
         return "redirect:/savings";
     }
 
-    @RequestMapping("/deleteSaving/{id}")
-    public String deleteSaving(@PathVariable(name = "id") Long id) {
+    @RequestMapping("/deleteSavings/{id}")
+    public String deleteSavings(@PathVariable(name = "id") Long id) {
         savingsService.deleteSavings(id);
         return "redirect:/savings";
     }

@@ -20,6 +20,7 @@
                         <th>Account Name</th>
                         <th>Target Amount</th>
                         <th>Current Amount</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -28,6 +29,9 @@
                         <td th:text="${savings.name}">Account Name</td>
                         <td th:text="${savings.targetAmount}">Target Amount</td>
                         <td th:text="${savings.currentAmount}">Current Amount</td>
+                        <td>
+                            <a th:href="@{'/deleteSavings/' + ${savings.id}}">Delete</a>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

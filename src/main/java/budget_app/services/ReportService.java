@@ -1,5 +1,6 @@
 package budget_app.services;
 
+import budget_app.models.Savings;
 import budget_app.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,22 @@ public class ReportService {
                 .sum();
 
         return sumOfLastMonthsTransactions;
+    }
+
+    public float getSavingsTotalFromLastMonth(){
+        Calendar cal = Calendar.getInstance(); // get date from one month ago
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+
+        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
+        final List<Savings> savingsBetweenList = savingsService.findNameWhereTimestampIsGreaterThan("saving",OneMonthFromToday); // get savings from last month
+
+        Integer sumOfLastMonthsSavings = savingsBetweenList.stream() // get sum of savings from last month
+                .map(Savings::getCurrentAmount)
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        return sumOfLastMonthsSavings;
     }
 
     public float getFutureBalanceSum(){

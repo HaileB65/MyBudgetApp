@@ -28,7 +28,7 @@ public class UserServiceUnitTest {
     UserService userService;
 
     @Test
-    public void testFindUserByIdSuccessBehavior() throws Exception {
+    public void testFindUserByIdSuccessBehavior(){
         User user1 = User.builder()
                 .id(1L)
                 .firstName("Rex")

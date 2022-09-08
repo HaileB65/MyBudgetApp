@@ -4,6 +4,8 @@ import budget_app.models.Savings;
 import budget_app.repository.SavingsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.sql.Timestamp;
 import java.util.List;
 
 @Service
@@ -33,6 +35,10 @@ public class SavingsService {
 
     public Float getSavingBalance() {
         return savingsRepository.getSavingBalance();
+    }
+
+    public List<Savings> findNameWhereTimestampIsGreaterThan(String name, Timestamp timestamp1){
+        return savingsRepository.findByNameIsAndTimestampGreaterThan(name,timestamp1);
     }
 
 }
