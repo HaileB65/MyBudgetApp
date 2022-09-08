@@ -25,6 +25,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+//@WebMvcTest(UserController.class)
+//@ContextConfiguration(classes = BudgetApp.class)
+
+//@SpringBootTest(classes = UserController.class) //, webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT
+//@AutoConfigureMockMvc
+
 @WebMvcTest(UserController.class)
 //@ContextConfiguration(classes = BudgetApp.class)
 public class UserControllerUnitTest {
