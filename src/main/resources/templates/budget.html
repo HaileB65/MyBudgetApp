@@ -8,22 +8,108 @@
 <div align="center">
     <h1>Current Budget</h1>
     <br/><br/>
-    <a th:href="@{'/editBudget/' + @{budget.id}}">Edit Budget</a>
-    <table border="1" cellpadding="10">
-        <thead>
-        <tr>
-            <th>Monthly Budget</th>
-            <th>Monthly Income</th>
-            <th>Monthly expenses</th>
-            <th>Current Balance</th>
-        </tr>
-        </thead>
+    <a th:href="@{/editBudget}">Edit Budget</a>
+    <table border="0" cellpadding="10">
         <tbody>
-        <tr th:each="budget : ${budgetList}">
-            <td th:text="${budget.monthlyBudget}">Monthly Budget</td>
-            <td th:text="${budget.monthlyIncome}">Monthly Income</td>
-            <td th:text="${budget.expenses}">Monthly Expenses</td>
-            <td th:text="${budget.currentAmount}">Current Balance</td>
+        <tr>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Monthly Budget</th>
+                        <th>Monthly Income</th>
+                        <th>Monthly expenses</th>
+                        <th>Current Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text="${budget.monthlyBudget}">Monthly Budget</td>
+                        <td th:text="${budget.monthlyIncome}">Monthly Income</td>
+                        <td th:text="${budget.expenses}">Monthly Expenses</td>
+                        <td th:text="${budget.currentAmount}">Current Balance</td>
+                    </tr>
+                    </tbody>
+                </table>
+            <td>
+            <td>
+                <table border="1" cellpadding="10">
+                    <tbody>
+                    <tr>
+                        <thead><th>One Time Payment</th></thead>
+                        <td th:text="${budget.oneTimePayment}">One Time Payment</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Cost Of Rent</th></thead>
+                        <td th:text="${budget.costOfRent}">Cost Of Rent</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Fixed Debt Payments</th></thead>
+                        <td th:text="${budget.fixedDebtPayments}">Fixed Debt Payments</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Weekly Cost Of Groceries</th></thead>
+                        <td th:text="${budget.weeklyCostOfGroceries}">Weekly Cost Of Groceries</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Weekly Cost Of Eating Out</th></thead>
+                        <td th:text="${budget.weeklyCostOfEatingOut}">Weekly Cost Of Eating Out</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Weekly Cost Of Beer Wine</th></thead>
+                        <td th:text="${budget.weeklyCostOfBeerWine}">Weekly Cost Of Beer Wine</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Monthly Cost</th></thead>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <thead><th>Healthcare</th></thead>
+                        <td th:text="${budget.healthcare}">Healthcare</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Childcare</th></thead>
+                        <td th:text="${budget.childcare}">Childcare</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Car Insurance</th></thead>
+                        <td th:text="${budget.carInsurance}">Car Insurance</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Vehicle</th></thead>
+                        <td th:text="${budget.vehicle}">Vehicle</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Gas</th></thead>
+                        <td th:text="${budget.gas}">Gas</td>
+                    </tr>
+                    <tr>
+                        <thead><th>HVAC</th></thead>
+                        <td th:text="${budget.HVAC}">HVAC</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Phone</th></thead>
+                        <td th:text="${budget.phone}">HVAC</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Tv</th></thead>
+                        <td th:text="${budget.tv}">Tv</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Travel</th></thead>
+                        <td th:text="${budget.travel}">Travel</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Other Utilities</th></thead>
+                        <td th:text="${budget.otherUtilities}">Other Utilities</td>
+                    </tr>
+                    <tr>
+                        <thead><th>Number Of Times You Eat Out</th></thead>
+                        <td th:text="${budget.numberOfTimesYouEatOut}">Number Of Times You Eat Out</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
         </tr>
         </tbody>
     </table>

@@ -8,37 +8,97 @@
 <div align="center">
   <h1>Edit Budget</h1>
   <br />
-  <form action="#" th:action="@{/saveBudget}" th:object="${budget}"
-        method="post">
+    <form action="#" th:action="@{'/updateBudget/' + ${budget.id}}" th:object="${budget}"
+          method="post">
     <table border="0" cellpadding="10">
       <tr>
-        <td>Budget ID:</td>
-        <td><input type="text" th:field="*{budget.id}" readonly/></td>
+        <td>Monthly Budget:</td>
+        <td><input type="number" th:field="*{monthlyBudget}" required/></td>
       </tr>
       <tr>
-        <td>Customer Name:</td>
-        <td><input type="text" th:field="*{budget.monthlyBudget}" required/></td>
+        <td>Current Amount:</td>
+        <td><input type="number" th:field="*{currentAmount}" required/></td>
       </tr>
       <tr>
-        <td>Email Address:</td>
-        <td><input type="email" th:field="*{budget.currentAmount}" required/></td>
+        <td>Expenses:</td>
+        <td><input type="number" th:field="*{expenses}" required/></td>
       </tr>
       <tr>
-        <td>Age:</td>
-        <td><input type="number" th:field="*{budget.expenses}" required/></td>
+        <td>Monthly Income:</td>
+        <td><textarea type="number" th:field="*{monthlyIncome}" required></textarea></td>
       </tr>
       <tr>
-        <td>Address:</td>
-        <td><textarea type="text" th:field="*{budget.monthlyIncome}" required></textarea></td>
+        <td>One Time Payment:</td>
+        <td><textarea type="number" th:field="*{oneTimePayment}" required></textarea></td>
       </tr>
       <tr>
-        <td>Address:</td>
-        <td><textarea type="text" th:field="*{budget.oneTimePayment}" required></textarea></td>
+        <td>Cost Of Rent:</td>
+        <td><textarea type="number" th:field="*{costOfRent}" required></textarea></td>
       </tr>
-      <tr>
-        <td>Address:</td>
-        <td><textarea type="text" th:field="*{budget.costOfRent}" required></textarea></td>
-      </tr>
+        <tr>
+            <td>Fixed Debt Payments:</td>
+            <td><textarea type="number" th:field="*{fixedDebtPayments}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Weekly Cost Of Groceries:</td>
+            <td><textarea type="number" th:field="*{weeklyCostOfGroceries}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Weekly Cost Of Eating Out:</td>
+            <td><textarea type="number" th:field="*{weeklyCostOfEatingOut}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Weekly Cost Of Beer Wine:</td>
+            <td><textarea type="number" th:field="*{weeklyCostOfBeerWine}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Monthly Cost:</td>
+            <td><textarea></textarea></td>
+        </tr>
+        <tr>
+            <td>Healthcare:</td>
+            <td><textarea type="number" th:field="*{healthcare}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Childcare:</td>
+            <td><textarea type="number" th:field="*{childcare}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Car Insurance:</td>
+            <td><textarea type="number" th:field="*{carInsurance}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Vehicle:</td>
+            <td><textarea type="number" th:field="*{vehicle}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Gas:</td>
+            <td><textarea type="number" th:field="*{gas}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>HVAC:</td>
+            <td><textarea type="number" th:field="*{HVAC}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><textarea type="number" th:field="*{phone}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Tv:</td>
+            <td><textarea type="number" th:field="*{tv}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Travel:</td>
+            <td><textarea type="number" th:field="*{travel}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Other Utilities:</td>
+            <td><textarea type="number" th:field="*{otherUtilities}" required></textarea></td>
+        </tr>
+        <tr>
+            <td>Number Of Times You Eat Out:</td>
+            <td><textarea type="number" th:field="*{numberOfTimesYouEatOut}" required></textarea></td>
+        </tr>
       <tr>
         <td colspan="2"><button type="submit">Save</button></td>
       </tr>

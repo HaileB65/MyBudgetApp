@@ -58,19 +58,4 @@ public class UserController {
         mav.addObject("edit-user", user);
         return mav;
     }
-//
-//    @PostMapping("/update/{id}")
-//    public String updateCustomer(@PathVariable(name = "id") Long id, @ModelAttribute("customer") Customer customer, Model model) {
-//        if (!id.equals(customer.getId())) {
-//            model.addAttribute("message",
-//                    "Cannot update, customer id " + customer.getId()
-//                            + " doesn't match id to be updated: " + id + ".");
-//            return "error-page";
-//        }
-//        springBudgetService.saveCustomer(customer);
-//        return "redirect:/";
-//    }
-//
-
-
 }

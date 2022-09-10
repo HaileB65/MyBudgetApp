@@ -14,34 +14,37 @@ public class Budget {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    public static Integer monthlyBudget = 0;
-    public static Integer currentAmount = 0;
-    public static Integer expenses = 0;
-    public static Integer monthlyIncome = 0;
-    public static Integer oneTimePayment = 0;
-    public static Integer costOfRent = 0;
-    public static Integer fixedDebtPayments = 0;
-    public static Integer weeklyCostOfGroceries = 0;
-    public static Integer weeklyCostOfEatingOut = 0;
-    public static Integer weeklyCostOfBeerWine = 0;
+
+    int monthlyBudget = 0;
+    int currentAmount = 0;
+    int expenses = 0;
+    int monthlyIncome = 0;
+
+    int oneTimePayment = 0;
+    int costOfRent = 0;
+    int fixedDebtPayments = 0;
+    int weeklyCostOfGroceries = 0;
+    int weeklyCostOfEatingOut = 0;
+    int weeklyCostOfBeerWine = 0;
+
     //monthly cost of
-    public static Integer healthcare = 0;
-    public static Integer childcare = 0;
-    public static Integer carInsurance = 0;
-    public static Integer vehicle = 0;
-    public static Integer gas = 0;
-    public static Integer HVAC = 0;
-    public static Integer phone = 0;
-    public static Integer tv = 0;
-    public static Integer travel = 0;
-    public static Integer otherUtilities = 0;
-    public static Integer numberOfTimesYouEatOut = 0;
+    int healthcare = 0;
+    int childcare = 0;
+    int carInsurance = 0;
+    int vehicle = 0;
+    int gas = 0;
+    int HVAC = 0;
+    int phone = 0;
+    int tv = 0;
+    int travel = 0;
+    int otherUtilities = 0;
+    int numberOfTimesYouEatOut = 0;
 
     public static String itemName = null;
-    public static Integer count = 0;
+    public static int count = 0;
 
 
-    public static ArrayList<Integer> expensesList = new ArrayList<>(Arrays. asList(oneTimePayment, costOfRent,
+    public ArrayList<Integer> expensesList = new ArrayList<>(Arrays. asList(oneTimePayment, costOfRent,
             fixedDebtPayments, weeklyCostOfGroceries, weeklyCostOfEatingOut, weeklyCostOfBeerWine,
             healthcare, childcare, carInsurance, vehicle, gas, HVAC, phone, tv, travel, otherUtilities));
 
