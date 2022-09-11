@@ -1,10 +1,12 @@
 package budget_app.controllers;
 
+import budget_app.models.Budget;
 import budget_app.models.Goal;
 import budget_app.services.GoalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -29,7 +31,7 @@ public class GoalController {
 
     @PostMapping(value = "/saveGoal")
     public String saveGoal(@ModelAttribute("goal") Goal goal) {
-        goalService.addGoal(goal);
+        goalService.saveGoal(goal);
         return "redirect:/goals";
     }
 
@@ -38,4 +40,19 @@ public class GoalController {
         goalService.deleteGoal(id);
         return "redirect:/goals";
     }
+
+    @GetMapping("/editGoal/{id}")
+    public ModelAndView showEditGoalPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit-goal");
+        Goal goal = goalService.getGoalById(id);
+        mav.addObject("goal", goal);
+        return mav;
+    }
+
+    @RequestMapping("/updateGoal/{id}")
+    public String updateGoal(@ModelAttribute("goal") Goal goal) {
+        goalService.saveGoal(goal);
+        return "redirect:/goals";
+    }
+
 }

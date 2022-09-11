@@ -1,6 +1,7 @@
 package budget_app.services;
 
 import budget_app.exceptions.NoSuchUserException;
+import budget_app.models.Budget;
 import budget_app.models.User;
 import budget_app.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class UserService implements UserDetailsService {
     public void addUser(User user){
         user.setUsername("hi");
         user.setPassword("hello");
+        userRepository.save(user);
+    }
+
+    public void saveUser(User user) {
         userRepository.save(user);
     }
 

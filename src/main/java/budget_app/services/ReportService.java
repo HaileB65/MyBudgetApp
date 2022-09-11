@@ -1,6 +1,6 @@
 package budget_app.services;
 
-import budget_app.models.Savings;
+import budget_app.models.Saving;
 import budget_app.models.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +16,7 @@ public class ReportService {
     TransactionService transactionService;
 
     @Autowired
-    SavingsService savingsService;
+    SavingService savingService;
 
     public float getTransactionTotalFromLastMonth(){
         Calendar cal = Calendar.getInstance(); // get date from one month ago
@@ -40,10 +40,10 @@ public class ReportService {
         Date result = cal.getTime();
 
         Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Savings> savingsBetweenList = savingsService.findNameWhereTimestampIsGreaterThan("saving",OneMonthFromToday); // get savings from last month
+        final List<Saving> savingsBetweenList = savingService.findNameWhereTimestampIsGreaterThan("saving",OneMonthFromToday); // get savings from last month
 
         Integer sumOfLastMonthsSavings = savingsBetweenList.stream() // get sum of savings from last month
-                .map(Savings::getCurrentAmount)
+                .map(Saving::getCurrentAmount)
                 .mapToInt(Integer::intValue)
                 .sum();
 
@@ -63,7 +63,7 @@ public class ReportService {
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        float futureBalance = savingsService.getSavingBalance() - sumOfLastMonthsTransactions; // current savings minus sum of transactions from last month
+        float futureBalance = savingService.getSavingBalance() - sumOfLastMonthsTransactions; // current savings minus sum of transactions from last month
 
         return futureBalance;
     }

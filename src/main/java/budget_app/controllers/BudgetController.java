@@ -33,11 +33,10 @@ public class BudgetController {
         budgetService.saveBudget(budget);
         return "redirect:/budget";
     }
-//
-//    @RequestMapping("/deleteUser/{id}")
-//    public String deleteUser(@PathVariable(name = "id") Long id) {
-//        System.out.println(id);
-//        userService.deleteUser(id);
-//        return "redirect:/users";
-//    }
+
+    @RequestMapping("/updateBudget/{id}")
+    public String updateBudget(@ModelAttribute("budget") Budget budget) {
+        budgetService.saveBudget(budget);
+        return "redirect:/budget";
+    }
 }

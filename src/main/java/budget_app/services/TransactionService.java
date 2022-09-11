@@ -1,7 +1,7 @@
 package budget_app.services;
 
+import budget_app.models.Saving;
 import budget_app.models.Transaction;
-import budget_app.models.Savings;
 import budget_app.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,23 +15,30 @@ public class TransactionService {
     TransactionRepository transactionRepository;
 
     @Autowired
-    SavingsService savingsService;
+    SavingService savingService;
 
     public List<Transaction> getAllTransactions(){
         return transactionRepository.findAll();
     }
 
-    public void addTransaction(Transaction transaction){
+    public Transaction getTransactionById(Long id){return transactionRepository.getById(id);}
+
+    public void saveTransaction(Transaction transaction){
         transactionRepository.save(transaction);
         subtractNewTransactionFromSavings(transaction);
     }
 
     public void subtractNewTransactionFromSavings(Transaction transaction) {
-        Savings saving = savingsService.getSavingAccountThree();
-        int currentBalance = saving.getCurrentAmount();
-        saving.setCurrentAmount(currentBalance-transaction.getAmount());
-        savingsService.updateSavingAccountThree(saving);
+        Saving saving = savingService.getSavingAccountThree();
+        int savingBalance = saving.getCurrentAmount();
+        savingBalance = savingBalance - transaction.getAmount();
+        savingService.addSaving(saving);
     }
+
+//    public void subtractNewTransactionFromSavings(Transaction transaction) {
+//        Float currentBalance = savingService.getSavingBalance();
+//        currentBalance = currentBalance - transaction.getAmount();
+//    }
 
     public void deleteTransaction(Long id){
         transactionRepository.deleteById(id);

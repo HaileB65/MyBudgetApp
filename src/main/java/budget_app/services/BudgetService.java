@@ -1,12 +1,10 @@
 package budget_app.services;
 
 import budget_app.models.Budget;
-import budget_app.models.Savings;
 import budget_app.repository.BudgetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
-import java.util.Scanner;
 
 @Service
 public class BudgetService {

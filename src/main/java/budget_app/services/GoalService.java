@@ -19,7 +19,9 @@ public class GoalService {
         return goalRepository.findAll();
     }
 
-    public void addGoal(Goal goal){
+    public Goal getGoalById(Long id) { return goalRepository.getById(id);}
+
+    public void saveGoal(Goal goal){
         goalRepository.save(goal);
     }
 

@@ -1,5 +1,6 @@
 package budget_app.controllers;
 
+import budget_app.models.Budget;
 import budget_app.models.User;
 import budget_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,9 +54,15 @@ public class UserController {
         // to get some experience using both. Model is more common these days,
         // but ModelAndView accomplishes the same thing and can be useful in
         // certain circumstances. The view name is passed to the constructor.
-        ModelAndView mav = new ModelAndView("edit-customer");
+        ModelAndView mav = new ModelAndView("edit-user");
         User user = userService.findUserById(id);
-        mav.addObject("edit-user", user);
+        mav.addObject("user", user);
         return mav;
+    }
+
+    @RequestMapping("/updateUser/{id}")
+    public String updateUser(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
+        return "redirect:/user";
     }
 }
