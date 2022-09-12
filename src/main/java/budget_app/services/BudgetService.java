@@ -21,36 +21,24 @@ public class BudgetService {
         budgetRepository.save(budget);
     }
 
-//    public void enterBudgetInfo(){
-//        Scanner userInput1 = new Scanner(System.in);
-//        System.out.println("Enter monthly budget: ");
-//        Budget.monthlyBudget = userInput1.nextInt();
-//
-//
-//        Scanner userInput2 = new Scanner(System.in);
-//        System.out.println("Enter monthly income: ");
-//        Budget.monthlyIncome = userInput2.nextInt();
-//
-//        for (int element : Budget.expensesList) {
-//
-////            Scanner userInput3 = new Scanner(System.in);
-////            System.out.println("Enter expense for " + cycleThroughBudgetInfoNames()
-////                    + ": "); // user enters monthly income
-////            element = userInput3.nextInt();
-//
-////            Budget.expenses += element;
-//            Budget.expenses += 12;
-//
-//            Budget.count++;
-//        }
-//        Budget.count = 0;
-//        Budget.expenses = (Budget.expenses * -1);
-//
-//        System.out.println("All monthly budget information entered.");
-//
-//        runMonthlyBudgetReport();
-//
-//    }
+    public int returnExpensesCalculation(){
+        Budget budget = budgetRepository.findBudgetById(1L);
+        int expenses = budget.getOneTimePayment() + budget.getCostOfRent() + budget.getFixedDebtPayments()
+                + budget.getWeeklyCostOfGroceries() + (budget.getWeeklyCostOfEatingOut() * budget.getNumberOfTimesYouEatOut()) + budget.getWeeklyCostOfEatingOut()
+                + budget.getHealthcare() + budget.getChildcare() + budget.getCarInsurance() + budget.getVehicle()
+                + budget.getGas() + budget.getHVAC() + budget.getPhone() + budget.getTv() + budget.getTravel()
+                + budget.getOtherUtilities() + budget.getNumberOfTimesYouEatOut();
+
+        return expenses;
+    }
+
+    public int returnCurrentBalance(){
+        Budget budget = budgetRepository.findBudgetById(1L);
+        int  monthlyBudget= budget.getMonthlyBudget();
+        int currentBalance = monthlyBudget - returnExpensesCalculation();
+
+        return currentBalance;
+    }
 
 //    public void addExpenseNameToBudgetList(){
 //        Scanner userInput1 = new Scanner(System.in);

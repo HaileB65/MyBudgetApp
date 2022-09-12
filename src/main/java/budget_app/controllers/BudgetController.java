@@ -17,6 +17,13 @@ public class BudgetController {
     public String viewBudget(Model model) {
         final Budget budget = budgetService.getBudgetById(1L);
         model.addAttribute("budget", budget);
+
+        final int expenseCalculation = budgetService.returnExpensesCalculation();
+        model.addAttribute("expenseCalculation",expenseCalculation);
+
+        final int currentBalance = budgetService.returnCurrentBalance();
+        model.addAttribute("currentBalance",currentBalance);
+
         return "budget";
     }
 
