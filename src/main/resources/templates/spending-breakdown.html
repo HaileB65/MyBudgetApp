@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="utf-8" />
-  <title>Future Balance Report</title>
+  <title>Spending Breakdown</title>
 </head>
 <body>
 <div align="center">
   <form>
-  <h1>Future Balance Report</h1>
+  <h1>Spending Breakdown</h1>
   <br/><br/>
     <table border="0" cellpadding="10">
       <h2>Transaction Table</h2>
@@ -24,7 +24,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="transaction : ${transactionsBetweenList}">
+            <tr th:each="transaction : ${lastMonthsTravelTransactions}">
               <td th:text="${transaction.id}">Transaction ID</td>
               <td th:text="${transaction.customerName}">Customer Name</td>
               <td th:text="${transaction.venderName}">Vender Name</td>
@@ -33,22 +33,6 @@
             </tbody>
           </table>
         </td>
-
-        <td>
-          <table border="1" cellpadding="10">
-            <thead>
-            <tr>
-              <th>Expected Savings Balance</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr>
-              <td th:text=${futureBalanceSum}>Balance</td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-
       </tr>
       </tbody>
     </table>

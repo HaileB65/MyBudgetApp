@@ -27,12 +27,8 @@ public class SavingService {
         savingRepository.deleteById(id);
     }
 
-    public Saving getSavingAccountThree() {
-        return savingRepository.getById(3L);
-    }
-
-    public void currentSavingBalance() {
-
+    public Saving getSavingAccountNine() {
+        return savingRepository.getById(9L);
     }
 
     public Float getSavingBalance() {

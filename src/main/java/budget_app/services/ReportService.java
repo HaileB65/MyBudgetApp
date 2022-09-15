@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class ReportService {
@@ -24,7 +25,7 @@ public class ReportService {
         Date result = cal.getTime();
 
         Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
+        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
 
         Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
@@ -56,7 +57,7 @@ public class ReportService {
         Date result = cal.getTime();
 
         Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
+        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
 
         Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
@@ -68,30 +69,22 @@ public class ReportService {
         return futureBalance;
     }
 
-//    public void runDebtPaymentCalendarReport(){
-//        System.out.println("DebtPaymentCalendarReport");
-//        //print out a $100 charge the 10th and 25th of each month for credit card bill
-//
-//    }
+    public void runSpendingBreakdown(){
+        //show different tables of transactions from each category
 
-    public void RunSpendingVsSavingOverTimeReport(){
-        System.out.println("SpendingVsSavingOverTimeReport");
-        //get savings and spending from last month
-        //print out both
-        //subtract spending from savings and display
+        //table 1: transactions from last month for travel
+        Calendar cal = Calendar.getInstance(); // get date from one month ago
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
+        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
 
-    }
-
-    public void runComprehensiveFinancialSanityReport(){
-        System.out.println("ComprehensiveFinancialSanityReport");
-        //
-
+        //table 2: transactions from last month for car Insurance
     }
 
     public void runGoalsReport(){
         System.out.println("GoalsReport");
         //display current goals and how far they are from their total
-
     }
 
 }

@@ -36,7 +36,7 @@ public class ReportController {
         Date result = cal.getTime();
 
         Timestamp ts = new Timestamp(result.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",ts);
+        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",ts);
         model.addAttribute("transactionsBetweenList", transactionsBetweenList); // display table of last month's transactions
 
         final Float futureBalanceSum  = reportService.getFutureBalanceSum();
@@ -60,5 +60,30 @@ public class ReportController {
         model.addAttribute("transactionTotalFromLastMonth", transactionTotalFromLastMonth);
 
         return "spending-vs-saving-report";
+    }
+
+    @GetMapping("/spendingBreakdown")
+    public String viewSpendingBreakdownPage(Model model) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+
+        //should be transactions from last month for travel
+        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
+        final List<Transaction> lastMonthsTravelTransactions = transactionService.getTransactionByCustomerNameAndCategory("Haile",OneMonthFromToday, "travel");
+        model.addAttribute("lastMonthsTravelTransactions", lastMonthsTravelTransactions);
+        ////should be transactions from last month for car insurance
+//        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",ts);
+//        model.addAttribute("transactionsBetweenList", transactionsBetweenList);
+
+
+        return "spending-Breakdown";
+    }
+
+    @GetMapping("/goalsReport")
+    public String viewGoalsReportPage(Model model) {
+        final Float savingBalance  = savingService.getSavingBalance();
+        model.addAttribute("savingBalance", savingBalance);
+        return "goal-report";
     }
 }

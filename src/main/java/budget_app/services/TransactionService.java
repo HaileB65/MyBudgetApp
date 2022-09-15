@@ -28,17 +28,21 @@ public class TransactionService {
         subtractNewTransactionFromSavings(transaction);
     }
 
+//    public Float subtractNewTransactionFromSavings(Transaction transaction) {
+//        Float savingBalance = savingService.getSavingBalance();
+//        savingBalance = savingBalance - transaction.getAmount();
+//        return savingBalance; // where do I store saving balance between each app session?
+//    }
+
     public void subtractNewTransactionFromSavings(Transaction transaction) {
-        Saving saving = savingService.getSavingAccountThree();
-        int savingBalance = saving.getCurrentAmount();
-        savingBalance = savingBalance - transaction.getAmount();
+        Saving saving = savingService.getSavingAccountNine();
+        int currentBalance = saving.getCurrentAmount() - transaction.getAmount();
+        saving.setCurrentAmount(currentBalance);
         savingService.addSaving(saving);
     }
 
-//    public void subtractNewTransactionFromSavings(Transaction transaction) {
-//        Float currentBalance = savingService.getSavingBalance();
-//        currentBalance = currentBalance - transaction.getAmount();
-//    }
+
+
 
     public void deleteTransaction(Long id){
         transactionRepository.deleteById(id);
@@ -48,7 +52,11 @@ public class TransactionService {
         return transactionRepository.getBalance();
     }
 
-    public List<Transaction> findCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1){
+    public List<Transaction> getCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1){
         return transactionRepository.findByCustomerNameIsAndTimestampGreaterThan(customerName,timestamp1);
+    }
+
+    public List<Transaction> getTransactionByCustomerNameAndCategory(String customerName, Timestamp timestamp1, String category){
+        return transactionRepository.findCustomerNameWhereTimestampIsGreaterThanAndCategoryIs(customerName,timestamp1, category);
     }
 }

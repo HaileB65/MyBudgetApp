@@ -17,6 +17,7 @@ public class Transaction {
     String customerName;
     String venderName;
     int amount = 0;
+    String category;
 
     @Column(name = "timestamp")
     @CreationTimestamp //this adds the default timestamp on save
