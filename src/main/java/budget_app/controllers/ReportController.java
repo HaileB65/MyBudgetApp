@@ -64,17 +64,12 @@ public class ReportController {
 
     @GetMapping("/spendingBreakdown")
     public String viewSpendingBreakdownPage(Model model) {
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, -1);
-        Date result = cal.getTime();
-
         //should be transactions from last month for travel
-        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> lastMonthsTravelTransactions = transactionService.getTransactionByCustomerNameAndCategory("Haile",OneMonthFromToday, "travel");
-        model.addAttribute("lastMonthsTravelTransactions", lastMonthsTravelTransactions);
-        ////should be transactions from last month for car insurance
-//        final List<Transaction> transactionsBetweenList = transactionService.findCustomerNameWhereTimestampIsGreaterThan("Haile",ts);
-//        model.addAttribute("transactionsBetweenList", transactionsBetweenList);
+        final List<Transaction> oneTimePaymentTransactionsFromLastMonth = reportService.getOneTimePaymentTransactionsFromLastMonth();
+        model.addAttribute("oneTimePaymentTransactionsFromLastMonth", oneTimePaymentTransactionsFromLastMonth);
+
+        final List<Transaction> travelTransactionsFromLastMonth = reportService.getTravelTransactionsFromLastMonth();
+        model.addAttribute("travelTransactionsFromLastMonth", travelTransactionsFromLastMonth);
 
 
         return "spending-Breakdown";

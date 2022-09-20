@@ -2,12 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Checking Account</title>
+    <title>User List</title>
 </head>
 <body>
 <div align="center">
     <h1>User List</h1>
     <br/><br/>
+    <a th:href="@{/editUser}">Edit User</a>
     <a th:href="@{/new}">Add New User</a>
     <table border="1" cellpadding="10">
         <thead>

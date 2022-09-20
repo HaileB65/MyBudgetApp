@@ -15,6 +15,4 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
     Float getBalance();
 
     List<Transaction> findByCustomerNameIsAndTimestampGreaterThan(String customerName, Timestamp timestamp1);
-
-    List<Transaction> findCustomerNameWhereTimestampIsGreaterThanAndCategoryIs(String customerName, Timestamp timestamp1, String category);
 }

@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -25,7 +28,7 @@ public class TransactionService {
 
     public void saveTransaction(Transaction transaction){
         transactionRepository.save(transaction);
-        subtractNewTransactionFromSavings(transaction);
+//        subtractNewTransactionFromSavings(transaction);
     }
 
 //    public Float subtractNewTransactionFromSavings(Transaction transaction) {
@@ -41,9 +44,6 @@ public class TransactionService {
         savingService.addSaving(saving);
     }
 
-
-
-
     public void deleteTransaction(Long id){
         transactionRepository.deleteById(id);
     }
@@ -54,9 +54,5 @@ public class TransactionService {
 
     public List<Transaction> getCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1){
         return transactionRepository.findByCustomerNameIsAndTimestampGreaterThan(customerName,timestamp1);
-    }
-
-    public List<Transaction> getTransactionByCustomerNameAndCategory(String customerName, Timestamp timestamp1, String category){
-        return transactionRepository.findCustomerNameWhereTimestampIsGreaterThanAndCategoryIs(customerName,timestamp1, category);
     }
 }

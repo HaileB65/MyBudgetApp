@@ -1,53 +1,50 @@
 package budget_app.controllers;
 
-import budget_app.models.Transaction;
-import budget_app.models.Goal;
-import budget_app.models.Saving;
+import budget_app.models.Budget;
 import budget_app.models.User;
-import budget_app.services.TransactionService;
-import budget_app.services.GoalService;
-import budget_app.services.SavingService;
-import budget_app.services.UserService;
+import budget_app.services.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @org.springframework.stereotype.Controller
 public class HomeController {
     @Autowired
-    UserService userService;
-
-    @Autowired
-    TransactionService transactionService;
-
-    @Autowired
-    SavingService savingService;
-
-    @Autowired
-    GoalService goalService;
+    BudgetService budgetService;
 
     @GetMapping("/home")
-    public String viewHomePage(Model model) {
-        final List<User> usersList = userService.getAllUsers();
-        model.addAttribute("usersList", usersList);
+    public String viewBudget(Model model) {
+        final Budget budget = budgetService.getBudgetById(1L);
+        model.addAttribute("budget", budget);
 
-        final List<Transaction> transactionList = transactionService.getAllTransactions();
-        model.addAttribute("transactionList", transactionList);
+        final int expenseCalculation = budgetService.returnExpensesCalculation();
+        model.addAttribute("expenseCalculation",expenseCalculation);
 
-        final Float transactionBalance  = transactionService.getTransactionBalance();
-        model.addAttribute("transactionBalance", transactionBalance);
+        final int currentBalance = budgetService.returnCurrentBalance();
+        model.addAttribute("currentBalance",currentBalance);
 
-        final List<Saving> savingList = savingService.getAllSavings();
-        model.addAttribute("savingList", savingList);
-
-        final Float savingBalance  = savingService.getSavingBalance();
-        model.addAttribute("savingBalance", savingBalance);
-
-        final List<Goal> goalsList = goalService.getAllGoals();
-        model.addAttribute("goalsList", goalsList);
         return "home";
+    }
+
+    @GetMapping("/editBudget/{id}")
+    public ModelAndView showEditBudgetPage(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit-budget");
+        Budget budget = budgetService.getBudgetById(id);
+        mav.addObject("budget", budget);
+        return mav;
+    }
+
+    @PostMapping(value = "/saveBudget")
+    public String saveBudget(@ModelAttribute("budget") Budget budget) {
+        budgetService.saveBudget(budget);
+        return "redirect:/budget";
+    }
+
+    @RequestMapping("/updateBudget/{id}")
+    public String updateBudget(@ModelAttribute("budget") Budget budget) {
+        budgetService.saveBudget(budget);
+        return "redirect:/budget";
     }
 
     @GetMapping("/login")
