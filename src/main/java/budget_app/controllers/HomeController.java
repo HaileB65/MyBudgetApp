@@ -1,7 +1,6 @@
 package budget_app.controllers;
 
 import budget_app.models.Budget;
-import budget_app.models.User;
 import budget_app.services.BudgetService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -27,8 +26,16 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/editBudget")
+    public ModelAndView showEditBudgetPage() {
+        ModelAndView mav = new ModelAndView("edit-budget");
+        Budget budget = budgetService.getBudgetById(1L);
+        mav.addObject("budget", budget);
+        return mav;
+    }
+
     @GetMapping("/editBudget/{id}")
-    public ModelAndView showEditBudgetPage(@PathVariable(name = "id") Long id) {
+    public ModelAndView showEditBudgetPage(@PathVariable(name = "id", value = "1") Long id) {
         ModelAndView mav = new ModelAndView("edit-budget");
         Budget budget = budgetService.getBudgetById(id);
         mav.addObject("budget", budget);

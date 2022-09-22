@@ -5,6 +5,9 @@
   <title>Edit Budget</title>
 </head>
 <body>
+
+<a th:href="@{/home}" align ="left">Return To Home Page</a>
+
 <div align="center">
   <h1>Edit Budget</h1>
   <br />
@@ -87,10 +90,11 @@
             <td>Number Of Times You Eat Out:</td>
             <td><input type="number" th:field="*{numberOfTimesYouEatOut}" required></input></td>
         </tr>
-      <tr>
-        <td colspan="2"><button type="submit">Save</button></td>
-      </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Save</button></td>
+        </tr>
     </table>
+
   </form>
 </div>
 </body>

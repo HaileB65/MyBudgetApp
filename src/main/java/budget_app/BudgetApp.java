@@ -1,6 +1,5 @@
 package budget_app;
 
-import budget_app.services.ReportService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

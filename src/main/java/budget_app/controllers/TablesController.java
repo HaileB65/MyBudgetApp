@@ -1,12 +1,12 @@
 package budget_app.controllers;
 
-import budget_app.models.Transaction;
 import budget_app.models.Goal;
 import budget_app.models.Saving;
+import budget_app.models.Transaction;
 import budget_app.models.User;
-import budget_app.services.TransactionService;
 import budget_app.services.GoalService;
 import budget_app.services.SavingService;
+import budget_app.services.TransactionService;
 import budget_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
@@ -47,7 +47,7 @@ public class TablesController {
 
         final List<Goal> goalsList = goalService.getAllGoals();
         model.addAttribute("goalsList", goalsList);
-        return "home";
+        return "tables";
     }
 
 }

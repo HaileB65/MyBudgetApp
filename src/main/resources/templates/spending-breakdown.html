@@ -8,64 +8,97 @@
 <div align="center">
   <form>
   <h1>Spending Breakdown For Last Month</h1>
-  <br/><br/>
-    <table border="0" cellpadding="10">
-      <h2>Travel Transactions </h2>
-      <tbody>
-      <tr>
-        <td>
-          <table border="1" cellpadding="10">
-            <thead>
-            <tr>
-              <th>Transaction ID</th>
-              <th>Customer Name</th>
-              <th>Vender Name</th>
-              <th>Transaction Amount</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="transaction : ${travelTransactionsFromLastMonth}">
-              <td th:text="${transaction.id}">Transaction ID</td>
-              <td th:text="${transaction.customerName}">Customer Name</td>
-              <td th:text="${transaction.venderName}">Vender Name</td>
-              <td th:text="${transaction.amount}">Amount</td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
 
-    <table border="0" cellpadding="10">
-      <h2>Miscellaneous Transactions </h2>
-      <tbody>
-      <tr>
-        <td>
-          <table border="1" cellpadding="10">
-            <thead>
-            <tr>
-              <th>Transaction ID</th>
-              <th>Customer Name</th>
-              <th>Vender Name</th>
-              <th>Transaction Amount</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="transaction : ${oneTimePaymentTransactionsFromLastMonth}">
-              <td th:text="${transaction.id}">Transaction ID</td>
-              <td th:text="${transaction.customerName}">Customer Name</td>
-              <td th:text="${transaction.venderName}">Vender Name</td>
-              <td th:text="${transaction.amount}">Amount</td>
-            </tr>
-            </tbody>
-          </table>
-        </td>
-      </tr>
-      </tbody>
-    </table>
+  <br/><br/>
+
+<!--    <table border="0" cellpadding="10">-->
+<!--      <h2>Travel Transactions </h2>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td>-->
+<!--          <table border="1" cellpadding="10">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th>Transaction ID</th>-->
+<!--              <th>Customer Name</th>-->
+<!--              <th>Vender Name</th>-->
+<!--              <th>Transaction Amount</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="transaction : ${travelTransactionsFromLastMonth}">-->
+<!--              <td th:text="${transaction.id}">Transaction ID</td>-->
+<!--              <td th:text="${transaction.customerName}">Customer Name</td>-->
+<!--              <td th:text="${transaction.venderName}">Vender Name</td>-->
+<!--              <td th:text="${transaction.amount}">Amount</td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+
+<!--    <table border="0" cellpadding="10">-->
+<!--      <h2>One Time Payment Transactions </h2>-->
+<!--      <tbody>-->
+<!--      <tr>-->
+<!--        <td>-->
+<!--          <table border="1" cellpadding="10">-->
+<!--            <thead>-->
+<!--            <tr>-->
+<!--              <th>Transaction ID</th>-->
+<!--              <th>Customer Name</th>-->
+<!--              <th>Vender Name</th>-->
+<!--              <th>Transaction Amount</th>-->
+<!--            </tr>-->
+<!--            </thead>-->
+<!--            <tbody>-->
+<!--            <tr th:each="transaction : ${oneTimePaymentTransactionsFromLastMonth}">-->
+<!--              <td th:text="${transaction.id}">Transaction ID</td>-->
+<!--              <td th:text="${transaction.customerName}">Customer Name</td>-->
+<!--              <td th:text="${transaction.venderName}">Vender Name</td>-->
+<!--              <td th:text="${transaction.amount}">Amount</td>-->
+<!--            </tr>-->
+<!--            </tbody>-->
+<!--          </table>-->
+<!--        </td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+
+    <div th:each="instance : ${transactionsFromLastMonth}">  <!-- instance map from the report controller -->
+      <table border="0" cellpadding="10">
+        <h2 th:text="${instance.key} + ' Transactions'"></h2> <!-- category name -->
+        <tbody>
+        <tr>
+          <td>
+            <table border="1" cellpadding="10">
+              <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Customer Name</th>
+                <th>Vender Name</th>
+                <th>Transaction Amount</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="transaction : ${instance.value}"> <!-- transaction list from each key(aka category) -->
+                <td th:text="${transaction.id}">Transaction ID</td>
+                <td th:text="${transaction.customerName}">Customer Name</td>
+                <td th:text="${transaction.venderName}">Vender Name</td>
+                <td th:text="${transaction.amount}">Amount</td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
 
     <a th:href="@{/reports}">Return To Reports Page</a>
+
   </form>
 </div>
 </body>

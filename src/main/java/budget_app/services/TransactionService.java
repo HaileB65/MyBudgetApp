@@ -7,9 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -20,13 +17,15 @@ public class TransactionService {
     @Autowired
     SavingService savingService;
 
-    public List<Transaction> getAllTransactions(){
+    public List<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
 
-    public Transaction getTransactionById(Long id){return transactionRepository.getById(id);}
+    public Transaction getTransactionById(Long id) {
+        return transactionRepository.getById(id);
+    }
 
-    public void saveTransaction(Transaction transaction){
+    public void saveTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
 //        subtractNewTransactionFromSavings(transaction);
     }
@@ -44,7 +43,7 @@ public class TransactionService {
         savingService.addSaving(saving);
     }
 
-    public void deleteTransaction(Long id){
+    public void deleteTransaction(Long id) {
         transactionRepository.deleteById(id);
     }
 
@@ -52,7 +51,23 @@ public class TransactionService {
         return transactionRepository.getBalance();
     }
 
-    public List<Transaction> getCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1){
-        return transactionRepository.findByCustomerNameIsAndTimestampGreaterThan(customerName,timestamp1);
+    public List<Transaction> getCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1) {
+        return transactionRepository.findByCustomerNameIsAndTimestampGreaterThan(customerName, timestamp1);
     }
+
+    public List<Transaction> getTransactionsWhereTimestampGreaterThan(Timestamp timestamp1) {
+        return transactionRepository.findByTimestampGreaterThan(timestamp1);
+    }
+
+    public void moveTransactionsToSavings(Timestamp timestamp1) {
+        int sum = transactionRepository.findByTimestampGreaterThan(timestamp1).stream() // get sum of savings
+                .map(Transaction::getAmount)
+                .mapToInt(Integer::intValue)
+                .sum();
+
+        savingService.addSaving(Saving.builder() // create a saving transaction and add to savings table
+                .currentAmount(sum)
+                .build());
+    }
+
 }

@@ -1,6 +1,5 @@
 package budget_app.controllers;
 
-import budget_app.models.Saving;
 import budget_app.models.Transaction;
 import budget_app.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;

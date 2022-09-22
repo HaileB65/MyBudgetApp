@@ -6,12 +6,13 @@ import budget_app.services.SavingService;
 import budget_app.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @org.springframework.stereotype.Controller
 public class ReportController {
@@ -64,13 +65,9 @@ public class ReportController {
 
     @GetMapping("/spendingBreakdown")
     public String viewSpendingBreakdownPage(Model model) {
-        //should be transactions from last month for travel
-        final List<Transaction> oneTimePaymentTransactionsFromLastMonth = reportService.getOneTimePaymentTransactionsFromLastMonth();
-        model.addAttribute("oneTimePaymentTransactionsFromLastMonth", oneTimePaymentTransactionsFromLastMonth);
-
-        final List<Transaction> travelTransactionsFromLastMonth = reportService.getTravelTransactionsFromLastMonth();
-        model.addAttribute("travelTransactionsFromLastMonth", travelTransactionsFromLastMonth);
-
+        // Map of transactions from last month
+        final Map<String, List<Transaction>> transactionsFromLastMonth = reportService.getTransactionsFromLastMonth();
+        model.addAttribute("transactionsFromLastMonth", transactionsFromLastMonth);
 
         return "spending-Breakdown";
     }

@@ -4,6 +4,7 @@ import budget_app.models.Saving;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
+
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -15,6 +16,6 @@ public interface SavingRepository extends JpaRepository<Saving, Long> {
 
     Float findByTargetAmountGreaterThan(int amount);
 
-    List<Saving> findByNameIsAndTimestampGreaterThan(String name, Timestamp timestamp1);
+    List<Saving> findByTimestampGreaterThan(Timestamp timestamp1);
 
 }

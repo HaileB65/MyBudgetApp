@@ -6,11 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Stream;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @Service
 public class ReportService {
@@ -21,46 +21,33 @@ public class ReportService {
     SavingService savingService;
 
     public float getTransactionTotalFromLastMonth(){
-        Calendar cal = Calendar.getInstance(); // get date from one month ago
-        cal.add(Calendar.MONTH, -1);
-        Date result = cal.getTime();
+        Timestamp OneMonthFromToday = getTimestamp();
 
-        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
+        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday); // get transactions from last month
 
-        Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
+        return transactionsFromLastMonth.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
                 .mapToInt(Integer::intValue)
                 .sum();
-
-        return sumOfLastMonthsTransactions;
     }
 
     public float getSavingsTotalFromLastMonth(){
-        Calendar cal = Calendar.getInstance(); // get date from one month ago
-        cal.add(Calendar.MONTH, -1);
-        Date result = cal.getTime();
+        Timestamp OneMonthFromToday = getTimestamp();
 
-        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Saving> savingsBetweenList = savingService.findNameWhereTimestampIsGreaterThan("saving",OneMonthFromToday); // get savings from last month
+        final List<Saving> savingsBetweenList = savingService.getSavingTransactions(OneMonthFromToday); // get savings from last month
 
-        Integer sumOfLastMonthsSavings = savingsBetweenList.stream() // get sum of savings from last month
+        return savingsBetweenList.stream() // get sum of savings from last month
                 .map(Saving::getCurrentAmount)
                 .mapToInt(Integer::intValue)
                 .sum();
-
-        return sumOfLastMonthsSavings;
     }
 
     public float getFutureBalanceSum(){
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, -1);
-        Date result = cal.getTime();
+        Timestamp OneMonthFromToday = getTimestamp();
 
-        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
+        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday); // get transactions from last month
 
-        Integer sumOfLastMonthsTransactions = transactionsBetweenList.stream() // get sum of transactions from last month
+        Integer sumOfLastMonthsTransactions = transactionsFromLastMonth.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
                 .mapToInt(Integer::intValue)
                 .sum();
@@ -70,49 +57,26 @@ public class ReportService {
         return futureBalance;
     }
 
-    public void runSpendingBreakdown(){
-        //show different tables of transactions from each category
+    public Map<String, List<Transaction>> getTransactionsFromLastMonth(){
+        Timestamp OneMonthFromToday = getTimestamp();
 
-        //table 2: transactions from last month for car Insurance
-    }
+        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday);
 
-    public List<Transaction> getTravelTransactionsFromLastMonth(){
-        //table 1: transactions from last month for travel
-        Calendar cal = Calendar.getInstance(); // get date from one month ago
-        cal.add(Calendar.MONTH, -1);
-        Date result = cal.getTime();
-        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> transactionsFromLastMonth = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
+        return transactionsFromLastMonth.stream()
+                .collect(Collectors.groupingBy(Transaction::getCategory));
 
-        List<Transaction> travelTransactions = new ArrayList<>(); // new filtered list
-        for (Transaction transaction : transactionsFromLastMonth) {
-            if (transaction.getCategory().equalsIgnoreCase("Travel")) {
-                travelTransactions.add(transaction);
-            }
-        }
-
-        return travelTransactions;
-    }
-
-    public List<Transaction> getOneTimePaymentTransactionsFromLastMonth(){
-        Calendar cal = Calendar.getInstance();
-        cal.add(Calendar.MONTH, -1);
-        Date result = cal.getTime();
-        Timestamp OneMonthFromToday= new Timestamp(result.getTime());
-        final List<Transaction> transactionsFromLastMonth = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",OneMonthFromToday); // get transactions from last month
-
-        List<Transaction> oneTimePaymentTransactions = new ArrayList<>();
-        for (Transaction transaction : transactionsFromLastMonth) {
-            if (transaction.getCategory().equalsIgnoreCase("One Time Payment")) {
-                oneTimePaymentTransactions.add(transaction);
-            }
-        }
-        return oneTimePaymentTransactions;
     }
 
     public void runGoalsReport(){
         System.out.println("GoalsReport");
         //display current goals and how far they are from their total
+    }
+
+    private Timestamp getTimestamp() {
+        Calendar cal = Calendar.getInstance(); // get date from one month ago
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+        return new Timestamp(result.getTime());
     }
 
 }

@@ -35,8 +35,8 @@ public class SavingService {
         return savingRepository.getSavingBalance();
     }
 
-    public List<Saving> findNameWhereTimestampIsGreaterThan(String name, Timestamp timestamp1){
-        return savingRepository.findByNameIsAndTimestampGreaterThan(name,timestamp1);
+    public List<Saving> getSavingTransactions(Timestamp timestamp1){
+        return savingRepository.findByTimestampGreaterThan(timestamp1);
     }
 
 }
