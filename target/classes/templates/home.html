@@ -5,9 +5,16 @@
     <title>Monthly Budget</title>
 </head>
 <body>
+
+<h1 align="center" style="{position:sticky,top:0}">Monthly Budget App</h1>
+
+<a th:href="@{/editBudget}" align="left">Edit Budget</a>
+<br/><br/>
+<a th:href="@{/reports}" align="left">View Reports</a>
+<br/><br/>
+<a th:href="@{/tables}" align ="left">View Tables</a>
+
 <div align="center">
-    <h1>Monthly Budget</h1>
-    <br/><br/>
             <table border="1" cellpadding="10">
                 <tr>
                     <td>Monthly Budget:</td>
@@ -30,79 +37,101 @@
     <br/><br/>
 
     <h2>Expense List</h2>
-    <a th:href="@{/editBudget}">Edit Expenses</a>
     <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Expense</th>
+            <th>Expected Value</th>
+            <th>Actual Value</th>
+        </tr>
+        </thead>
+
         <tr>
             <td>One Time Payment:</td>
-            <td th:text="${budget.oneTimePayment}">One Time Payment</td>
+            <td th:text="${budget.oneTimePayment}" align="center">One Time Payment</td>
+            <td th:text="${oneTimePaymentCategoryActualValue}" align="center">One Time Payment Actual Value</td>
         </tr>
         <tr>
             <td>Cost Of Rent:</td>
-            <td th:text="${budget.costOfRent}">Cost Of Rent</td>
+            <td th:text="${budget.costOfRent}" align="center">Cost Of Rent</td>
+            <td th:text="${costOfRentActualValue}" align="center">Cost Of Rent Actual Value</td>
         </tr>
         <tr>
             <td>Fixed Debt Payments:</td>
-            <td th:text="${budget.fixedDebtPayments}">Fixed Debt Payments</td>
+            <td th:text="${budget.fixedDebtPayments}" align="center">Fixed Debt Payments</td>
+            <td th:text="${fixedDebtPaymentActualValue}" align="center">Fixed Debt Payment Actual Value</td>
         </tr>
         <tr>
             <td>Weekly Cost Of Groceries:</td>
-            <td th:text="${budget.weeklyCostOfGroceries}">Weekly Cost Of Groceries</td>
+            <td th:text="${budget.weeklyCostOfGroceries}" align="center">Weekly Cost Of Groceries</td>
+            <td th:text="${weeklyCostOfGroceriesActualValue}" align="center">Weekly Cost Of Groceries Actual Value</td>
         </tr>
         <tr>
             <td>Weekly Cost Of Eating Out:</td>
-            <td th:text="${budget.weeklyCostOfEatingOut}">Weekly Cost Of Eating Out</td>
+            <td th:text="${budget.weeklyCostOfEatingOut}" align="center">Weekly Cost Of Eating Out</td>
+            <td th:text="${weeklyCostOfEatingOutActualValue}" align="center">Weekly Cost Of Eating Out Actual Value</td>
         </tr>
         <tr>
             <td>Weekly Cost Of Beer Wine:</td>
-            <td th:text="${budget.weeklyCostOfBeerWine}">Weekly Cost Of Beer Wine</td>
+            <td th:text="${budget.weeklyCostOfBeerWine}" align="center">Weekly Cost Of Beer Wine</td>
+            <td th:text="${weeklyCostOfBeerWineActualValue}" align="center">Weekly Cost Of Beer Wine Actual Value</td>
         </tr>
         <tr>
             <td>Healthcare:</td>
-            <td th:text="${budget.healthcare}">Healthcare</td>
+            <td th:text="${budget.healthcare}" align="center">Healthcare</td>
+            <td th:text="${healthcareActualValue}" align="center">Healthcare Actual Value</td>
         </tr>
         <tr>
             <td>Childcare:</td>
-            <td th:text="${budget.childcare}">Childcare</td>
+            <td th:text="${budget.childcare}" align="center">Childcare</td>
+            <td th:text="${childcareActualValue}" align="center">Childcare Actual Value</td>
         </tr>
         <tr>
             <td>Car Insurance:</td>
-            <td th:text="${budget.carInsurance}">Car Insurance</td>
+            <td th:text="${budget.carInsurance}" align="center">Car Insurance</td>
+            <td th:text="${carInsuranceActualValue}" align="center">Car Insurance Actual Value</td>
         </tr>
         <tr>
             <td>Vehicle:</td>
-            <td th:text="${budget.vehicle}">Vehicle</td>
+            <td th:text="${budget.vehicle}" align="center">Vehicle</td>
+            <td th:text="${vehicleActualValue}" align="center">Vehicle Actual Value</td>
         </tr>
         <tr>
             <td>Gas:</td>
-            <td th:text="${budget.gas}">Gas</td>
+            <td th:text="${budget.gas}" align="center">Gas</td>
+            <td th:text="${gasActualValue}" align="center">Gas Actual Value</td>
         </tr>
         <tr>
             <td>HVAC:</td>
-            <td th:text="${budget.HVAC}">HVAC</td>
+            <td th:text="${budget.HVAC}" align="center">HVAC</td>
+            <td th:text="${HVACActualValue}" align="center">HVAC Actual Value</td>
         </tr>
         <tr>
             <td>Phone:</td>
-            <td th:text="${budget.phone}">Phone</td>
+            <td th:text="${budget.phone}" align="center">Phone</td>
+            <td th:text="${phoneActualValue}" align="center">Phone Actual Value</td>
         </tr>
         <tr>
             <td>Tv:</td>
-            <td th:text="${budget.tv}">Tv</td>
+            <td th:text="${budget.tv}" align="center">Tv</td>
+            <td th:text="${tvActualValue}" align="center">Tv Actual Value</td>
         </tr>
         <tr>
             <td>Travel:</td>
-            <td th:text="${budget.travel}">Travel</td>
+            <td th:text="${budget.travel}" align="center">Travel</td>
+            <td th:text="${travelActualValue}" align="center">Travel Actual Value</td>
         </tr>
         <tr>
             <td>Other Utilities:</td>
-            <td th:text="${budget.otherUtilities}">Other Utilities</td>
+            <td th:text="${budget.otherUtilities}" align="center">Other Utilities</td>
+            <td th:text="${otherUtilitiesActualValue}" align="center">Other Utilities Actual Value</td>
         </tr>
         <tr>
             <td>Number Of Times You Eat Out:</td>
-            <td th:text="${budget.numberOfTimesYouEatOut}">Number Of Times You Eat Out</td>
+            <td th:text="${budget.numberOfTimesYouEatOut}" align="center">Number Of Times You Eat Out</td>
+            <td th:text="${numberOfTimesYouEatOutActualValue}" align="center">Number Of Times You Eat Out Actual Value</td>
         </tr>
     </table>
-    <br/><br/>
-    <a th:href="@{/home}">Return To Home Page</a>
 </div>
 </body>
 </html>

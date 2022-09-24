@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -65,6 +62,18 @@ public class ReportService {
         return transactionsFromLastMonth.stream()
                 .collect(Collectors.groupingBy(Transaction::getCategory));
 
+    }
+
+    public int getCategoryTotalFromLastMonth(String category){
+        Timestamp OneMonthFromToday = getTimestamp();
+
+        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday);
+
+        return transactionsFromLastMonth.stream()
+                .filter(transaction -> Objects.equals(transaction.getCategory(), category))
+                .map(Transaction::getAmount)
+                .mapToInt(Integer::intValue)
+                .sum();
     }
 
     public void runGoalsReport(){
