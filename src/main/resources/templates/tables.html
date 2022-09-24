@@ -88,17 +88,13 @@
                 <table border="1" cellpadding="10">
                     <thead>
                     <tr>
-                        <th>Account ID</th>
-                        <th>Account Name</th>
-                        <th>Target Amount</th>
-                        <th>Current Amount</th>
+                        <th>Deposit ID</th>
+                        <th>Amount</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="saving : ${savingList}">
                         <td th:text="${saving.id}">Account ID</td>
-                        <td th:text="${saving.name}">Account Name</td>
-                        <td th:text="${saving.targetAmount}">Target Amount</td>
                         <td th:text="${saving.currentAmount}">Current Amount</td>
                     </tr>
                     </tbody>

@@ -21,7 +21,7 @@ public class SavingController {
 
         final Float savingBalance  = savingService.getSavingBalance();
         model.addAttribute("savingBalance", savingBalance);
-        return "saving";
+        return "savings";
     }
 
     @GetMapping("/newSaving")
@@ -35,13 +35,13 @@ public class SavingController {
     @PostMapping(value = "/saveSaving")
     public String saveSaving(@ModelAttribute("saving") Saving savings) {
         savingService.addSaving(savings);
-        return "redirect:/saving";
+        return "redirect:/savings";
     }
 
     @RequestMapping("/deleteSaving/{id}")
     public String deleteSaving(@PathVariable(name = "id") Long id) {
         savingService.deleteSaving(id);
-        return "redirect:/saving";
+        return "redirect:/savings";
     }
 
     @GetMapping("/editSaving/{id}")

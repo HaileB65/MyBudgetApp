@@ -2,11 +2,11 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Saving Accounts</title>
+    <title>Saving Account</title>
 </head>
 <body>
 <div align="center">
-    <h1>Saving Accounts</h1>
+    <h1>Saving Account</h1>
     <br/><br/>
     <a th:href="@{/editSaving}">Edit Saving</a>
     <a th:href="@{/newSaving}">Add New Saving</a>
@@ -17,18 +17,14 @@
                 <table border="1" cellpadding="10">
                     <thead>
                     <tr>
-                        <th>Account ID</th>
-                        <th>Account Name</th>
-                        <th>Target Amount</th>
-                        <th>Current Amount</th>
+                        <th>Deposit ID</th>
+                        <th>Amount</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="saving : ${savingList}">
                         <td th:text="${saving.id}">Account ID</td>
-                        <td th:text="${saving.name}">Account Name</td>
-                        <td th:text="${saving.targetAmount}">Target Amount</td>
                         <td th:text="${saving.currentAmount}">Current Amount</td>
                         <td>
                             <a th:href="@{'/deleteSaving/' + ${saving.id}}">Delete</a>

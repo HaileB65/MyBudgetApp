@@ -20,8 +20,6 @@ public class Saving {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
-    String name;
-    int targetAmount = 0;
     int currentAmount = 0;
 
     @Column(name = "timestamp")
