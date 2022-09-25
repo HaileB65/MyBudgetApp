@@ -2,16 +2,18 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Transactions</title>
+    <title>Rollover Transactions</title>
 </head>
 <body>
+
 <a th:href="@{/home}">Return To Home Page</a>
 
 <div align="center">
-    <h1>Transactions</h1>
-    <br/><br/>
-    <a th:href="@{/editTransaction}">Edit Transaction</a>
-    <a th:href="@{/newTransaction}">Add New Transaction</a>
+    <h1>Rollover Transactions</h1>
+
+    <form action="#" th:action="@{/completeRollover}">
+
+    <a >Table of Transactions Not added to Savings Account </a>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
@@ -20,24 +22,24 @@
             <th>Vender Name</th>
             <th>Transaction Amount</th>
             <th>Category</th>
-            <th>Actions</th>
+            <th>Added To Savings</th>
         </tr>
         </thead>
         <tbody>
-        <tr th:each="transaction : ${transactionList}">
+        <tr th:each="transaction : ${transactionsNotSavedToSavings}">
             <td th:text="${transaction.id}">Account ID</td>
             <td th:text="${transaction.customerName}">Customer Name</td>
             <td th:text="${transaction.venderName}">Vender Name</td>
             <td th:text="${transaction.amount}">Amount</td>
             <td th:text="${transaction.category}">Category</td>
-            <td>
-                <a th:href="@{'/deleteTransaction/' + ${transaction.id}}">Delete</a>
-            </td>
+            <td th:text="${transaction.addedToSavings}">Added To Savings</td>
+        </tr>
+        <tr>
+        <td colspan="6" align="center"><button type="submit">Rollover Transactions</button></td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/rolloverTransactions}">Rollover Transactions</a>
-
+    </form>
 </div>
 </body>
 </html>

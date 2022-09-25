@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @org.springframework.stereotype.Controller
 public class TransactionController {
@@ -52,5 +53,23 @@ public class TransactionController {
     public String updateTransaction(@ModelAttribute("transaction") Transaction transaction) {
         transactionService.saveTransaction(transaction);
         return "redirect:/transaction";
+    }
+
+    @GetMapping("/rolloverTransactions")
+    public String rolloverTransactionsToSavings(Model model) {
+        final List<Transaction> transactionsNotSavedToSavings = transactionService.getTransactionsNotAddedToSavingsFromLastMonth();
+        model.addAttribute("transactionsNotSavedToSavings", transactionsNotSavedToSavings);
+
+        return "rollover-transactions";
+    }
+
+    @GetMapping(value = "/completeRollover")
+    public String completeRollover(Model model) {
+        transactionService.moveTransactionsToSavings();
+
+        final List<Transaction> transactionList = transactionService.getAllTransactions();
+        model.addAttribute("transactionList", transactionList);
+
+        return "rollover-complete";
     }
 }

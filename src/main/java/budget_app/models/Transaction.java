@@ -18,6 +18,7 @@ public class Transaction {
     String venderName;
     int amount = 0;
     String category;
+    boolean addedToSavings;
 
     @Column(name = "timestamp")
     @CreationTimestamp //this adds the default timestamp on save

@@ -2,16 +2,20 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8"/>
-    <title>Transactions</title>
+    <title>Rollover Complete</title>
 </head>
 <body>
 <a th:href="@{/home}">Return To Home Page</a>
 
 <div align="center">
-    <h1>Transactions</h1>
-    <br/><br/>
-    <a th:href="@{/editTransaction}">Edit Transaction</a>
-    <a th:href="@{/newTransaction}">Add New Transaction</a>
+    <h1>Rollover Complete</h1>
+
+    <a>Transactions have been successfully rolled over into saving account</a>
+
+    <br/>
+
+    <a>Table of Transactions From Last month </a>
+    </br>
     <table border="1" cellpadding="10">
         <thead>
         <tr>
@@ -20,7 +24,7 @@
             <th>Vender Name</th>
             <th>Transaction Amount</th>
             <th>Category</th>
-            <th>Actions</th>
+            <th>Added To Savings</th>
         </tr>
         </thead>
         <tbody>
@@ -30,14 +34,10 @@
             <td th:text="${transaction.venderName}">Vender Name</td>
             <td th:text="${transaction.amount}">Amount</td>
             <td th:text="${transaction.category}">Category</td>
-            <td>
-                <a th:href="@{'/deleteTransaction/' + ${transaction.id}}">Delete</a>
-            </td>
+            <td th:text="${transaction.addedToSavings}">Added To Savings</td>
         </tr>
         </tbody>
     </table>
-    <a th:href="@{/rolloverTransactions}">Rollover Transactions</a>
-
 </div>
 </body>
 </html>

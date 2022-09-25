@@ -7,7 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Timestamp;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class TransactionService {
@@ -27,20 +31,6 @@ public class TransactionService {
 
     public void saveTransaction(Transaction transaction) {
         transactionRepository.save(transaction);
-//        subtractNewTransactionFromSavings(transaction);
-    }
-
-//    public Float subtractNewTransactionFromSavings(Transaction transaction) {
-//        Float savingBalance = savingService.getSavingBalance();
-//        savingBalance = savingBalance - transaction.getAmount();
-//        return savingBalance; // where do I store saving balance between each app session?
-//    }
-
-    public void subtractNewTransactionFromSavings(Transaction transaction) {
-        Saving saving = savingService.getSavingAccountNine();
-        int currentBalance = saving.getCurrentAmount() - transaction.getAmount();
-        saving.setCurrentAmount(currentBalance);
-        savingService.addSaving(saving);
     }
 
     public void deleteTransaction(Long id) {
@@ -51,23 +41,43 @@ public class TransactionService {
         return transactionRepository.getBalance();
     }
 
-    public List<Transaction> getCustomerNameWhereTimestampIsGreaterThan(String customerName, Timestamp timestamp1) {
-        return transactionRepository.findByCustomerNameIsAndTimestampGreaterThan(customerName, timestamp1);
-    }
-
     public List<Transaction> getTransactionsWhereTimestampGreaterThan(Timestamp timestamp1) {
         return transactionRepository.findByTimestampGreaterThan(timestamp1);
     }
 
-    public void moveTransactionsToSavings(Timestamp timestamp1) {
-        int sum = transactionRepository.findByTimestampGreaterThan(timestamp1).stream() // get sum of savings
+    public void moveTransactionsToSavings() {
+        Timestamp OneMonthFromToday = getTimestamp();
+
+        int sum = transactionRepository.findByTimestampGreaterThan(OneMonthFromToday).stream() // get sum of transactions from last month
+                .filter(transaction -> !transaction.isAddedToSavings())
                 .map(Transaction::getAmount)
                 .mapToInt(Integer::intValue)
                 .sum();
 
-        savingService.addSaving(Saving.builder() // create a saving transaction and add to savings table
+        savingService.addSaving(Saving.builder() // deposit sum of transactions to savings account
                 .currentAmount(sum)
                 .build());
+
+        transactionRepository.findByTimestampGreaterThan(OneMonthFromToday).stream() // change "added to savings"
+                .filter(transaction -> !transaction.isAddedToSavings())              // column to "true" for each transaction
+                .map(transaction -> transaction.isAddedToSavings());                 // added to savings account
+    }
+
+    public List<Transaction> getTransactionsNotAddedToSavingsFromLastMonth() {
+        Timestamp OneMonthFromToday = getTimestamp();
+
+        final List<Transaction> transactionsFromLastMonth = transactionRepository.findByTimestampGreaterThan(OneMonthFromToday);
+
+        return transactionsFromLastMonth.stream()
+                .filter(transaction -> !transaction.isAddedToSavings()) // filter to get transactions not added to savings account
+                .collect(Collectors.toList()); // form into a list
+    }
+
+    private Timestamp getTimestamp() {
+        Calendar cal = Calendar.getInstance(); // get date from one month ago
+        cal.add(Calendar.MONTH, -1);
+        Date result = cal.getTime();
+        return new Timestamp(result.getTime());
     }
 
 }

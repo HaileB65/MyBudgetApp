@@ -35,9 +35,9 @@ public class ReportController {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.MONTH, -1);
         Date result = cal.getTime();
-
         Timestamp ts = new Timestamp(result.getTime());
-        final List<Transaction> transactionsBetweenList = transactionService.getCustomerNameWhereTimestampIsGreaterThan("Haile",ts);
+
+        final List<Transaction> transactionsBetweenList = transactionService.getTransactionsWhereTimestampGreaterThan(ts);
         model.addAttribute("transactionsBetweenList", transactionsBetweenList); // display table of last month's transactions
 
         final Float futureBalanceSum  = reportService.getFutureBalanceSum();
