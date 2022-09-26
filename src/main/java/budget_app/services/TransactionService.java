@@ -58,9 +58,15 @@ public class TransactionService {
                 .currentAmount(sum)
                 .build());
 
-        transactionRepository.findByTimestampGreaterThan(OneMonthFromToday).stream() // change "added to savings"
-                .filter(transaction -> !transaction.isAddedToSavings())              // column to "true" for each transaction
-                .map(transaction -> transaction.isAddedToSavings());                 // added to savings account
+        final List<Transaction> transactionsThatNeedToBeChanged = transactionRepository.findByTimestampGreaterThan(OneMonthFromToday).stream()
+                .filter(transaction -> !transaction.isAddedToSavings()) // get transactions with addedToSavings column equal to false
+                .collect(Collectors.toList());
+
+        for(Transaction transaction : transactionsThatNeedToBeChanged){
+            transaction.setAddedToSavings(true);  // change "addedToSavings" column to true
+            transactionRepository.save(transaction);
+        }
+
     }
 
     public List<Transaction> getTransactionsNotAddedToSavingsFromLastMonth() {
