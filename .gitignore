@@ -1,3 +1,4 @@
 /mysql-connector-java-8.0.29.jar
 /MyBudgetApp.iml
 /.idea/
+/.target/
