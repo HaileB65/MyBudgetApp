@@ -3,13 +3,14 @@ package budget_app.controllers;
 import budget_app.models.User;
 import budget_app.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@org.springframework.stereotype.Controller
+@Controller
 public class UserController {
     @Autowired
     UserService userService;
