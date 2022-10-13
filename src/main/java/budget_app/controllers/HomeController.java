@@ -102,13 +102,13 @@ public class HomeController {
     @PostMapping(value = "/saveBudget")
     public String saveBudget(@ModelAttribute("budget") Budget budget) {
         budgetService.saveBudget(budget);
-        return "redirect:/budget";
+        return "redirect:/home";
     }
 
     @RequestMapping("/updateBudget/{id}")
     public String updateBudget(@ModelAttribute("budget") Budget budget) {
         budgetService.saveBudget(budget);
-        return "redirect:/budget";
+        return "redirect:/home";
     }
 
     @GetMapping("/login")

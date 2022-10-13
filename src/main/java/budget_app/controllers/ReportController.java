@@ -1,6 +1,9 @@
 package budget_app.controllers;
 
+import budget_app.models.Goal;
 import budget_app.models.Transaction;
+import budget_app.repository.GoalRepository;
+import budget_app.services.GoalService;
 import budget_app.services.ReportService;
 import budget_app.services.SavingService;
 import budget_app.services.TransactionService;
@@ -24,6 +27,9 @@ public class ReportController {
 
     @Autowired
     SavingService savingService;
+
+    @Autowired
+    GoalService goalService;
 
     @GetMapping("/reports")
     public String viewGoalPage(Model model) {
@@ -74,8 +80,8 @@ public class ReportController {
 
     @GetMapping("/goalsReport")
     public String viewGoalsReportPage(Model model) {
-        final Float savingBalance  = savingService.getSavingBalance();
-        model.addAttribute("savingBalance", savingBalance);
+        final List<Goal> goalsList = goalService.getAllGoals();
+        model.addAttribute("goalsList", goalsList);
         return "goal-report";
     }
 }
