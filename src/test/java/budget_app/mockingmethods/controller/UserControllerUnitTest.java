@@ -18,10 +18,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@SpringBootTest
-//@AutoConfigureMockMvc
 @WebMvcTest(controllers = UserController.class)
-//@ContextConfiguration(classes = BudgetApp.class)
 public class UserControllerUnitTest {
 
     @Autowired
