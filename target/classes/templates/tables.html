@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>Home Page</title>
+</head>
+<body>
+
+<a th:href="@{/home}" align ="left">Return To Home Page</a>
+
+<div align="center">
+    <h1 align="center">Tables</h1>
+
+    <h2>User Table</h2>
+    <a th:href="@{/users}">Edit User table</a>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="user : ${usersList}">
+            <td th:text="${user.id}">User ID</td>
+            <td th:text="${user.firstName}">First Name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td th:text="${user.email}">Email</td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+    <h2>Transaction Table</h2>
+    <a th:href="@{/transaction}">Edit Transaction table</a>
+    <table border="0" cellpadding="10">
+        <tbody>
+        <tr>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Transaction ID</th>
+                        <th>Customer Name</th>
+                        <th>Vender Name</th>
+                        <th>Transaction Amount</th>
+                        <th>Category</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="transaction : ${transactionList}">
+                        <td th:text="${transaction.id}">Account ID</td>
+                        <td th:text="${transaction.customerName}">Customer Name</td>
+                        <td th:text="${transaction.venderName}">Vender Name</td>
+                        <td th:text="${transaction.amount}">Amount</td>
+                        <td th:text="${transaction.category}">Category</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text=${transactionBalance}>Balance</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+    <h2>Saving Account</h2>
+    <a th:href="@{/savings}">Edit Savings table</a>
+    <table border="0" cellpadding="10">
+        <tbody>
+        <tr>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Deposit ID</th>
+                        <th>Amount</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="saving : ${savingList}">
+                        <td th:text="${saving.id}">Account ID</td>
+                        <td th:text="${saving.currentAmount}">Current Amount</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+            <td>
+                <table border="1" cellpadding="10">
+                    <thead>
+                    <tr>
+                        <th>Balance</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td th:text=${savingBalance}>Balance</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <br/><br/>
+    <h2>Goal Accounts</h2>
+    <a th:href="@{/goals}">Edit Goal Table</a>
+    <table border="1" cellpadding="10">
+        <thead>
+        <tr>
+            <th>Account ID</th>
+            <th>Account Name</th>
+            <th>Target Amount</th>
+            <th>Current Amount</th>
+            <th>Monthly Contribution</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="goals : ${goalsList}">
+            <td th:text="${goals.id}">Goal ID</td>
+            <td th:text="${goals.name}">Goal Name</td>
+            <td th:text="${goals.targetAmount}">Target Amount</td>
+            <td th:text="${goals.currentAmount}">Current Amount</td>
+            <td th:text="${goals.currentAmount}">Monthly Contribution</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

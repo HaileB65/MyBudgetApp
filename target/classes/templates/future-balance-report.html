@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Future Balance Report</title>
+</head>
+<body>
+
+<a th:href="@{/reports}">Return To Reports Page</a>
+
+<div align="center">
+  <form>
+  <h1>Future Balance Report</h1>
+  <br/><br/>
+    <table border="0" cellpadding="10">
+      <h2>Transaction Table</h2>
+      <tbody>
+      <tr>
+        <td>
+          <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+              <th>Transaction ID</th>
+              <th>Customer Name</th>
+              <th>Vender Name</th>
+              <th>Transaction Amount</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="transaction : ${transactionsBetweenList}">
+              <td th:text="${transaction.id}">Transaction ID</td>
+              <td th:text="${transaction.customerName}">Customer Name</td>
+              <td th:text="${transaction.venderName}">Vender Name</td>
+              <td th:text="${transaction.amount}">Amount</td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+
+        <td>
+          <table border="1" cellpadding="10">
+            <thead>
+            <tr>
+              <th>Expected Savings Balance</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td th:text=${futureBalanceSum}>Balance</td>
+            </tr>
+            </tbody>
+          </table>
+        </td>
+
+      </tr>
+      </tbody>
+    </table>
+    <br/><br/>
+
+  </form>
+</div>
+</body>

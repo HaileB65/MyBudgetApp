@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Edit Budget</title>
+</head>
+<body>
+
+<a th:href="@{/home}" align ="left">Return To Home Page</a>
+
+<div align="center">
+  <h1>Edit Budget</h1>
+  <br />
+    <form action="#" th:action="@{'/updateBudget/' + ${budget.id}}" th:object="${budget}"
+          method="post">
+    <table border="0" cellpadding="10">
+      <tr>
+        <td>Monthly Budget:</td>
+        <td><input type="number" th:field="*{monthlyBudget}" required/></td>
+      </tr>
+      <tr>
+        <td>Monthly Income:</td>
+        <td><input type="number" th:field="*{monthlyIncome}" required></input></td>
+      </tr>
+      <tr>
+        <td>One Time Payment:</td>
+        <td><input type="number" th:field="*{oneTimePayment}" required></input></td>
+      </tr>
+      <tr>
+        <td>Cost Of Rent:</td>
+        <td><input type="number" th:field="*{costOfRent}" required></input></td>
+      </tr>
+        <tr>
+            <td>Fixed Debt Payments:</td>
+            <td><input type="number" th:field="*{fixedDebtPayments}" required></input></td>
+        </tr>
+        <tr>
+            <td>Weekly Cost Of Groceries:</td>
+            <td><input type="number" th:field="*{weeklyCostOfGroceries}" required></input></td>
+        </tr>
+        <tr>
+            <td>Weekly Cost Of Eating Out:</td>
+            <td><input type="number" th:field="*{weeklyCostOfEatingOut}" required></input></td>
+        </tr>
+        <tr>
+            <td>Weekly Cost Of Beer Wine:</td>
+            <td><input type="number" th:field="*{weeklyCostOfBeerWine}" required></input></td>
+        </tr>
+        <tr>
+            <td>Healthcare:</td>
+            <td><input type="number" th:field="*{healthcare}" required></input></td>
+        </tr>
+        <tr>
+            <td>Childcare:</td>
+            <td><input type="number" th:field="*{childcare}" required></input></td>
+        </tr>
+        <tr>
+            <td>Car Insurance:</td>
+            <td><input type="number" th:field="*{carInsurance}" required></input></td>
+        </tr>
+        <tr>
+            <td>Vehicle:</td>
+            <td><input type="number" th:field="*{vehicle}" required></input></td>
+        </tr>
+        <tr>
+            <td>Gas:</td>
+            <td><input type="number" th:field="*{gas}" required></input></td>
+        </tr>
+        <tr>
+            <td>HVAC:</td>
+            <td><input type="number" th:field="*{HVAC}" required></input></td>
+        </tr>
+        <tr>
+            <td>Phone:</td>
+            <td><input type="number" th:field="*{phone}" required></input></td>
+        </tr>
+        <tr>
+            <td>Tv:</td>
+            <td><input type="number" th:field="*{tv}" required></input></td>
+        </tr>
+        <tr>
+            <td>Travel:</td>
+            <td><input type="number" th:field="*{travel}" required></input></td>
+        </tr>
+        <tr>
+            <td>Other Utilities:</td>
+            <td><input type="number" th:field="*{otherUtilities}" required></input></td>
+        </tr>
+        <tr>
+            <td>Number Of Times You Eat Out:</td>
+            <td><input type="number" th:field="*{numberOfTimesYouEatOut}" required></input></td>
+        </tr>
+        <tr>
+            <td colspan="2"><button type="submit">Save</button></td>
+        </tr>
+    </table>
+
+  </form>
+</div>
+</body>
+</html>

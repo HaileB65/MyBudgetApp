@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Spending Breakdown</title>
+</head>
+<body>
+<a th:href="@{/reports}">Return To Reports Page</a>
+
+<div align="center">
+  <form>
+  <h1>Spending Breakdown For Last Month</h1>
+
+  <br/><br/>
+
+
+    <div th:each="instance : ${transactionsFromLastMonth}">  <!-- instance map from the report controller -->
+      <table border="0" cellpadding="10">
+        <h2 th:text="${instance.key} + ' Transactions'"></h2> <!-- category name -->
+        <tbody>
+        <tr>
+          <td>
+            <table border="1" cellpadding="10">
+              <thead>
+              <tr>
+                <th>Transaction ID</th>
+                <th>Customer Name</th>
+                <th>Vender Name</th>
+                <th>Transaction Amount</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="transaction : ${instance.value}"> <!-- transaction list from each key(aka category) -->
+                <td th:text="${transaction.id}">Transaction ID</td>
+                <td th:text="${transaction.customerName}">Customer Name</td>
+                <td th:text="${transaction.venderName}">Vender Name</td>
+                <td th:text="${transaction.amount}">Amount</td>
+              </tr>
+              </tbody>
+            </table>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </form>
+</div>
+</body>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Create New Goal</title>
+</head>
+<body>
+<div align="center">
+  <h1>Create New Goal</h1>
+  <br />
+  <form action="#" th:action="@{/saveGoal}" th:object="${goal}" method="post">
+    <table border="0" cellpadding="10">
+      <tr>
+        <td>Goal Name:</td>
+        <td><input type="text" th:field="*{name}" required/></td>
+      </tr>
+      <tr>
+        <td>Target Amount:</td>
+        <td><input type="number" autocomplete="off" th:field="*{targetAmount}" min="10" max="20000"/></td>
+      </tr>
+      <tr>
+          <td>Current Amount:</td>
+          <td><input type="number" autocomplete="off" th:field="*{currentAmount}" min="10" max="20000"/></td>
+      </tr>
+        <tr>
+            <td>Monthly Contribution:</td>
+            <td><input type="number" autocomplete="off" th:field="*{monthlyContribution}" min="10" max="3000"/></td>
+        </tr>
+      <tr>
+        <td colspan="2"><button type="submit">Save</button> </td>
+      </tr>
+    </table>
+  </form>
+</div>
+</body>
