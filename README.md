@@ -5,6 +5,12 @@ Allows users to enter budget information and returns the users current balance i
 
 # Pictures of app:
 ![alt text](https://github.com/HaileB65/MyBudgetApp/blob/main/documents/Budget%20App%20Pic%201.png)
+![alt text](https://github.com/HaileB65/MyBudgetApp/blob/main/documents/Budget%20App%20Pic%202.jpg)
+![alt text](https://github.com/HaileB65/MyBudgetApp/blob/main/documents/Budget%20App%20Pic%203.jpg)
+![alt text](https://github.com/HaileB65/MyBudgetApp/blob/main/documents/Budget%20App%20Pic%204.jpg)
+![alt text](https://github.com/HaileB65/MyBudgetApp/blob/main/documents/Budget%20App%20Pic%205.jpg)
+
+
 
 # Authors and acknowledgement: 
 Developed by Haile with guidance from Nikita Baranov and Ryan from CodingNomads.
