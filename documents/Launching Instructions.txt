@@ -1,0 +1,12 @@
+How to start My Budet App:
+
+1.	Start servies
+2.	Open project in intelliji
+3.	Add db credentials in application.properties file
+4.	Run project
+5.	Open browser
+6.	Enter localhost:8080/home to view home page
+7.	Login page user = hi password = hello
+8.	Enter localhost:8080/home to enter main page
+9.	To edit a user in the user table: enter http://localhost:8080/editUser/user_id
+10.	To edit a user in the user table: http://localhost:8080/editTransaction/transaction_id
