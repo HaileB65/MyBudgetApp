@@ -27,9 +27,8 @@ public class UserController {
     @GetMapping("/new")
     public String showNewCustomerPage(Model model) {
         // Here a new (empty) Customer is created and then sent to the view
-//        Budget customer = new Budget();
         model.addAttribute("user", new User());
-        return "new-customer";
+        return "new-user";
 
     }
 
@@ -64,6 +63,6 @@ public class UserController {
     @RequestMapping("/updateUser/{id}")
     public String updateUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
-        return "redirect:/user";
+        return "redirect:/users";
     }
 }

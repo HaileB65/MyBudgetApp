@@ -76,11 +76,6 @@ public class ReportService {
                 .sum();
     }
 
-    public void runGoalsReport(){
-        System.out.println("GoalsReport");
-        //display current goals and how far they are from their total
-    }
-
     private Timestamp getTimestamp() {
         Calendar cal = Calendar.getInstance(); // get date from one month ago
         cal.add(Calendar.MONTH, -1);

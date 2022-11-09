@@ -41,6 +41,11 @@ public class TransactionController {
         return "redirect:/transaction";
     }
 
+    @GetMapping("/editTransactionInstructions")
+    public String showHowToEditTransactionPage() {
+        return "how-to-edit-transaction";
+    }
+
     @GetMapping("/editTransaction/{id}")
     public ModelAndView showEditTransactionPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit-transaction");

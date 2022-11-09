@@ -29,7 +29,9 @@ public class TransactionService {
     }
 
     public void saveTransaction(Transaction transaction) {
+        transaction.setTimestamp(getTimestamp());
         transactionRepository.save(transaction);
+
     }
 
     public void deleteTransaction(Long id) {
