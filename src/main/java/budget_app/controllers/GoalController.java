@@ -39,6 +39,11 @@ public class GoalController {
         return "redirect:/goals";
     }
 
+    @GetMapping("/editGoalInstructions")
+    public String showHowToEditGoalPage() {
+        return "how-to-edit-goal";
+    }
+
     @GetMapping("/editGoal/{id}")
     public ModelAndView showEditGoalPage(@PathVariable(name = "id") Long id) {
         ModelAndView mav = new ModelAndView("edit-goal");

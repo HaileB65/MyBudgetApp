@@ -9,4 +9,7 @@ How to start My Budet App:
 7.	Login page user = hi password = hello
 8.	Enter localhost:8080/home to enter main page
 9.	To edit a user in the user table: enter http://localhost:8080/editUser/user_id
-10.	To edit a user in the user table: http://localhost:8080/editTransaction/transaction_id
+10.	To edit a transaction in the transaction table: http://localhost:8080/editTransaction/transaction_id
+10.	To edit a savings in the savings table: http://localhost:8080/editTransaction/savings_id
+10.	To edit a goal in the goal table: http://localhost:8080/editGoal/goal_id
+
