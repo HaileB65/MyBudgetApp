@@ -27,7 +27,7 @@ public class SavingService {
         savingRepository.deleteById(id);
     }
 
-    public Float getSavingBalance() {
+    public float getSavingBalance() {
         return savingRepository.getSavingBalance();
     }
 

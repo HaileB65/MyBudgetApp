@@ -21,7 +21,6 @@ public class HomeController {
         Budget budget = budgetService.getBudgetById(1L);
         model.addAttribute("budget", budget);
 
-
         int oneTimePaymentCategoryTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("One Time Payment");
         model.addAttribute("oneTimePaymentCategoryActualValue", oneTimePaymentCategoryTotalFromLastMonth);
 
