@@ -12,7 +12,7 @@ import java.util.List;
 public interface TransactionRepository extends JpaRepository<Transaction, Long> {
 
     @Query("SELECT SUM(amount) FROM Transaction")
-    Float getBalance();
+    float getBalance();
 
     List<Transaction> findByCustomerNameIsAndTimestampGreaterThan(String customerName, Timestamp timestamp1);
 

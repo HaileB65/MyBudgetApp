@@ -20,7 +20,7 @@ public class ReportService {
     public float getTransactionTotalFromLastMonth(){
         Timestamp OneMonthFromToday = getTimestamp();
 
-        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday); // get transactions from last month
+        List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday); // get transactions from last month
 
         return transactionsFromLastMonth.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
@@ -31,7 +31,7 @@ public class ReportService {
     public float getSavingsTotalFromLastMonth(){
         Timestamp OneMonthFromToday = getTimestamp();
 
-        final List<Saving> savingsBetweenList = savingService.getSavingTransactions(OneMonthFromToday); // get savings from last month
+        List<Saving> savingsBetweenList = savingService.getSavingTransactions(OneMonthFromToday); // get savings from last month
 
         return savingsBetweenList.stream() // get sum of savings from last month
                 .map(Saving::getCurrentAmount)
@@ -42,7 +42,7 @@ public class ReportService {
     public float getFutureBalanceSum(){
         Timestamp OneMonthFromToday = getTimestamp();
 
-        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday); // get transactions from last month
+        List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday); // get transactions from last month
 
         Integer sumOfLastMonthsTransactions = transactionsFromLastMonth.stream() // get sum of transactions from last month
                 .map(Transaction::getAmount)
@@ -57,7 +57,7 @@ public class ReportService {
     public Map<String, List<Transaction>> getTransactionsFromLastMonth(){
         Timestamp OneMonthFromToday = getTimestamp();
 
-        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday);
+        List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday);
 
         return transactionsFromLastMonth.stream()
                 .collect(Collectors.groupingBy(Transaction::getCategory));
@@ -67,7 +67,7 @@ public class ReportService {
     public int getCategoryTotalFromLastMonth(String category){
         Timestamp OneMonthFromToday = getTimestamp();
 
-        final List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday);
+        List<Transaction> transactionsFromLastMonth = transactionService.getTransactionsWhereTimestampGreaterThan(OneMonthFromToday);
 
         return transactionsFromLastMonth.stream()
                 .filter(transaction -> Objects.equals(transaction.getCategory(), category))

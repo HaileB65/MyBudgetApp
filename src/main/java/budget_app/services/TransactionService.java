@@ -38,7 +38,7 @@ public class TransactionService {
         transactionRepository.deleteById(id);
     }
 
-    public Float getTransactionBalance() {
+    public float getTransactionBalance() {
         return transactionRepository.getBalance();
     }
 
@@ -73,7 +73,7 @@ public class TransactionService {
     public List<Transaction> getTransactionsNotAddedToSavingsFromLastMonth() {
         Timestamp OneMonthFromToday = getTimestamp();
 
-        final List<Transaction> transactionsFromLastMonth = transactionRepository.findByTimestampGreaterThan(OneMonthFromToday);
+        List<Transaction> transactionsFromLastMonth = transactionRepository.findByTimestampGreaterThan(OneMonthFromToday);
 
         return transactionsFromLastMonth.stream()
                 .filter(transaction -> !transaction.isAddedToSavings()) // filter to get transactions not added to savings account

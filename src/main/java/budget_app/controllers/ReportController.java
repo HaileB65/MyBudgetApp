@@ -43,27 +43,27 @@ public class ReportController {
         Date result = cal.getTime();
         Timestamp ts = new Timestamp(result.getTime());
 
-        final List<Transaction> transactionsBetweenList = transactionService.getTransactionsWhereTimestampGreaterThan(ts);
+        List<Transaction> transactionsBetweenList = transactionService.getTransactionsWhereTimestampGreaterThan(ts);
         model.addAttribute("transactionsBetweenList", transactionsBetweenList); // display table of last month's transactions
 
-        final Float futureBalanceSum  = reportService.getFutureBalanceSum();
+        float futureBalanceSum  = reportService.getFutureBalanceSum();
         model.addAttribute("futureBalanceSum", futureBalanceSum);
         return "future-balance-report";
     }
 
     @GetMapping("/debtPaymentReport")
     public String viewDebtPaymentReportPage(Model model) {
-        final Float savingBalance  = savingService.getSavingBalance();
+        float savingBalance  = savingService.getSavingBalance();
         model.addAttribute("savingBalance", savingBalance);
         return "debt-payment-report";
     }
 
     @GetMapping("/spendingVsSavingReport")
     public String viewSpendingVsSavingReportPage(Model model) {
-        final Float savingsTotalFromLastMonth  = reportService.getSavingsTotalFromLastMonth();
+        float savingsTotalFromLastMonth  = reportService.getSavingsTotalFromLastMonth();
         model.addAttribute("savingsTotalFromLastMonth", savingsTotalFromLastMonth);
 
-        final Float transactionTotalFromLastMonth  = reportService.getTransactionTotalFromLastMonth();
+        float transactionTotalFromLastMonth  = reportService.getTransactionTotalFromLastMonth();
         model.addAttribute("transactionTotalFromLastMonth", transactionTotalFromLastMonth);
 
         return "spending-vs-saving-report";
@@ -72,7 +72,7 @@ public class ReportController {
     @GetMapping("/spendingBreakdown")
     public String viewSpendingBreakdownPage(Model model) {
         // Map of transactions from last month
-        final Map<String, List<Transaction>> transactionsFromLastMonth = reportService.getTransactionsFromLastMonth();
+        Map<String, List<Transaction>> transactionsFromLastMonth = reportService.getTransactionsFromLastMonth();
         model.addAttribute("transactionsFromLastMonth", transactionsFromLastMonth);
 
         return "spending-Breakdown";
@@ -80,7 +80,7 @@ public class ReportController {
 
     @GetMapping("/goalsReport")
     public String viewGoalsReportPage(Model model) {
-        final List<Goal> goalsList = goalService.getAllGoals();
+        List<Goal> goalsList = goalService.getAllGoals();
         model.addAttribute("goalsList", goalsList);
         return "goal-report";
     }

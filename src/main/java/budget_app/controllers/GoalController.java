@@ -15,7 +15,7 @@ public class GoalController {
 
     @GetMapping("/goals")
     public String viewGoalPage(Model model) {
-        final List<Goal> goalsList = goalService.getAllGoals();
+        List<Goal> goalsList = goalService.getAllGoals();
         model.addAttribute("goalsList", goalsList);
         return "goals";
     }

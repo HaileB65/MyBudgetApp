@@ -12,7 +12,7 @@ import java.util.List;
 public interface SavingRepository extends JpaRepository<Saving, Long> {
 
     @Query(value="SELECT SUM(current_amount) FROM Savings", nativeQuery = true)
-    Float getSavingBalance();
+    float getSavingBalance();
 
     List<Saving> findByTimestampGreaterThan(Timestamp timestamp1);
 

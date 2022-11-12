@@ -38,8 +38,6 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Example<User> userExample = Example.of(new User());
-//        userExample.getProbe().setUsername(username);
         return userRepository.findUserByUsername(username);
     }
 }

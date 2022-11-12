@@ -17,7 +17,7 @@ public class TransactionController {
 
     @GetMapping("/transaction")
     public String viewTransactionAccountPage(Model model) {
-        final List<Transaction> transactionList = transactionService.getAllTransactions();
+        List<Transaction> transactionList = transactionService.getAllTransactions();
         model.addAttribute("transactionList", transactionList);
         return "transaction";
     }
@@ -62,7 +62,7 @@ public class TransactionController {
 
     @GetMapping("/rolloverTransactions")
     public String rolloverTransactionsToSavings(Model model) {
-        final List<Transaction> transactionsNotSavedToSavings = transactionService.getTransactionsNotAddedToSavingsFromLastMonth();
+        List<Transaction> transactionsNotSavedToSavings = transactionService.getTransactionsNotAddedToSavingsFromLastMonth();
         model.addAttribute("transactionsNotSavedToSavings", transactionsNotSavedToSavings);
 
         return "rollover-transactions";
@@ -72,7 +72,7 @@ public class TransactionController {
     public String completeRollover(Model model) {
         transactionService.moveTransactionsToSavings();
 
-        final List<Transaction> transactionList = transactionService.getAllTransactions();
+        List<Transaction> transactionList = transactionService.getAllTransactions();
         model.addAttribute("transactionList", transactionList);
 
         return "rollover-complete";

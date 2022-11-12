@@ -18,66 +18,66 @@ public class HomeController {
 
     @GetMapping("/home")
     public String viewBudget(Model model) {
-        final Budget budget = budgetService.getBudgetById(1L);
+        Budget budget = budgetService.getBudgetById(1L);
         model.addAttribute("budget", budget);
 
 
-        final int oneTimePaymentCategoryTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("One Time Payment");
+        int oneTimePaymentCategoryTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("One Time Payment");
         model.addAttribute("oneTimePaymentCategoryActualValue", oneTimePaymentCategoryTotalFromLastMonth);
 
-        final int costOfRentTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Cost Of Rent");
+        int costOfRentTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Cost Of Rent");
         model.addAttribute("costOfRentActualValue", costOfRentTotalFromLastMonth);
 
-        final int fixedDebtPaymentTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Fixed Debt Payment");
+        int fixedDebtPaymentTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Fixed Debt Payment");
         model.addAttribute("fixedDebtPaymentActualValue", fixedDebtPaymentTotalFromLastMonth);
 
-        final int weeklyCostOfGroceriesTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Weekly Cost Of Groceries");
+        int weeklyCostOfGroceriesTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Weekly Cost Of Groceries");
         model.addAttribute("weeklyCostOfGroceriesActualValue", weeklyCostOfGroceriesTotalFromLastMonth);
 
-        final int weeklyCostOfEatingOutTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Weekly Cost Of Eating Out");
+        int weeklyCostOfEatingOutTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Weekly Cost Of Eating Out");
         model.addAttribute("weeklyCostOfEatingOutActualValue", weeklyCostOfEatingOutTotalFromLastMonth);
 
-        final int weeklyCostOfBeerWineTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Weekly Cost Of Beer Wine");
+        int weeklyCostOfBeerWineTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Weekly Cost Of Beer Wine");
         model.addAttribute("weeklyCostOfBeerWineActualValue", weeklyCostOfBeerWineTotalFromLastMonth);
 
-        final int healthcareTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Healthcare");
+        int healthcareTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Healthcare");
         model.addAttribute("healthcareActualValue", healthcareTotalFromLastMonth);
 
-        final int childcareTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Childcare");
+        int childcareTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Childcare");
         model.addAttribute("childcareActualValue", childcareTotalFromLastMonth);
 
-        final int carInsuranceTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Car Insurance");
+        int carInsuranceTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Car Insurance");
         model.addAttribute("carInsuranceActualValue", carInsuranceTotalFromLastMonth);
 
-        final int vehicleTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Vehicle");
+        int vehicleTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Vehicle");
         model.addAttribute("vehicleActualValue", vehicleTotalFromLastMonth);
 
-        final int gasTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Gas");
+        int gasTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Gas");
         model.addAttribute("gasActualValue", gasTotalFromLastMonth);
 
-        final int HVACTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("HVAC");
+        int HVACTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("HVAC");
         model.addAttribute("HVACActualValue", HVACTotalFromLastMonth);
 
-        final int phoneTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Phone");
+        int phoneTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Phone");
         model.addAttribute("phoneActualValue", phoneTotalFromLastMonth);
 
-        final int tvTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Tv");
+        int tvTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Tv");
         model.addAttribute("tvActualValue", tvTotalFromLastMonth);
 
-        final int travelCategoryTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Travel");
+        int travelCategoryTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Travel");
         model.addAttribute("travelActualValue", travelCategoryTotalFromLastMonth);
 
-        final int otherUtilitiesTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Other Utilities");
+        int otherUtilitiesTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Other Utilities");
         model.addAttribute("otherUtilitiesActualValue", otherUtilitiesTotalFromLastMonth);
 
-        final int numberOfTimesYouEatOutTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Number Of Times You Eat Out");
+        int numberOfTimesYouEatOutTotalFromLastMonth = reportService.getCategoryTotalFromLastMonth("Number Of Times You Eat Out");
         model.addAttribute("numberOfTimesYouEatOutActualValue", numberOfTimesYouEatOutTotalFromLastMonth);
 
 
-        final int expenseCalculation = budgetService.returnExpensesCalculation();
+        int expenseCalculation = budgetService.returnExpensesCalculation();
         model.addAttribute("expenseCalculation",expenseCalculation);
 
-        final int currentBalance = budgetService.returnCurrentBalance();
+        int currentBalance = budgetService.returnCurrentBalance();
         model.addAttribute("currentBalance",currentBalance);
 
         return "home";

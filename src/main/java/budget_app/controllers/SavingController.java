@@ -16,10 +16,10 @@ public class SavingController {
 
     @GetMapping("/savings")
     public String viewSavingPage(Model model) {
-        final List<Saving> savingList = savingService.getAllSavings();
+        List<Saving> savingList = savingService.getAllSavings();
         model.addAttribute("savingList", savingList);
 
-        final Float savingBalance  = savingService.getSavingBalance();
+        float savingBalance  = savingService.getSavingBalance();
         model.addAttribute("savingBalance", savingBalance);
         return "savings";
     }

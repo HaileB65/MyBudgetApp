@@ -30,22 +30,22 @@ public class TablesController {
 
     @GetMapping("/tables")
     public String viewHomePage(Model model) {
-        final List<User> usersList = userService.getAllUsers();
+        List<User> usersList = userService.getAllUsers();
         model.addAttribute("usersList", usersList);
 
-        final List<Transaction> transactionList = transactionService.getAllTransactions();
+        List<Transaction> transactionList = transactionService.getAllTransactions();
         model.addAttribute("transactionList", transactionList);
 
-        final Float transactionBalance  = transactionService.getTransactionBalance();
+        float transactionBalance  = transactionService.getTransactionBalance();
         model.addAttribute("transactionBalance", transactionBalance);
 
-        final List<Saving> savingList = savingService.getAllSavings();
+        List<Saving> savingList = savingService.getAllSavings();
         model.addAttribute("savingList", savingList);
 
-        final Float savingBalance  = savingService.getSavingBalance();
+        float savingBalance  = savingService.getSavingBalance();
         model.addAttribute("savingBalance", savingBalance);
 
-        final List<Goal> goalsList = goalService.getAllGoals();
+        List<Goal> goalsList = goalService.getAllGoals();
         model.addAttribute("goalsList", goalsList);
         return "tables";
     }
