@@ -2,7 +2,9 @@ How to start My Budet App:
 
 1.	Start servies
 2.	Open project in intelliji
-3.	Add db credentials in application.properties file
+3.	MySQL database. Add db credentials in application.properties file. Datasource url example "jdbc:mysql://localhost:3306/schema_name".
+Datasource username and password must be added as well.
+dependencies used
 4.	Run project
 5.	Open browser
 6.	Enter localhost:8080/home to view home page
