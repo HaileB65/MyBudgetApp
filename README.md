@@ -13,5 +13,5 @@ Allows users to enter budget information and returns the users current balance i
 
 
 # Authors and acknowledgement: 
-Developed by Haile with guidance from Nikita Baranov and Ryan from CodingNomads.
+Developed by Haile with guidance from Nikita Baranov and Ryan Desmond from CodingNomads.
 
