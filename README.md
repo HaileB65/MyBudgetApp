@@ -13,5 +13,5 @@ The MyBudget app that allows users to enter a monthly budget, transactions, savi
 
 
 # Authors and acknowledgement: 
-Developed by Haile with guidance from Nikita Baranov and Ryan Desmond from CodingNomads.
+Developed by Haile Brendon with guidance from Nikita Baranov and Ryan Desmond from CodingNomads.
 
